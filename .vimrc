@@ -1,0 +1,14 @@
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+set showmode
+set showmatch
+set smarttab
+set expandtab
+set autoindent
+set nocompatible
+set ruler
+set incsearch
+set background=dark
+set hlsearch
+syntax on
