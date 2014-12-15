@@ -19,7 +19,7 @@
   trustExitCode = true
 
 [alias]
-  st = status -sb
+  st = status
   cp = cherry-pick
   cl = clone
   ci = commit
