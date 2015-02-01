@@ -30,3 +30,6 @@
 [color]
   ui = true
   ui = true
+[user]
+	name = Benjamin Darfler
+	email = bdarfler@gmail.com
