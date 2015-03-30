@@ -13,7 +13,7 @@
   default = simple
 [difftool "sourcetree"]
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path = 
+  path =
 [mergetool "sourcetree"]
   cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   trustExitCode = true
@@ -24,7 +24,7 @@
   cl = clone
   ci = commit
   co = checkout
-  br = branch 
+  br = branch
   ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short
   lsv = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat
 [color]
@@ -32,4 +32,7 @@
   ui = true
 [user]
 	name = Benjamin Darfler
-	email = bdarfler@gmail.com
+[credential]
+	helper = osxkeychain
+[include]
+  path = ~/.gitconfig.local
