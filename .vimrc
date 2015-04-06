@@ -11,4 +11,5 @@ set ruler
 set incsearch
 set background=dark
 set hlsearch
+set backspace=2
 syntax on
