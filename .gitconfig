@@ -1,7 +1,7 @@
 [merge]
   tool = diffmerge
 [mergetool "diffmerge"]
-  cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
+  cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
   trustExitCode = true
 [mergetool]
   keepBackup = false
@@ -11,13 +11,6 @@
   cmd = diffmerge $LOCAL $REMOTE
 [push]
   default = simple
-[difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
-[mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
-
 [alias]
   st = status
   cp = cherry-pick
