@@ -12,4 +12,11 @@ set incsearch
 set background=dark
 set hlsearch
 set backspace=2
+
+execute pathogen#infect()
 syntax on
+filetype plugin indent on
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+map <C-n> :NERDTreeToggle<CR>
