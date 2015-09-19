@@ -12,6 +12,7 @@ set incsearch
 set background=dark
 set hlsearch
 set backspace=2
+set number
 
 execute pathogen#infect()
 syntax on
