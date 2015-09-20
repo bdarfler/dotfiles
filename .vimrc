@@ -29,7 +29,7 @@ colorscheme solarized
 set textwidth=80
 set colorcolumn=+1
 
-" show info
+" information
 set showmode
 set showcmd
 set ruler
@@ -39,6 +39,10 @@ set number
 set cursorline
 set hlsearch
 set showmatch
+
+" split
+set splitbelow
+set splitright
 
 " other
 set visualbell
