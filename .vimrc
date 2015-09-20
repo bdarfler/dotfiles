@@ -30,7 +30,7 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" 80 char column
+" 80 column mark
 set textwidth=80
 set colorcolumn=+1
 
@@ -42,6 +42,10 @@ set number
 
 " fix delete
 set backspace=2
+
+" highlight
+set cursorline
+set visualbell
 
 " other
 set nocompatible
