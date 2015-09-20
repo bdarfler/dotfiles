@@ -20,11 +20,6 @@ set smarttab
 set expandtab
 set autoindent
 
-" search
-set incsearch
-set hlsearch
-set showmatch
-
 " color
 syntax enable
 set background=dark
@@ -40,14 +35,15 @@ set showcmd
 set ruler
 set number
 
-" fix delete
-set backspace=2
-
 " highlight
 set cursorline
-set visualbell
+set hlsearch
+set showmatch
 
 " other
+set visualbell
+set backspace=2
+set incsearch
 set nocompatible
 
 " https://robots.thoughtbot.com/faster-grepping-in-vim
