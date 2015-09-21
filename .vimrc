@@ -22,7 +22,7 @@ filetype plugin indent on
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set autoread                    " Reload files changed outside vim 
 set history=1000                " Store lots of :cmdline history
-set scrolloff=8                 " Scroll when 8 lines away from top / bottom 
+set scrolloff=8                 " Scroll when 8 lines away from edge
 set hidden                      " Leave hidden buffers open
 
 " ================ Visual Config =====================
@@ -38,10 +38,12 @@ set showcmd                     " Show incomplete cmds at the bottom
 set showmode                    " Show current mode at the bottom
 set ruler                       " Show column and line at the bottom
 
-" ================ Better Splits =====================
-
 set splitbelow                  " Split below for horizontal splits
 set splitright                  " Split right for vertica splits
+
+syntax enable                   " Enable syntax coloring
+set background=dark             " Enable dark background colors
+colorscheme solarized           " Enable solarized colorscheme
 
 " ================ Tab Completion ====================
 
@@ -65,13 +67,7 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
-" ================ Pretty Colors ====================
-
-syntax enable
-set background=dark
-colorscheme solarized
-
-" ================ Silver Searcher ==================
+" ================ Faster Search ====================
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 
 set grepprg=ag\ --nogroup\ --nocolor
