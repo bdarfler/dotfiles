@@ -2,7 +2,8 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" https://github.com/VundleVim/Vundle.vim
+" ================ Vundle Plugins ===================
+
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -70,7 +71,9 @@ syntax enable
 set background=dark
 colorscheme solarized
 
+" ================ Silver Searcher ==================
 " https://robots.thoughtbot.com/faster-grepping-in-vim
+
 set grepprg=ag\ --nogroup\ --nocolor
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 0
