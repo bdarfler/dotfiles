@@ -13,6 +13,7 @@ Plugin 'ctrlpvim/ctrlp.vim'                 " Fuzzy file, buffer, mru, tag, etc 
 Plugin 'rking/ag.vim'                       " Vim plugin for the_silver_searcher, 'ag'
 Plugin 'derekwyatt/vim-scala'               " Scala syntax highlighting
 Plugin 'altercation/vim-colors-solarized'   " precision colorscheme for the vim text editor
+Plugin 'tpope/vim-surround'                 " quoting/parenthesizing made simple
 
 call vundle#end()
 filetype plugin indent on
