@@ -26,6 +26,7 @@ set history=1000                " Store lots of :cmdline history
 set scrolloff=8                 " Scroll when 8 lines away from edge
 set hidden                      " Leave hidden buffers open
 set clipboard=unnamed           " Allow vim to use the system clipboard
+set mouse=a                     " Enable mouse support
 
 " ================ Visual Config =====================
 
