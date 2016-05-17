@@ -1,14 +1,22 @@
 [merge]
-  tool = diffmerge
+  tool = p4mergetool
 [mergetool "diffmerge"]
   cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
   trustExitCode = true
+[mergetool "p4mergetool"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$LOCAL $PWD/$REMOTE $PWD/$MERGED
+  trustExitCode = false
 [mergetool]
   keepBackup = false
+  prompt = false
 [diff]
-  tool = diffmerge
+  tool = p4mergetool
 [difftool "diffmerge"]
   cmd = diffmerge $LOCAL $REMOTE
+[difftool "p4mergetool"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
+[difftool]
+  prompt = false
 [push]
   default = simple
 [alias]
@@ -37,4 +45,4 @@
   smudge = git-lfs smudge %f
   required = true
 [commit]
-	gpgsign = true
+  gpgsign = true
