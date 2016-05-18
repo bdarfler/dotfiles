@@ -24,7 +24,8 @@
   co = checkout
   br = branch
   pf = push --force-with-lease
-  am = commit --ammend --no-edit
+  amend = commit --amend --no-edit
+  unstage = reset HEAD
 [color]
   ui = true
 [user]
