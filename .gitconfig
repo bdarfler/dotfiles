@@ -1,5 +1,5 @@
 [merge]
-  tool = p4mergetool
+  tool = diffmerge
 [mergetool "diffmerge"]
   cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
   trustExitCode = true
@@ -10,7 +10,7 @@
   keepBackup = false
   prompt = false
 [diff]
-  tool = p4mergetool
+  tool = diffmerge
 [difftool "diffmerge"]
   cmd = diffmerge $LOCAL $REMOTE
 [difftool "p4mergetool"]
