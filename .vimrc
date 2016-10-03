@@ -37,6 +37,7 @@ set showmatch                     " Highlight matching braces
 set colorcolumn=120               " Highlight column width guide
 
 set number                        " Show line numbers
+set relativenumber                " Show relative line numbers
 set showcmd                       " Show incomplete cmds at the bottom
 set showmode                      " Show current mode at the bottom
 set ruler                         " Show column and line at the bottom
