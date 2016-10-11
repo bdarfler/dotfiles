@@ -14,6 +14,13 @@ Plugin 'rking/ag.vim'                       " Vim plugin for the_silver_searcher
 Plugin 'derekwyatt/vim-scala'               " Scala syntax highlighting
 Plugin 'altercation/vim-colors-solarized'   " precision colorscheme for the vim text editor
 Plugin 'tpope/vim-surround'                 " quoting/parenthesizing made simple
+Plugin 'ntpeters/vim-better-whitespace'     " highlight all trailing whitespace characters
+Plugin 'vim-airline/vim-airline'            " lean & mean status/tabline for vim
+Plugin 'vim-airline/vim-airline-themes'     " A collection of themes for vim-airline
+Plugin 'airblade/vim-gitgutter'             " shows a git diff in the gutter
+Plugin 'godlygeek/tabular'                  " vertical alignment
+Plugin 'tpope/vim-commentary'               " comment stuff out
+Plugin 'yggdroot/indentline'                " display the indention levels with thin vertical lines
 
 call vundle#end()
 filetype plugin indent on
@@ -49,6 +56,9 @@ syntax enable                     " Enable syntax coloring
 set background=dark               " Enable dark background colors
 colorscheme solarized             " Enable solarized colorscheme
 set guifont=Source\ Code\ Pro:h14 " Set Font
+
+set laststatus=2                  " Airline always on
+let g:airline_theme='solarized'   " Solarlized theme for airline
 
 " ================ Tab Completion ====================
 
