@@ -80,6 +80,12 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
+" ================ Turn Off Swap Files ==============
+
+set nobackup                      " no backup files
+set nowritebackup                 " no backup file while editing
+set noswapfile                    " no swap files
+
 " ================ Faster Search ====================
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 
