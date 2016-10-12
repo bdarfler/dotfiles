@@ -87,10 +87,11 @@ nnoremap <leader>a :Ag            " Mapping for Ag Plugin
 nnoremap <leader>t :Tabularize    " Mapping for Tabular
 nnoremap <leader>p :CtrlP<CR>     " Mapping for CtrlP
 
-noremap <Up> <NOP>                " Disable Arrow Keys
-noremap <Down> <NOP>              " Disable Arrow Keys
-noremap <Left> <NOP>              " Disable Arrow Keys
-noremap <Right> <NOP>             " Disable Arrow Keys
+" Breaks IdeaVim. Disabled while I play around wtih IdeaVim.
+"noremap <Up> <NOP>                " Disable Arrow Keys
+"noremap <Down> <NOP>              " Disable Arrow Keys
+"noremap <Left> <NOP>              " Disable Arrow Keys
+"noremap <Right> <NOP>             " Disable Arrow Keys
 
 " ================ Better Splits ====================
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
