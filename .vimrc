@@ -57,9 +57,9 @@ set number                        " Show line numbers
 set relativenumber                " Show relative line numbers
 
 set showcmd                       " Show incomplete cmds at the bottom
-set showmode                      " Show current mode at the bottom
 set ruler                         " Show column and line at the bottom
 set laststatus=2                  " Show status line
+set noshowmode                    " Hide current mode at the bottom
 
 syntax enable                     " Enable syntax coloring
 set background=dark               " Enable dark background colors
