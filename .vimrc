@@ -48,6 +48,7 @@ set relativenumber                " Show relative line numbers
 set showcmd                       " Show incomplete cmds at the bottom
 set showmode                      " Show current mode at the bottom
 set ruler                         " Show column and line at the bottom
+set laststatus=2                  " Show status line
 
 set splitbelow                    " Split below for horizontal splits
 set splitright                    " Split right for vertica splits
@@ -56,9 +57,6 @@ syntax enable                     " Enable syntax coloring
 set background=dark               " Enable dark background colors
 colorscheme solarized             " Enable solarized colorscheme
 set guifont=Source\ Code\ Pro:h14 " Set Font
-
-set laststatus=2                  " Airline always on
-let g:airline_theme='solarized'   " Solarlized theme for airline
 
 " ================ Tab Completion ====================
 
