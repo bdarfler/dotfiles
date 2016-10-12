@@ -27,13 +27,23 @@ filetype plugin indent on
 
 " ================ General Config ===================
 
-set backspace=indent,eol,start    " Allow backspace in insert mode
 set autoread                      " Reload files changed outside vim
 set history=1000                  " Store lots of :cmdline history
-set scrolloff=8                   " Scroll when 8 lines away from edge
 set hidden                        " Leave hidden buffers open
 set clipboard=unnamed             " Allow vim to use the system clipboard
 set mouse=a                       " Enable mouse support
+
+set nobackup                      " no backup files
+set nowritebackup                 " no backup file while editing
+set noswapfile                    " no swap files
+
+set wildmenu                      " Better command-line completion
+set wildmode=list:longest         " List matches, complete longest common string
+
+set incsearch                     " Find the next match as we type the search
+set hlsearch                      " Highlight searches by default
+set ignorecase                    " Ignore case when searching...
+set smartcase                     " ...unless we type a capital
 
 " ================ Visual Config =====================
 
@@ -45,46 +55,40 @@ set colorcolumn=120               " Highlight column width guide
 
 set number                        " Show line numbers
 set relativenumber                " Show relative line numbers
+
 set showcmd                       " Show incomplete cmds at the bottom
 set showmode                      " Show current mode at the bottom
 set ruler                         " Show column and line at the bottom
 set laststatus=2                  " Show status line
-
-set splitbelow                    " Split below for horizontal splits
-set splitright                    " Split right for vertica splits
 
 syntax enable                     " Enable syntax coloring
 set background=dark               " Enable dark background colors
 colorscheme solarized             " Enable solarized colorscheme
 set guifont=Source\ Code\ Pro:h14 " Set Font
 
-" ================ Tab Completion ====================
+" ================ Editor Config =====================
 
-set wildmenu                      " Better command-line completion
-set wildmode=list:longest         " List matches, complete longest common string
+set backspace=2                   " Allow backspace in insert mode
+set scrolloff=8                   " Scroll when 8 lines away from edge
 
-" ================ Search ===========================
+set autoindent                    " Copy indent from current line when starting a new line
+set smartindent                   " Enable smart indent
+set smarttab                      " Enable smart tabs
+set shiftwidth=2                  " Number of auto-indent spaces
+set softtabstop=2                 " Number of spaces per tab while editing
+set tabstop=2                     " Number of spaces per tab in a file
+set expandtab                     " Use spaces instead of tabs
 
-set incsearch                     " Find the next match as we type the search
-set hlsearch                      " Highlight searches by default
-set ignorecase                    " Ignore case when searching...
-set smartcase                     " ...unless we type a capital
+" ================ Better Splits ====================
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 
-" ================ Indentation ======================
+set splitbelow                    " Split below for horizontal splits
+set splitright                    " Split right for vertica splits
 
-set autoindent
-set smartindent
-set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
-
-" ================ Turn Off Swap Files ==============
-
-set nobackup                      " no backup files
-set nowritebackup                 " no backup file while editing
-set noswapfile                    " no swap files
+nnoremap <C-J> <C-W><C-J>         " Remap for easier split navigation
+nnoremap <C-K> <C-W><C-K>         " Remap for easier split navigation
+nnoremap <C-L> <C-W><C-L>         " Remap for easier split navigation
+nnoremap <C-H> <C-W><C-H>         " Remap for easier split navigation
 
 " ================ Faster Search ====================
 " https://robots.thoughtbot.com/faster-grepping-in-vim
