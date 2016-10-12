@@ -85,6 +85,7 @@ let mapleader = " "               " Set leader to space
 
 nnoremap <leader>a :Ag            " Mapping for Ag Plugin
 nnoremap <leader>t :Tabularize    " Mapping for Tabular
+nnoremap <leader>p :CtrlP<CR>     " Mapping for CtrlP
 
 " ================ Better Splits ====================
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
