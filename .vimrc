@@ -101,5 +101,5 @@ nnoremap <C-H> <C-W><C-H>         " Remap for easier split navigation
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 
 set grepprg=ag\ --nogroup\ --nocolor
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 let g:ctrlp_use_caching = 0
