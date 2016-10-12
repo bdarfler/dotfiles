@@ -79,6 +79,13 @@ set softtabstop=2                 " Number of spaces per tab while editing
 set tabstop=2                     " Number of spaces per tab in a file
 set expandtab                     " Use spaces instead of tabs
 
+" ================ Custom Mapings ====================
+
+let mapleader = " "               " Set leader to space
+
+nnoremap <leader>a :Ag            " Mapping for Ag Plugin
+nnoremap <leader>t :Tabularize    " Mapping for Tabular
+
 " ================ Better Splits ====================
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 
