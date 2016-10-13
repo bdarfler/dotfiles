@@ -1,3 +1,9 @@
 source ~/.vimrc          " Include my .vimrc
 
 set surround             " Emulated vim-surround
+
+" Disable Arrow Keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
