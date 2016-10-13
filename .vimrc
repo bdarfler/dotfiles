@@ -81,17 +81,19 @@ set expandtab                     " Use spaces instead of tabs
 
 " ================ Custom Mapings ====================
 
-let mapleader = " "               " Set leader to space
+" Set leader to space
+let mapleader = "\<Space>"
 
-nnoremap <leader>a :Ag            " Mapping for Ag Plugin
-nnoremap <leader>t :Tabularize    " Mapping for Tabular
-nnoremap <leader>p :CtrlP<CR>     " Mapping for CtrlP
+" Mappings for Plugins
+nnoremap <leader>a :Ag
+nnoremap <leader>t :Tabularizer
+nnoremap <leader>p :CtrlP<CR>
 
-" Breaks IdeaVim. Disabled while I play around wtih IdeaVim.
-"noremap <Up> <NOP>                " Disable Arrow Keys
-"noremap <Down> <NOP>              " Disable Arrow Keys
-"noremap <Left> <NOP>              " Disable Arrow Keys
-"noremap <Right> <NOP>             " Disable Arrow Keys
+" Disable Arrow Keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 " ================ Better Splits ====================
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
