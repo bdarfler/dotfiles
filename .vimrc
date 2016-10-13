@@ -94,6 +94,8 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+noremap <PageUp> <Nop>
+noremap <PageDown> <Nop>
 
 " ================ Better Splits ====================
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
