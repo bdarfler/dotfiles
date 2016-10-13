@@ -1,7 +1,19 @@
-source ~/.vimrc          " Include my .vimrc
+set clipboard=unnamed             " Allow vim to use the system clipboard
+set history=1000                  " Store lots of :cmdline history
+set incsearch                     " Find the next match as we type the search
+set hlsearch                      " Highlight searches by default
+set ignorecase                    " Ignore case when searching...
+set smartcase                     " ...unless we type a capital
+set number                        " Show line numbers
+set relativenumber                " Show relative line numbers
+set scrolloff=8                   " Scroll when 8 lines away from edge
+set showmode                      " Show current mode on status line
+set visualbell                    " Visual alerts, not sounds
 
-set surround             " Emulated vim-surround
-set showmode             " Show current mode on status line
+set surround                      " Emulated vim-surround
+
+" Set leader to space
+let mapleader = " "
 
 " Disable Arrow Keys
 noremap <Up> <Nop>
