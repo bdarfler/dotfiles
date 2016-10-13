@@ -1,6 +1,7 @@
 source ~/.vimrc          " Include my .vimrc
 
 set surround             " Emulated vim-surround
+set showmode             " Show current mode on status line
 
 " Disable Arrow Keys
 noremap <Up> <Nop>
