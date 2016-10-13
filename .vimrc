@@ -82,7 +82,7 @@ set expandtab                     " Use spaces instead of tabs
 " ================ Custom Mapings ====================
 
 " Set leader to space
-let mapleader = "\<Space>"
+let mapleader = " "
 
 " Mappings for Plugins
 nnoremap <leader>a :Ag
