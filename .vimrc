@@ -27,57 +27,63 @@ filetype plugin indent on
 
 " ================ General Config ===================
 
-set autoread                      " Reload files changed outside vim
-set history=1000                  " Store lots of :cmdline history
-set hidden                        " Leave hidden buffers open
-set clipboard=unnamed             " Allow vim to use the system clipboard
-set mouse=a                       " Enable mouse support
+set autoread                                " Reload files changed outside vim
+set history=1000                            " Store lots of :cmdline history
+set hidden                                  " Leave hidden buffers open
+set clipboard=unnamed                       " Allow vim to use the system clipboard
+set mouse=a                                 " Enable mouse support
 
-set nobackup                      " no backup files
-set nowritebackup                 " no backup file while editing
-set noswapfile                    " no swap files
+set nobackup                                " no backup files
+set nowritebackup                           " no backup file while editing
+set noswapfile                              " no swap files
 
-set wildmenu                      " Better command-line completion
-set wildmode=list:longest         " List matches, complete longest common string
+set wildmenu                                " Better command-line completion
+set wildmode=list:longest                   " List matches, complete longest common string
 
-set incsearch                     " Find the next match as we type the search
-set hlsearch                      " Highlight searches by default
-set ignorecase                    " Ignore case when searching...
-set smartcase                     " ...unless we type a capital
+set incsearch                               " Find the next match as we type the search
+set hlsearch                                " Highlight searches by default
+set ignorecase                              " Ignore case when searching...
+set smartcase                               " ...unless we type a capital
 
 " ================ Visual Config =====================
 
-set visualbell                    " Visual alerts, not sounds
+set visualbell                              " Visual alerts, not sounds
 
-set cursorline                    " Highlight the current line
-set showmatch                     " Highlight matching braces
-set colorcolumn=120               " Highlight column width guide
+set cursorline                              " Highlight the current line
+set showmatch                               " Highlight matching braces
+set colorcolumn=120                         " Highlight column width guide
 
-set number                        " Show line numbers
-set relativenumber                " Show relative line numbers
+set number                                  " Show line numbers
+set relativenumber                          " Show relative line numbers
 
-set showcmd                       " Show incomplete cmds at the bottom
-set ruler                         " Show column and line at the bottom
-set laststatus=2                  " Show status line
-set noshowmode                    " Hide current mode at the bottom
+set showcmd                                 " Show incomplete cmds at the bottom
+set ruler                                   " Show column and line at the bottom
+set laststatus=2                            " Show status line
+set noshowmode                              " Hide current mode at the bottom
 
-syntax enable                     " Enable syntax coloring
-set background=dark               " Enable dark background colors
-colorscheme solarized             " Enable solarized colorscheme
-set guifont=Source\ Code\ Pro:h14 " Set Font
+syntax enable                               " Enable syntax coloring
+set background=dark                         " Enable dark background colors
+colorscheme solarized                       " Enable solarized colorscheme
+
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14    " Set Font
 
 " ================ Editor Config =====================
 
-set backspace=2                   " Allow backspace in insert mode
-set scrolloff=8                   " Scroll when 8 lines away from edge
+set backspace=2                             " Allow backspace in insert mode
+set scrolloff=8                             " Scroll when 8 lines away from edge
 
-set autoindent                    " Copy indent from current line when starting a new line
-set smartindent                   " Enable smart indent
-set smarttab                      " Enable smart tabs
-set shiftwidth=2                  " Number of auto-indent spaces
-set softtabstop=2                 " Number of spaces per tab while editing
-set tabstop=2                     " Number of spaces per tab in a file
-set expandtab                     " Use spaces instead of tabs
+set autoindent                              " Copy indent from current line when starting a new line
+set smartindent                             " Enable smart indent
+set smarttab                                " Enable smart tabs
+set shiftwidth=2                            " Number of auto-indent spaces
+set softtabstop=2                           " Number of spaces per tab while editing
+set tabstop=2                               " Number of spaces per tab in a file
+set expandtab                               " Use spaces instead of tabs
+
+" ================ Plugins Config ====================
+
+let g:ackprg = 'ag --vimgrep'               " Uss ag instead of ack for ack.vim
+let g:airline_powerline_fonts = 1           " Use powerline fonts in airline
 
 " ================ Custom Mapings ====================
 
