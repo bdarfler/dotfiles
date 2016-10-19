@@ -88,6 +88,7 @@ let mapleader = " "
 nnoremap <leader>a :Ack
 nnoremap <leader>t :Tabularizer
 nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>ws :StripWhitespace<CR>
 
 " Disable Arrow Keys
 noremap <Up> <Nop>
