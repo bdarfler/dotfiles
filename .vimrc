@@ -10,7 +10,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'               " Vundle, the plug-in manager for Vim
 Plugin 'ctrlpvim/ctrlp.vim'                 " Fuzzy file, buffer, mru, tag, etc finder.
-Plugin 'rking/ag.vim'                       " Vim plugin for the_silver_searcher, 'ag'
+Plugin 'mileszs/ack.vim'                    " Vim plugin for the Perl module / CLI script 'ack'
 Plugin 'derekwyatt/vim-scala'               " Scala syntax highlighting
 Plugin 'altercation/vim-colors-solarized'   " precision colorscheme for the vim text editor
 Plugin 'tpope/vim-surround'                 " quoting/parenthesizing made simple
@@ -85,7 +85,7 @@ set expandtab                     " Use spaces instead of tabs
 let mapleader = " "
 
 " Mappings for Plugins
-nnoremap <leader>a :Ag
+nnoremap <leader>a :Ack
 nnoremap <leader>t :Tabularizer
 nnoremap <leader>p :CtrlP<CR>
 
