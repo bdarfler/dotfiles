@@ -104,6 +104,17 @@ noremap <Right> <Nop>
 noremap <PageUp> <Nop>
 noremap <PageDown> <Nop>
 
+" ================ Better Splits ====================
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+
+set splitbelow                    " Split below for horizontal splits
+set splitright                    " Split right for vertica splits
+
+nnoremap <C-J> <C-W><C-J>         " Remap for easier split navigation
+nnoremap <C-K> <C-W><C-K>         " Remap for easier split navigation
+nnoremap <C-L> <C-W><C-L>         " Remap for easier split navigation
+nnoremap <C-H> <C-W><C-H>         " Remap for easier split navigation
+
 " ================ Faster Search ====================
 " https://robots.thoughtbot.com/faster-grepping-in-vim
 
