@@ -17,8 +17,6 @@
   cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
 [difftool]
   prompt = false
-[push]
-  default = simple
 [alias]
   st = status
   co = checkout
