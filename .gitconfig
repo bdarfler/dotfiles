@@ -18,11 +18,13 @@
 [difftool]
   prompt = false
 [alias]
-  st = status
+  st = status --short --branch
+  l = log --oneline --decorate
   co = checkout
+  ci = commit
   br = branch
+  df = diff --color-words
   pf = push --force-with-lease
-  amend = commit --amend --no-edit
   unstage = reset HEAD
 [color]
   ui = true
