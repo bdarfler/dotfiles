@@ -3,23 +3,23 @@
 [mergetool "diffmerge"]
   cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
   trustExitCode = true
-[mergetool "p4mergetool"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$LOCAL $PWD/$REMOTE $PWD/$MERGED
-  trustExitCode = false
 [mergetool]
   keepBackup = false
   prompt = false
 [diff]
-  tool = diffmerge
+  tool = icdiff
 [difftool "diffmerge"]
   cmd = diffmerge $LOCAL $REMOTE
-[difftool "p4mergetool"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
+[difftool "icdiff"]
+  cmd = icdiff --no-bold $LOCAL $REMOTE
 [difftool]
   prompt = false
+[pager]
+  difftool = true
 [alias]
   st = status --short --branch
   l = log --oneline --decorate
+  d = difftool
   co = checkout
   ci = commit
   br = branch
