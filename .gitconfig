@@ -25,6 +25,7 @@
   br = branch
   df = diff --color-words
   pf = push --force-with-lease
+  amend = commit --amend --no-edit
   unstage = reset HEAD
 [color]
   ui = true
