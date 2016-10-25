@@ -34,7 +34,7 @@ fi
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
-if [ -x "$(command -v jenv)" ];
+if [ -x "$(command -v jenv)" ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
