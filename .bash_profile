@@ -31,6 +31,10 @@ if [ -x "$(command -v hub)" ]; then
   alias git=hub
 fi
 
+# GPG
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
