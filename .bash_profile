@@ -13,8 +13,9 @@ alias be='bundle exec'
 alias ls='ls -al'
 
 # Commands
-alias clean_branches='git branch --merged | grep -v master | grep -v "*" | xargs git branch -d'
+alias cleanbr='git branch --merged | grep -v master | grep -v "*" | xargs git branch -d'
 alias podcast='(cd ~/Dropbox/Public/Podcasting && ./generate.sh)'
+alias brewup='brew update && brew upgrade && brew cleanup'
 
 # Colors
 export CLICOLOR=1
