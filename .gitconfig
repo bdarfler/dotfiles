@@ -45,3 +45,5 @@
 [rerere]
   enabled = true
   autoupdate = true
+[user]
+  email = bdarfler@gmail.com
