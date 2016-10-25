@@ -19,11 +19,10 @@
 [alias]
   st = status --short --branch
   l = log --oneline --decorate
-  d = difftool
+  df = difftool
   co = checkout
   ci = commit
   br = branch
-  df = diff --color-words
   pf = push --force-with-lease
   amend = commit --amend --no-edit
   unstage = reset HEAD
