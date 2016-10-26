@@ -3,9 +3,9 @@ if [ -f /usr/local/etc/bash_completion ]; then
   . /usr/local/etc/bash_completion
 fi
 
-# Liquidprompt
-if [ -f /usr/local/share/liquidprompt ]; then
-    . /usr/local/share/liquidprompt
+if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  GIT_PROMPT_THEME=Solarized_NoExitState
+  source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
 # Aliases
