@@ -92,7 +92,7 @@ let mapleader = " "
 
 " Mappings for Plugins
 nnoremap <leader>a :Ack 
-nnoremap <leader>t :Tabularizer 
+nnoremap <leader>t :Tabularize 
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>ws :StripWhitespace<CR>
 
