@@ -24,6 +24,7 @@
   ci = commit
   br = branch
   pf = push --force-with-lease
+  pr = pull --rebase
   amend = commit --amend --no-edit
   unstage = reset HEAD
 [color]
