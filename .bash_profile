@@ -10,8 +10,7 @@ if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
 fi
 
 # aliases
-alias be='bundle exec'
-alias ls='ls -al'
+alias ls='ls -1A'
 
 # commands
 alias cleanbrs='git branch --merged | grep -v master | grep -v "*" | xargs git branch -d'
