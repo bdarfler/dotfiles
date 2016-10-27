@@ -27,13 +27,6 @@
   short = true
   branch = true
 [alias]
-  st = status
-  dt = difftool
-  mt = mergetool
-  co = checkout
-  ci = commit
-  br = branch
-  rb = rebase
   force-push = push --force-with-lease
   amend = commit --amend --no-edit
   unstage = reset HEAD
