@@ -16,21 +16,32 @@
   prompt = false
 [pager]
   difftool = true
+[pull]
+	rebase = true
+[log]
+	abbrevCommit = true
+	decorate = auto
+[format]
+	pretty = oneline
+[status]
+	short = true
+	branch = true
 [alias]
-  st = status --short --branch
-  l = log --oneline --decorate
-  df = difftool
+  st = status
+  dt = difftool
+  mt = mergetool
   co = checkout
   ci = commit
   br = branch
-  ri = rebase -i
-  pf = push --force-with-lease
+  rb = rebase
+  force-push = push --force-with-lease
   amend = commit --amend --no-edit
   unstage = reset HEAD
 [color]
   ui = true
 [user]
   name = Benjamin Darfler
+  email = bdarfler@gmail.com
 [credential]
   helper = osxkeychain
 [include]
@@ -46,7 +57,3 @@
 [rerere]
   enabled = true
   autoupdate = true
-[user]
-  email = bdarfler@gmail.com
-[pull]
-	rebase = true
