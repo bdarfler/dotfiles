@@ -17,15 +17,15 @@
 [pager]
   difftool = true
 [pull]
-	rebase = true
+  rebase = true
 [log]
-	abbrevCommit = true
-	decorate = auto
+  abbrevCommit = true
+  decorate = auto
 [format]
-	pretty = oneline
+  pretty = oneline
 [status]
-	short = true
-	branch = true
+  short = true
+  branch = true
 [alias]
   st = status
   dt = difftool
