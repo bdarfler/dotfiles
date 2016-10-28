@@ -91,8 +91,8 @@ let g:airline_powerline_fonts = 1           " Use powerline fonts in airline
 let mapleader = " "
 
 " Mappings for Plugins
-nnoremap <leader>a :Ack 
-nnoremap <leader>t :Tabularize 
+nnoremap <leader>a :Ack<Space>
+nnoremap <leader>t :Tabularize<Space>
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>ws :StripWhitespace<CR>
 
