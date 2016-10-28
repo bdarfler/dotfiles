@@ -97,12 +97,26 @@ nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>ws :StripWhitespace<CR>
 
 " Disable Arrow Keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-noremap <PageUp> <Nop>
-noremap <PageDown> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <PageUp> <Nop>
+nnoremap <PageDown> <Nop>
+
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <PageUp> <Nop>
+inoremap <PageDown> <Nop>
+
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>
+vnoremap <Down> <Nop>
+vnoremap <PageUp> <Nop>
+vnoremap <PageDown> <Nop>
 
 " ================ Better Splits ====================
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
