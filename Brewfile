@@ -46,7 +46,7 @@ brew 'python'
 brew 'ruby'
 brew 'ruby-install'
 brew 'sbt'
-brew 'scala'
+brew 'scala', args: ['with-docs', 'with-src']
 brew 'the_silver_searcher'
 brew 'tldr'
 brew 'typesafe-activator'
