@@ -23,6 +23,14 @@ export GREP_OPTIONS='--color=auto'
 alias cat='ccat'
 alias diff='colordiff'
 
+# history
+export HISTSIZE=100000
+# unified, deduped history
+# http://unix.stackexchange.com/a/18443
+shopt -s histappend
+export HISTCONTROL=ignoredups:erasedups
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
 # vim
 export EDITOR=vim
 export VISUAL=vim
