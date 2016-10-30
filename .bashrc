@@ -31,6 +31,9 @@ shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
+# globstar
+shopt -s globstar
+
 # vim
 export EDITOR=vim
 export VISUAL=vim
