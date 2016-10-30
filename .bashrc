@@ -14,34 +14,33 @@ fi
 
 # ================ Aliases =================================
 
-alias ls='ls -1A'                         # one file per line, show hidden files
+alias ls='ls -1A'                                      # one file per line, show hidden files
 
-# ================ Commands ================================
+alias cat='ccat'                                       # Colorize cat
+alias diff='colordiff'                                 # Colorize diff
 
-alias cleanbrs='git branch --merged | grep -v master | grep -v "*" | xargs git branch -d' # Delete Merged Branches
-alias podcast='(cd ~/Dropbox/Public/Podcasting && ./generate.sh)'                         # Generate Podcast RSS Feed
-alias brewup='brew update && brew upgrade && brew cleanup'                                # Update Homebrew
+# Delete Merged Branches
+alias cleanbrs='git branch --merged | grep -v master | grep -v "*" | xargs git branch -d'
+# Generate Podcast RSS Feed
+alias podcast='(cd ~/Dropbox/Public/Podcasting && ./generate.sh)'
+# Update Homebrew
+alias brewup='brew update && brew upgrade && brew cleanup'
 
-# ================ General Config ==========================
+# ================  Config =================================
 
-export HISTSIZE=100000                            # More History
-shopt -s globstar                                 # ** globing
+export HISTSIZE=100000                                 # More History
+shopt -s globstar                                      # ** globing
 
-export EDITOR=vim                                 # Use Vim
-export VISUAL=vim                                 # Use Vim
+export EDITOR=vim                                      # Use Vim
+export VISUAL=vim                                      # Use Vim
 
-export GPG_TTY=$(tty)                             # GPG Setup
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) # Java 8
+export GPG_TTY=$(tty)                                  # GPG Setup
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)      # Java 8
 
-# ================ Visual Config ===========================
+export CLICOLOR=1                                      # Colorize ls
+export GREP_OPTIONS='--color=auto'                     # Colorize grep
 
-export CLICOLOR=1                                 # Colorize ls
-export GREP_OPTIONS='--color=auto'                # Colorize grep
-
-alias cat='ccat'                                  # Colorize cat
-alias diff='colordiff'                            # Colorize diff
-
-# ================ Unified, Deduped History ================
+# ================ Unified  History ========================
 # http://unix.stackexchange.com/a/18443
 
 shopt -s histappend
