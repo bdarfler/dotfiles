@@ -1,7 +1,10 @@
 [merge]
-  tool = diffmerge
+  tool = p4merge
 [mergetool "diffmerge"]
   cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+  trustExitCode = true
+[mergetool "p4merge"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$LOCAL $PWD/$REMOTE $PWD/$MERGED
   trustExitCode = true
 [mergetool]
   keepBackup = false
@@ -10,6 +13,8 @@
   tool = icdiff
 [difftool "diffmerge"]
   cmd = diffmerge $LOCAL $REMOTE
+[difftool "p4merge"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
 [difftool "icdiff"]
   cmd = icdiff --no-bold $LOCAL $REMOTE
 [difftool]
