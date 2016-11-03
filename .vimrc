@@ -21,6 +21,7 @@ Plugin 'airblade/vim-gitgutter'             " shows a git diff in the gutter
 Plugin 'godlygeek/tabular'                  " vertical alignment
 Plugin 'tpope/vim-commentary'               " comment stuff out
 Plugin 'yggdroot/indentline'                " display the indention levels with thin vertical lines
+Plugin 'scrooloose/nerdtree'                " A tree explorer plugin for vim
 
 call vundle#end()
 filetype plugin indent on
@@ -84,6 +85,7 @@ set expandtab                               " Use spaces instead of tabs
 
 let g:ackprg = 'ag --vimgrep'               " Uss ag instead of ack for ack.vim
 let g:airline_powerline_fonts = 1           " Use powerline fonts in airline
+let g:NERDTreeShowHidden=1                  " Show Hiddent Files in NERDTree
 
 " ================ Custom Mapings ====================
 
@@ -95,6 +97,7 @@ nnoremap <leader>a :Ack<Space>
 nnoremap <leader>t :Tabularize<Space>
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>ws :StripWhitespace<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
