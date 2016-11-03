@@ -21,6 +21,7 @@ Plugin 'airblade/vim-gitgutter'             " shows a git diff in the gutter
 Plugin 'godlygeek/tabular'                  " vertical alignment
 Plugin 'tpope/vim-commentary'               " comment stuff out
 Plugin 'yggdroot/indentline'                " display the indention levels with thin vertical lines
+Plugin 'tpope/vim-endwise'                  " wisely add 'end' in ruby
 Plugin 'scrooloose/nerdtree'                " A tree explorer plugin for vim
 
 call vundle#end()
