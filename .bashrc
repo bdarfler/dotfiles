@@ -25,12 +25,13 @@ alias brewup='brew update && brew upgrade && brew cleanup'
 
 # ================ General Config ==========================
 
-export HISTSIZE=10000                                  # More History
+export HISTSIZE=10000                                  # More history
+shopt -s histappend                                    # Append history
 shopt -s globstar                                      # ** globing
-export EDITOR=vim                                      # Use Vim
-export VISUAL=vim                                      # Use Vim
-export GPG_TTY=$(tty)                                  # GPG Setup
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)      # Java 8
+export EDITOR=vim                                      # Vim
+export VISUAL=vim                                      # Vim
+export GPG_TTY=$(tty)                                  # GPG
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)      # Java
 
 # ================ Visual Config ===========================
 
@@ -39,12 +40,17 @@ alias diff='colordiff'                                 # Colorize diff
 export CLICOLOR=1                                      # Colorize ls
 export GREP_OPTIONS='--color=auto'                     # Colorize grep
 
-# ================ Unified  History ========================
-# http://unix.stackexchange.com/a/18443
+# ================ Dedupe History ==========================
+# http://superuser.com/a/410534
+# http://unix.stackexchange.com/a/78846
+# http://unix.stackexchange.com/a/114043
 
-shopt -s histappend
-export HISTCONTROL=ignoredups:erasedups
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+clean_hist () {
+  tail -r ~/.bash_history | awk '!a[$0]++' | tail -r > .bash_history.tmp
+  mv -f .bash_history.tmp ~/.bash_history
+}
+
+trap clean_hist EXIT
 
 # ================ Hub =====================================
 # https://hub.github.com/
