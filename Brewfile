@@ -19,12 +19,10 @@ brew 'ccat'
 brew 'chruby'
 brew 'cloc'
 brew 'colordiff'
-brew 'openssl'
-brew 'pkg-config'
-brew 'curl'
 brew 'gdbm'
 brew 'gmp'
 brew 'libpng'
+brew 'pkg-config'
 brew 'graphviz'
 brew 'hub'
 brew 'icdiff'
@@ -35,6 +33,7 @@ brew 'libffi'
 brew 'libyaml'
 brew 'libzip'
 brew 'mas'
+brew 'openssl'
 brew 'node'
 brew 'perl'
 brew 'pigz'
@@ -85,17 +84,17 @@ cask 'visualvm'
 cask 'vlc'
 cask 'whatsapp'
 cask 'yujitach-menumeters'
-mas 'Kindle (1.12.4)', id: 405399194
-mas 'Keynote (7.0.5)', id: 409183694
-mas 'iMovie (10.1.3)', id: 408981434
-mas 'iPhoto (9.6.1)', id: 408981381
-mas 'iA Writer (3.2.6)', id: 775737590
-mas 'Twitter (4.2.4)', id: 409789998
-mas 'Pages (6.0.5)', id: 409201541
-mas 'Irvue (1.5.2)', id: 1039633667
-mas 'Dash (3.3.1)', id: 449589707
-mas 'GarageBand (10.1.3)', id: 682658836
-mas 'Pixelmator (3.5.1)', id: 407963104
-mas 'Polarr Photo Editor (3.2.0)', id: 1058273036
-mas 'Numbers (4.0.5)', id: 409203825
-mas 'Boom 2 (1.5)', id: 948176063
+mas 'Kindle', id: 405399194
+mas 'Keynote', id: 409183694
+mas 'iMovie', id: 408981434
+mas 'iPhoto', id: 408981381
+mas 'iA Writer', id: 775737590
+mas 'Twitter', id: 409789998
+mas 'Pages', id: 409201541
+mas 'Irvue', id: 1039633667
+mas 'Dash', id: 449589707
+mas 'GarageBand', id: 682658836
+mas 'Pixelmator', id: 407963104
+mas 'Polarr Photo Editor', id: 1058273036
+mas 'Numbers', id: 409203825
+mas 'Boom 2', id: 948176063
