@@ -15,10 +15,14 @@ fi
 # ================ Commands ================================
 
 # Delete Merged Branches
-alias cleanbrs='git branch --merged | grep -v master | grep -v "*" | xargs git branch -d'
+alias clean_brs='git branch --merged | grep -v master | grep -v "*" | xargs git branch -d'
 
 # Generate Podcast RSS Feed
-alias podcast='(cd ~/Dropbox/Public/Podcasting && ./generate.sh)'
+alias podcast_gen='(cd ~/Dropbox/Public/Podcasting && ./generate.sh)'
+
+# Download Podcast Audio
+alias podcast_dl='youtube-dl --output "~/Dropbox/Public/Podcasting/%(title)s.%(ext)s" \
+  --restrict-filenames --extract-audio --audio-format "mp3" --audio-quality "9" --add-metadata'
 
 # Update Homebrew
 alias brewup='brew update && brew upgrade && brew cleanup'
