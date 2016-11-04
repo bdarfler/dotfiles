@@ -19,10 +19,16 @@ brew 'ccat'
 brew 'chruby'
 brew 'cloc'
 brew 'colordiff'
+brew 'lame'
+brew 'openssl'
+brew 'pkg-config'
+brew 'x264'
+brew 'xvid'
+brew 'xz'
+brew 'ffmpeg'
 brew 'gdbm'
 brew 'gmp'
 brew 'libpng'
-brew 'pkg-config'
 brew 'graphviz'
 brew 'hub'
 brew 'icdiff'
@@ -33,13 +39,11 @@ brew 'libffi'
 brew 'libyaml'
 brew 'libzip'
 brew 'mas'
-brew 'openssl'
 brew 'node'
 brew 'perl'
 brew 'pigz'
 brew 'sqlite'
 brew 'python'
-brew 'xz'
 brew 'python3'
 brew 'ruby'
 brew 'ruby-install'
@@ -49,6 +53,7 @@ brew 'the_silver_searcher'
 brew 'tldr'
 brew 'typesafe-activator'
 brew 'vim'
+brew 'youtube-dl'
 brew 'beeftornado/rmtree/brew-rmtree'
 cask 'adobe-air'
 cask 'appcleaner'
@@ -88,8 +93,8 @@ mas 'Kindle', id: 405399194
 mas 'Keynote', id: 409183694
 mas 'iMovie', id: 408981434
 mas 'iPhoto', id: 408981381
-mas 'iA Writer', id: 775737590
 mas 'Twitter', id: 409789998
+mas 'iA Writer', id: 775737590
 mas 'Pages', id: 409201541
 mas 'Irvue', id: 1039633667
 mas 'Dash', id: 449589707
