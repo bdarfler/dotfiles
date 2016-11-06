@@ -47,6 +47,8 @@ set hlsearch                                " Highlight searches by default
 set ignorecase                              " Ignore case when searching...
 set smartcase                               " ...unless we type a capital
 
+set grepprg=ag\ --nogroup\ --nocolor        " Use ag for grepping
+
 " ================ Visual Config =====================
 
 set visualbell                              " Visual alerts, not sounds
@@ -57,6 +59,9 @@ set colorcolumn=120                         " Highlight column width guide
 
 set number                                  " Show line numbers
 set relativenumber                          " Show relative line numbers
+
+set splitbelow                              " Split below for horizontal splits
+set splitright                              " Split right for vertica splits
 
 set showcmd                                 " Show incomplete cmds at the bottom
 set ruler                                   " Show column and line at the bottom
@@ -87,6 +92,10 @@ set expandtab                               " Use spaces instead of tabs
 let g:ackprg = 'ag --vimgrep'               " Uss ag instead of ack for ack.vim
 let g:airline_powerline_fonts = 1           " Use powerline fonts in airline
 let g:NERDTreeShowHidden=1                  " Show Hiddent Files in NERDTree
+let g:ctrlp_use_caching = 0                 " Disable caching for ctrlp
+
+" Use ag for ctrlp
+let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 
 " ================ Custom Mapings ====================
 
@@ -122,20 +131,7 @@ vnoremap <Down> <Nop>
 vnoremap <PageUp> <Nop>
 vnoremap <PageDown> <Nop>
 
-" ================ Better Splits ====================
-" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
-
-set splitbelow                    " Split below for horizontal splits
-set splitright                    " Split right for vertica splits
-
-nnoremap <C-J> <C-W><C-J>         " Remap for easier split navigation
-nnoremap <C-K> <C-W><C-K>         " Remap for easier split navigation
-nnoremap <C-L> <C-W><C-L>         " Remap for easier split navigation
-nnoremap <C-H> <C-W><C-H>         " Remap for easier split navigation
-
-" ================ Faster Search ====================
-" https://robots.thoughtbot.com/faster-grepping-in-vim
-
-set grepprg=ag\ --nogroup\ --nocolor
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
+" Remap for easier split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
