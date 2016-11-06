@@ -12,10 +12,11 @@ if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
-# ================ Commands ================================
+# ================ Scripts =================================
 
-# Delete Merged Branches
-alias clean_brs='git branch --merged | grep -v master | grep -v "*" | xargs git branch -d'
+export PATH=$HOME/.dotfiles/bin:$PATH
+
+# ================ Aliases =================================
 
 # Generate Podcast RSS Feed
 alias podcast_gen='(cd ~/Dropbox/Public/Podcasting && ./generate.sh)'
