@@ -72,7 +72,8 @@ syntax enable                               " Enable syntax coloring
 set background=dark                         " Enable dark background colors
 colorscheme solarized                       " Enable solarized colorscheme
 
-set guifont=Source\ Code\ Pro\ for\ Powerline:h14    " Set Font
+" Set Font
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 
 " ================ Editor Config =====================
 
@@ -99,8 +100,7 @@ let g:ctrlp_user_command = 'rg %s --hidden --files -g ""'
 
 " ================ Custom Mapings ====================
 
-" Set leader to space
-let mapleader = " "
+let mapleader=" "                           " Set leader to space
 
 " Mappings for Plugins
 nnoremap <leader>a :Ack<Space>
