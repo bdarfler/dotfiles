@@ -4,28 +4,23 @@ set nocompatible
 
 " ================ Vundle Plugins ===================
 
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/bundle')
 
-Plugin 'VundleVim/Vundle.vim'               " Vundle, the plug-in manager for Vim
-Plugin 'ctrlpvim/ctrlp.vim'                 " Fuzzy file, buffer, mru, tag, etc finder.
-Plugin 'mileszs/ack.vim'                    " Vim plugin for the Perl module / CLI script 'ack'
-Plugin 'derekwyatt/vim-scala'               " Scala syntax highlighting
-Plugin 'altercation/vim-colors-solarized'   " precision colorscheme for the vim text editor
-Plugin 'tpope/vim-surround'                 " quoting/parenthesizing made simple
-Plugin 'ntpeters/vim-better-whitespace'     " highlight all trailing whitespace characters
-Plugin 'vim-airline/vim-airline'            " lean & mean status/tabline for vim
-Plugin 'vim-airline/vim-airline-themes'     " A collection of themes for vim-airline
-Plugin 'airblade/vim-gitgutter'             " shows a git diff in the gutter
-Plugin 'godlygeek/tabular'                  " vertical alignment
-Plugin 'tpope/vim-commentary'               " comment stuff out
-Plugin 'yggdroot/indentline'                " display the indention levels with thin vertical lines
-Plugin 'tpope/vim-endwise'                  " wisely add 'end' in ruby
-Plugin 'scrooloose/nerdtree'                " A tree explorer plugin for vim
+Plug 'ctrlpvim/ctrlp.vim'                   " Fuzzy file, buffer, mru, tag, etc finder.
+Plug 'mileszs/ack.vim'                      " Vim plugin for the Perl module / CLI script 'ack'
+Plug 'derekwyatt/vim-scala'                 " Scala syntax highlighting
+Plug 'altercation/vim-colors-solarized'     " precision colorscheme for the vim text editor
+Plug 'tpope/vim-surround'                   " quoting/parenthesizing made simple
+Plug 'ntpeters/vim-better-whitespace'       " highlight all trailing whitespace characters
+Plug 'vim-airline/vim-airline'              " lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'       " A collection of themes for vim-airline
+Plug 'airblade/vim-gitgutter'               " shows a git diff in the gutter
+Plug 'godlygeek/tabular'                    " vertical alignment
+Plug 'tpope/vim-commentary'                 " comment stuff out
+Plug 'yggdroot/indentline'                  " display the indention levels with thin vertical lines
+Plug 'scrooloose/nerdtree'                  " A tree explorer plugin for vim
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 " ================ General Config ===================
 
