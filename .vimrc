@@ -17,7 +17,6 @@ Plug 'vim-airline/vim-airline-themes'       " A collection of themes for vim-air
 Plug 'airblade/vim-gitgutter'               " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                    " vertical alignment
 Plug 'tpope/vim-commentary'                 " comment stuff out
-Plug 'yggdroot/indentline'                  " display the indention levels with thin vertical lines
 Plug 'scrooloose/nerdtree'                  " A tree explorer plugin for vim
 
 call plug#end()
