@@ -87,11 +87,9 @@ cask 'visualvm'
 cask 'vlc'
 cask 'whatsapp'
 cask 'yujitach-menumeters'
-mas 'Kindle', id: 405399194
 mas 'Keynote', id: 409183694
 mas 'iMovie', id: 408981434
 mas 'iPhoto', id: 408981381
-mas 'Twitter', id: 409789998
 mas 'iA Writer', id: 775737590
 mas 'Pages', id: 409201541
 mas 'Irvue', id: 1039633667
