@@ -8,16 +8,16 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'ctrlpvim/ctrlp.vim'                   " Fuzzy file, buffer, mru, tag, etc finder.
 Plug 'mileszs/ack.vim'                      " Vim plugin for the Perl module / CLI script 'ack'
+Plug 'scrooloose/nerdtree'                  " A tree explorer plugin for vim
 Plug 'derekwyatt/vim-scala'                 " Scala syntax highlighting
 Plug 'altercation/vim-colors-solarized'     " precision colorscheme for the vim text editor
-Plug 'tpope/vim-surround'                   " quoting/parenthesizing made simple
 Plug 'ntpeters/vim-better-whitespace'       " highlight all trailing whitespace characters
 Plug 'vim-airline/vim-airline'              " lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'       " A collection of themes for vim-airline
 Plug 'airblade/vim-gitgutter'               " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                    " vertical alignment
 Plug 'tpope/vim-commentary'                 " comment stuff out
-Plug 'scrooloose/nerdtree'                  " A tree explorer plugin for vim
+Plug 'tpope/vim-surround'                   " quoting/parenthesizing made simple
 
 call plug#end()
 
