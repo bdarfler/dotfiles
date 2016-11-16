@@ -97,11 +97,11 @@ let g:ctrlp_user_command = 'rg %s --hidden --files -g ""'
 let mapleader=" "                           " Set leader to space
 
 " Mappings for Plugins
-nnoremap <leader>a :Ack<Space>
-nnoremap <leader>t :Tabularize<Space>
+nnoremap <leader>f :Ack<Space>
+nnoremap <leader>a :Tabularize<Space>
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>ws :StripWhitespace<CR>
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>\ :NERDTreeToggle<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
