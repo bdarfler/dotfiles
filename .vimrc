@@ -101,7 +101,7 @@ nnoremap <leader>f :Ack<Space>
 nnoremap <leader>a :Tabularize<Space>
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>ws :StripWhitespace<CR>
-nnoremap <leader>\ :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
