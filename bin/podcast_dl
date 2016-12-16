@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+youtube-dl \
+  --restrict-filenames \
+  --extract-audio \
+  --audio-format "mp3" \
+  --audio-quality "9" \
+  --add-metadata \
+  --output "~/Dropbox/Podcasting/%(title)s.%(ext)s"

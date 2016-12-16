@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+podcast \
+	--dir ~/Dropbox/Podcasting \
+	--title "bdarfler podcast" \
+	--description "bdarfler podcast" \
+	--link "http://bdarfler.com" \
+	--version "2.0" \
+	--base "http://dl.dropboxusercontent.com/u/38837/Podcasting" \
+	--image "http://dl.dropboxusercontent.com/u/38837/Podcasting/icon.png" \
+	--out ~/Dropbox/Podcasting/podcast.xml
