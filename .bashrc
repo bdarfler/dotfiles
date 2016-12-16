@@ -19,7 +19,7 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 # ================ Aliases =================================
 
 # Generate Podcast RSS Feed
-alias podcast_gen='(cd ~/Dropbox/Podcasting && ./generate.sh)'
+alias podcast_gen='(cd ~/Dropbox/Podcasting && ./generate.sh && ./upload.sh)'
 
 # Download Podcast Audio
 alias podcast_dl='youtube-dl --output "~/Dropbox/Podcasting/%(title)s.%(ext)s" \
