@@ -19,10 +19,10 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 # ================ Aliases =================================
 
 # Generate Podcast RSS Feed
-alias podcast_gen='(cd ~/Dropbox/Public/Podcasting && ./generate.sh)'
+alias podcast_gen='(cd ~/Dropbox/Podcasting && ./generate.sh)'
 
 # Download Podcast Audio
-alias podcast_dl='youtube-dl --output "~/Dropbox/Public/Podcasting/%(title)s.%(ext)s" \
+alias podcast_dl='youtube-dl --output "~/Dropbox/Podcasting/%(title)s.%(ext)s" \
   --restrict-filenames --extract-audio --audio-format "mp3" --audio-quality "9" --add-metadata'
 
 # Update Homebrew
