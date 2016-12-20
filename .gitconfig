@@ -1,11 +1,11 @@
 [merge]
-  tool = vimdiff
+  tool = gvimdiff
   conflictStyle = diff3
 [mergetool]
   keepBackup = false
   prompt = false
 [diff]
-  tool = icdiff
+  tool = gvimdiff
 [difftool "icdiff"]
   cmd = icdiff --no-bold $LOCAL $REMOTE
 [difftool]
