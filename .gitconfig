@@ -1,11 +1,12 @@
 [merge]
-  tool = gvimdiff
-  conflictStyle = diff3
+	tool = p4merge
 [mergetool]
   keepBackup = false
   prompt = false
+[mergetool "p4merge"]
+	path = /Applications/p4merge.app/Contents/Resources/launchp4merge
 [diff]
-  tool = gvimdiff
+  tool = icdiff
 [difftool "icdiff"]
   cmd = icdiff --no-bold $LOCAL $REMOTE
 [difftool]
