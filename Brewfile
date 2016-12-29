@@ -22,10 +22,17 @@ brew 'git'
 brew 'x264'
 brew 'xvid'
 brew 'ffmpeg'
+brew 'libpng'
+brew 'freetype'
+brew 'fontconfig'
+brew 'jpeg'
+brew 'libtiff'
+brew 'webp'
+brew 'gd'
 brew 'gdbm'
 brew 'gmp'
 brew 'go'
-brew 'libpng'
+brew 'libtool'
 brew 'graphviz'
 brew 'hub'
 brew 'icdiff'
@@ -78,6 +85,7 @@ cask 'kap'
 cask 'keka'
 cask 'keybase'
 cask 'macvim'
+cask 'marp'
 cask 'p4merge'
 cask 'pandora'
 cask 'rubymine'
@@ -94,6 +102,7 @@ cask 'yujitach-menumeters'
 mas 'Keynote', id: 409183694
 mas 'iMovie', id: 408981434
 mas 'iPhoto', id: 408981381
+mas 'Escape', id: 1090969894
 mas 'iA Writer', id: 775737590
 mas 'Pages', id: 409201541
 mas 'Irvue', id: 1039633667
