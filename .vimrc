@@ -18,6 +18,7 @@ Plug 'airblade/vim-gitgutter'               " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                    " vertical alignment
 Plug 'tpope/vim-commentary'                 " comment stuff out
 Plug 'tpope/vim-surround'                   " quoting/parenthesizing made simple
+Plug 'Xuyuanp/nerdtree-git-plugin'          " git status for NERDTree
 
 call plug#end()
 
