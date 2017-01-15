@@ -91,9 +91,7 @@ let g:ackprg = 'rg -i --vimgrep --no-heading' " Use rg for ack.vim
 let g:airline_powerline_fonts = 1             " Use powerline fonts in airline
 let g:NERDTreeShowHidden=1                    " Show Hiddent Files in NERDTree
 let g:ctrlp_use_caching = 0                   " Disable caching for ctrlp
-
-" Use rg for ctrlp
-let g:ctrlp_user_command = 'rg %s --hidden --files -g ""'
+let g:ctrlp_user_command = 'rg --files  %s'   " Use rg for ctrlp
 
 " ================ Custom Mapings ====================
 
