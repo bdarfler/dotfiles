@@ -88,7 +88,7 @@ set expandtab                               " Use spaces instead of tabs
 
 let g:airline_powerline_fonts = 1             " Use powerline fonts in airline
 
-let g:NERDTreeShowHidden=1                    " Show Hiddent Files in NERDTree
+let g:NERDTreeShowHidden=1                    " Show hidden files in NERDTree
 autocmd VimEnter * NERDTree                   " Open NERDTree on start
 autocmd VimEnter * wincmd p                   " Navigate out of NERDTree on start
 
