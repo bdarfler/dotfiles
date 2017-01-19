@@ -6,7 +6,8 @@ set nocompatible
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'ctrlpvim/ctrlp.vim'                   " Fuzzy file, buffer, mru, tag, etc finder.
+Plug 'ctrlpvim/ctrlp.vim'                   " Fuzzy file, buffer, mru, tag, etc finder
+Plug 'JazzCore/ctrlp-cmatcher'              " Better fuzzy finding
 Plug 'mileszs/ack.vim'                      " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'scrooloose/nerdtree'                  " A tree explorer plugin for vim
 Plug 'derekwyatt/vim-scala'                 " Scala syntax highlighting
@@ -92,6 +93,9 @@ let g:airline_powerline_fonts = 1             " Use powerline fonts in airline
 let g:NERDTreeShowHidden=1                    " Show Hiddent Files in NERDTree
 let g:ctrlp_use_caching = 0                   " Disable caching for ctrlp
 let g:ctrlp_user_command = 'rg --files  %s'   " Use rg for ctrlp
+
+" Use better matching function for ctrlp
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 " ================ Custom Mapings ====================
 
