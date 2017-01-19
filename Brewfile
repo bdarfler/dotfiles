@@ -1,4 +1,3 @@
-tap 'beeftornado/rmtree'
 tap 'caskroom/cask'
 tap 'caskroom/versions'
 tap 'homebrew/bundle'
@@ -64,7 +63,6 @@ brew 'tldr'
 brew 'typesafe-activator'
 brew 'vim'
 brew 'youtube-dl'
-brew 'beeftornado/rmtree/brew-rmtree'
 cask 'adobe-air'
 cask 'appcleaner'
 cask 'atom'
@@ -106,7 +104,7 @@ mas 'iPhoto', id: 408981381
 mas 'Escape', id: 1090969894
 mas 'iA Writer', id: 775737590
 mas 'Pages', id: 409201541
-mas 'Irvue (2.0.9 )', id: 1039633667
+mas 'Irvue', id: 1039633667
 mas 'Pixelmator', id: 407963104
 mas 'GarageBand', id: 682658836
 mas 'Polarr Photo Editor', id: 1058273036
