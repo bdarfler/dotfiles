@@ -86,7 +86,8 @@ set expandtab                               " Use spaces instead of tabs
 
 " ================ Plugins Config ====================
 
-autocmd vimenter * NERDTree                   " Open NERDTree on start
+autocmd VimEnter * NERDTree                   " Open NERDTree on start
+autocmd VimEnter * wincmd p                   " Navigate out of NERDTree on start
 
 let g:ackprg = 'rg -i --vimgrep --no-heading' " Use rg for ack.vim
 let g:airline_powerline_fonts = 1             " Use powerline fonts in airline
