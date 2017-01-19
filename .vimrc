@@ -86,17 +86,17 @@ set expandtab                               " Use spaces instead of tabs
 
 " ================ Plugins Config ====================
 
+let g:airline_powerline_fonts = 1             " Use powerline fonts in airline
+
+let g:NERDTreeShowHidden=1                    " Show Hiddent Files in NERDTree
 autocmd VimEnter * NERDTree                   " Open NERDTree on start
 autocmd VimEnter * wincmd p                   " Navigate out of NERDTree on start
 
-let g:ackprg = 'rg -i --vimgrep --no-heading' " Use rg for ack.vim
-let g:airline_powerline_fonts = 1             " Use powerline fonts in airline
-let g:NERDTreeShowHidden=1                    " Show Hiddent Files in NERDTree
+" Use better matching function for ctrlp
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 let g:ctrlp_use_caching = 0                   " Disable caching for ctrlp
 let g:ctrlp_user_command = 'rg --files  %s'   " Use rg for ctrlp
 
-" Use better matching function for ctrlp
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 " Use rg for ack.vim
 let g:ackprg = 'rg --smart-case ---vimgrep --no-heading'
 
