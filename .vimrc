@@ -97,6 +97,8 @@ let g:ctrlp_user_command = 'rg --files  %s'   " Use rg for ctrlp
 
 " Use better matching function for ctrlp
 let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+" Use rg for ack.vim
+let g:ackprg = 'rg --smart-case ---vimgrep --no-heading'
 
 " ================ Custom Mapings ====================
 
