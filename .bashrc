@@ -16,11 +16,6 @@ fi
 
 export PATH=$HOME/.dotfiles/bin:$PATH
 
-# ================ Aliases =================================
-
-# Update Homebrew
-alias brewup='brew update && brew upgrade && brew cleanup'
-
 # ================ General Config ==========================
 
 export HISTSIZE=10000                                  # More history
