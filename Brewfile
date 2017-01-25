@@ -103,9 +103,9 @@ mas 'iPhoto', id: 408981381
 mas 'Escape', id: 1090969894
 mas 'iA Writer', id: 775737590
 mas 'Pages', id: 409201541
-mas 'Irvue', id: 1039633667
 mas 'Pixelmator', id: 407963104
-mas 'GarageBand', id: 682658836
 mas 'Polarr Photo Editor', id: 1058273036
+mas 'GarageBand', id: 682658836
+mas 'Irvue', id: 1039633667
 mas 'Numbers', id: 409203825
 mas 'Boom 2', id: 948176063
