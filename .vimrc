@@ -20,6 +20,7 @@ Plug 'godlygeek/tabular'                    " vertical alignment
 Plug 'tpope/vim-commentary'                 " comment stuff out
 Plug 'tpope/vim-surround'                   " quoting/parenthesizing made simple
 Plug 'Xuyuanp/nerdtree-git-plugin'          " git status for NERDTree
+Plug 'bling/vim-bufferline'                 " show the list of buffers in the command bar
 
 call plug#end()
 
@@ -86,6 +87,7 @@ set expandtab                               " Use spaces instead of tabs
 
 " ================ Plugins Config ====================
 
+let g:bufferline_echo = 0                     " Do not echo buffers to the command bar
 let g:airline_powerline_fonts = 1             " Use powerline fonts in airline
 
 let g:NERDTreeShowHidden=1                    " Show hidden files in NERDTree
