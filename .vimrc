@@ -46,6 +46,8 @@ set smartcase                               " ...unless we type a capital
 
 set grepprg=rg\ --vimgrep\ --no-heading     " Use rg for grepping
 
+autocmd FileType gitcommit setlocal spell   " Enable spelling in gitcommits
+
 " ================ Visual Config =====================
 
 set visualbell                              " Visual alerts, not sounds
