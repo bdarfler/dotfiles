@@ -44,6 +44,17 @@ set hlsearch                                " Highlight searches by default
 set ignorecase                              " Ignore case when searching...
 set smartcase                               " ...unless we type a capital
 
+set backspace=2                             " Allow backspace in insert mode
+set scrolloff=8                             " Scroll when 8 lines away from edge
+
+set autoindent                              " Copy indent from current line when starting a new line
+set smartindent                             " Enable smart indent
+set smarttab                                " Enable smart tabs
+set shiftwidth=2                            " Number of auto-indent spaces
+set softtabstop=2                           " Number of spaces per tab while editing
+set tabstop=2                               " Number of spaces per tab in a file
+set expandtab                               " Use spaces instead of tabs
+
 set grepprg=rg\ --vimgrep\ --no-heading     " Use rg for grepping
 
 autocmd FileType gitcommit setlocal spell   " Enable spelling in gitcommits
@@ -73,19 +84,6 @@ colorscheme solarized                       " Enable solarized colorscheme
 
 " Set Font
 set guifont=Source\ Code\ Pro\ for\ Powerline:h14
-
-" ================ Editor Config =====================
-
-set backspace=2                             " Allow backspace in insert mode
-set scrolloff=8                             " Scroll when 8 lines away from edge
-
-set autoindent                              " Copy indent from current line when starting a new line
-set smartindent                             " Enable smart indent
-set smarttab                                " Enable smart tabs
-set shiftwidth=2                            " Number of auto-indent spaces
-set softtabstop=2                           " Number of spaces per tab while editing
-set tabstop=2                               " Number of spaces per tab in a file
-set expandtab                               " Use spaces instead of tabs
 
 " ================ Plugins Config ====================
 
