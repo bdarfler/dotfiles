@@ -26,62 +26,62 @@ call plug#end()
 
 " ================ General Config ===================
 
-set autoread                                " Reload files changed outside vim
-set history=1000                            " Store lots of :cmdline history
-set hidden                                  " Leave hidden buffers open
-set clipboard=unnamed                       " Allow vim to use the system clipboard
-set mouse=a                                 " Enable mouse support
-set spelllang=en_us                         " Set spelling for US english
+set autoread                                     " Reload files changed outside vim
+set history=1000                                 " Store lots of :cmdline history
+set hidden                                       " Leave hidden buffers open
+set clipboard=unnamed                            " Allow vim to use the system clipboard
+set mouse=a                                      " Enable mouse support
+set spelllang=en_us                              " Set spelling for US english
 
-set nobackup                                " no backup files
-set nowritebackup                           " no backup file while editing
-set noswapfile                              " no swap files
+set nobackup                                     " no backup files
+set nowritebackup                                " no backup file while editing
+set noswapfile                                   " no swap files
 
-set wildmenu                                " Better command-line completion
-set wildmode=list:longest                   " List matches, complete longest common string
+set wildmenu                                     " Better command-line completion
+set wildmode=list:longest                        " List matches, complete longest common string
 
-set incsearch                               " Find the next match as we type the search
-set hlsearch                                " Highlight searches by default
-set ignorecase                              " Ignore case when searching...
-set smartcase                               " ...unless we type a capital
+set incsearch                                    " Find the next match as we type the search
+set hlsearch                                     " Highlight searches by default
+set ignorecase                                   " Ignore case when searching...
+set smartcase                                    " ...unless we type a capital
 
-set backspace=2                             " Allow backspace in insert mode
-set scrolloff=8                             " Scroll when 8 lines away from edge
+set backspace=2                                  " Allow backspace in insert mode
+set scrolloff=8                                  " Scroll when 8 lines away from edge
 
-set autoindent                              " Copy indent from current line when starting a new line
-set smartindent                             " Enable smart indent
-set smarttab                                " Enable smart tabs
-set shiftwidth=2                            " Number of auto-indent spaces
-set softtabstop=2                           " Number of spaces per tab while editing
-set tabstop=2                               " Number of spaces per tab in a file
-set expandtab                               " Use spaces instead of tabs
+set autoindent                                   " Copy indent from current line when starting a new line
+set smartindent                                  " Enable smart indent
+set smarttab                                     " Enable smart tabs
+set shiftwidth=2                                 " Number of auto-indent spaces
+set softtabstop=2                                " Number of spaces per tab while editing
+set tabstop=2                                    " Number of spaces per tab in a file
+set expandtab                                    " Use spaces instead of tabs
 
-set grepprg=rg\ --vimgrep\ --no-heading     " Use rg for grepping
+set grepprg=rg\ --vimgrep\ --no-heading          " Use rg for grepping
 
-autocmd FileType gitcommit setlocal spell   " Enable spelling in gitcommits
+autocmd FileType gitcommit setlocal spell        " Enable spelling in gitcommits
 
 " ================ Visual Config =====================
 
-set visualbell                              " Visual alerts, not sounds
+set visualbell                                   " Visual alerts, not sounds
 
-set cursorline                              " Highlight the current line
-set showmatch                               " Highlight matching braces
-set colorcolumn=120                         " Highlight column width guide
+set cursorline                                   " Highlight the current line
+set showmatch                                    " Highlight matching braces
+set colorcolumn=120                              " Highlight column width guide
 
-set number                                  " Show line numbers
-set relativenumber                          " Show relative line numbers
+set number                                       " Show line numbers
+set relativenumber                               " Show relative line numbers
 
-set splitbelow                              " Split below for horizontal splits
-set splitright                              " Split right for vertica splits
+set splitbelow                                   " Split below for horizontal splits
+set splitright                                   " Split right for vertica splits
 
-set showcmd                                 " Show incomplete cmds at the bottom
-set ruler                                   " Show column and line at the bottom
-set laststatus=2                            " Show status line
-set noshowmode                              " Hide current mode at the bottom
+set showcmd                                      " Show incomplete cmds at the bottom
+set ruler                                        " Show column and line at the bottom
+set laststatus=2                                 " Show status line
+set noshowmode                                   " Hide current mode at the bottom
 
-syntax enable                               " Enable syntax coloring
-set background=dark                         " Enable dark background colors
-colorscheme solarized                       " Enable solarized colorscheme
+syntax enable                                    " Enable syntax coloring
+set background=dark                              " Enable dark background colors
+colorscheme solarized                            " Enable solarized colorscheme
 
 " Set Font
 set guifont=Source\ Code\ Pro\ for\ Powerline:h14
@@ -97,15 +97,16 @@ autocmd VimEnter * wincmd p                   " Navigate out of NERDTree on star
 
 " Use better matching function for ctrlp
 let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-let g:ctrlp_use_caching = 0                   " Disable caching for ctrlp
-let g:ctrlp_user_command = 'rg --files  %s'   " Use rg for ctrlp
+let g:ctrlp_use_caching = 0                      " Disable caching for ctrlp
+let g:ctrlp_user_command = 'rg --files  %s'      " Use rg for ctrlp
 
 " Use rg for ack.vim
 let g:ackprg = 'rg --smart-case ---vimgrep --no-heading'
 
 " ================ Custom Mapings ====================
 
-let mapleader=" "                           " Set leader to space
+" Set leader to space
+let mapleader=" "
 
 " Mappings for Plugins
 nnoremap <leader>f :Ack<Space>
