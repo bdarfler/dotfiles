@@ -87,7 +87,7 @@ set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 
 let g:netrw_banner       = 0                     " Disable banner information
 let g:netrw_liststyle    = 3                     " Tree style listing
-let g:netrw_winsize      = -30                   " Set window size to 30 cols
+let g:netrw_winsize      = -30                   " Set absolute window size
 let g:netrw_mousemaps    = 0                     " Disable confusing mouse maps
 
 " At launch, open netrw and navigate out of it
