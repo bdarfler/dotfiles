@@ -85,11 +85,11 @@ set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 " ================ netrw Config ======================
 " https://shapeshed.com/vim-netrw/
 
-let g:netrw_banner = 0                           " Disable banner information
-let g:netrw_liststyle = 3                        " Tree style listing
+let g:netrw_banner       = 0                     " Disable banner information
+let g:netrw_liststyle    = 3                     " Tree style listing
 let g:netrw_browse_split = 4                     " Open files in the previous window
-let g:netrw_altv = 1                             " Split files to the right window
-let g:netrw_winsize = -30                        " Set window size to 30 cols
+let g:netrw_altv         = 1                     " Split files to the right window
+let g:netrw_winsize      = -30                   " Set window size to 30 cols
 
 " At launch, open netrw and navigate out of it
 augroup ProjectDrawer
@@ -100,12 +100,12 @@ augroup END
 
 " ================ Plugins Config ====================
 
-let g:bufferline_echo = 0                        " Do not echo buffers to the command bar
+let g:bufferline_echo         = 0                " Do not echo buffers to the command bar
 let g:airline_powerline_fonts = 1                " Use powerline fonts in airline
 
 " Use better matching function for ctrlp
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-let g:ctrlp_use_caching = 0                      " Disable caching for ctrlp
+let g:ctrlp_match_func   = {'match' : 'matcher#cmatch' }
+let g:ctrlp_use_caching  = 0                     " Disable caching for ctrlp
 let g:ctrlp_user_command = 'rg --files  %s'      " Use rg for ctrlp
 
 " Use rg for ack.vim
@@ -114,7 +114,7 @@ let g:ackprg = 'rg --smart-case ---vimgrep --no-heading'
 " ================ Custom Mapings ====================
 
 " Set leader to space
-let mapleader=" "
+let mapleader = " "
 
 " Mappings for Plugins
 nnoremap <leader>f :Ack<Space>
