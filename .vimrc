@@ -6,21 +6,17 @@ set nocompatible
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'ctrlpvim/ctrlp.vim'                   " Fuzzy file, buffer, mru, tag, etc finder
-Plug 'JazzCore/ctrlp-cmatcher'              " Better fuzzy finding
-Plug 'mileszs/ack.vim'                      " Vim plugin for the Perl module / CLI script 'ack'
-Plug 'scrooloose/nerdtree'                  " A tree explorer plugin for vim
-Plug 'derekwyatt/vim-scala'                 " Scala syntax highlighting
-Plug 'altercation/vim-colors-solarized'     " precision colorscheme for the vim text editor
-Plug 'ntpeters/vim-better-whitespace'       " highlight all trailing whitespace characters
-Plug 'vim-airline/vim-airline'              " lean & mean status/tabline for vim
-Plug 'vim-airline/vim-airline-themes'       " A collection of themes for vim-airline
-Plug 'airblade/vim-gitgutter'               " shows a git diff in the gutter
-Plug 'godlygeek/tabular'                    " vertical alignment
-Plug 'tpope/vim-commentary'                 " comment stuff out
-Plug 'tpope/vim-surround'                   " quoting/parenthesizing made simple
-Plug 'Xuyuanp/nerdtree-git-plugin'          " git status for NERDTree
-Plug 'bling/vim-bufferline'                 " show the list of buffers in the command bar
+Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file, buffer, mru, tag, etc finder
+Plug 'JazzCore/ctrlp-cmatcher'                   " Better fuzzy finding
+Plug 'mileszs/ack.vim'                           " Vim plugin for the Perl module / CLI script 'ack'
+Plug 'derekwyatt/vim-scala'                      " Scala syntax highlighting
+Plug 'altercation/vim-colors-solarized'          " precision colorscheme for the vim text editor
+Plug 'ntpeters/vim-better-whitespace'            " highlight all trailing whitespace characters
+Plug 'vim-airline/vim-airline'                   " lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'            " A collection of themes for vim-airline
+Plug 'bling/vim-bufferline'                      " show the list of buffers in the command bar
+Plug 'airblade/vim-gitgutter'                    " shows a git diff in the gutter
+Plug 'godlygeek/tabular'                         " vertical alignment
 
 call plug#end()
 
@@ -86,14 +82,26 @@ colorscheme solarized                            " Enable solarized colorscheme
 " Set Font
 set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 
+" ================ netrw Config ======================
+" https://shapeshed.com/vim-netrw/
+
+let g:netrw_banner = 0                           " Disable banner information
+let g:netrw_liststyle = 3                        " Tree style listing
+let g:netrw_browse_split = 4                     " Open files in the previous window
+let g:netrw_altv = 1                             " Split files to the right window
+let g:netrw_winsize = 15                         " Set window size to 15 cols
+
+" At launch, open netrw and navigate out of it
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Lexplore
+  autocmd VimEnter * wincmd p
+augroup END
+
 " ================ Plugins Config ====================
 
-let g:bufferline_echo = 0                     " Do not echo buffers to the command bar
-let g:airline_powerline_fonts = 1             " Use powerline fonts in airline
-
-let g:NERDTreeShowHidden = 1                  " Show hidden files in NERDTree
-autocmd VimEnter * NERDTree                   " Open NERDTree on start
-autocmd VimEnter * wincmd p                   " Navigate out of NERDTree on start
+let g:bufferline_echo = 0                        " Do not echo buffers to the command bar
+let g:airline_powerline_fonts = 1                " Use powerline fonts in airline
 
 " Use better matching function for ctrlp
 let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
@@ -113,7 +121,7 @@ nnoremap <leader>f :Ack<Space>
 nnoremap <leader>a :Tabularize<Space>
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>ws :StripWhitespace<CR>
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>t :Lexplore<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
