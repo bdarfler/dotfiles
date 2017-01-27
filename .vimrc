@@ -85,11 +85,15 @@ set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 " ================ netrw Config ======================
 " https://shapeshed.com/vim-netrw/
 
-let g:netrw_banner       = 0                     " Disable banner information
-let g:netrw_liststyle    = 3                     " Tree style listing
-let g:netrw_winsize      = -30                   " Set absolute window size
-let g:netrw_mousemaps    = 0                     " Disable confusing mouse maps
-let g:netrw_menu         = 0                     " Disable the menu
+let g:netrw_banner          = 0                  " Disable banner information
+let g:netrw_liststyle       = 3                  " Tree style listing
+let g:netrw_winsize         = -30                " Set absolute window size
+
+" netrw occasionally leaves zombie buffers
+" unscientific attempt to address this
+let g:netrw_mousemaps       = 0                  " Disable confusing mouse maps
+let g:netrw_menu            = 0                  " Disable the menu
+let g:netrw_use_errorwindow = 0                  " Do not use an error window
 
 " At launch, open netrw and navigate out of it
 augroup ProjectDrawer
