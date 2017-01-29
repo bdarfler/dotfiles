@@ -59,6 +59,7 @@ autocmd FileType gitcommit setlocal spell        " Enable spelling in gitcommits
 " ================ Visual Config =====================
 
 set visualbell                                   " Visual alerts, not sounds
+set showbreak=↪                                  " Better line wraps
 
 set cursorline                                   " Highlight the current line
 set showmatch                                    " Highlight matching braces
