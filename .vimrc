@@ -81,19 +81,19 @@ colorscheme solarized                                      " Enable solarized co
 set guifont=Source\ Code\ Pro\ for\ Powerline:h14          " Set Font
 
 " ================ netrw Config ======================
-" https://shapeshed.com/vim-netrw/
 
 let g:netrw_banner          = 0                            " Disable banner information
+let g:netrw_mousemaps       = 0                            " Disable mouse maps, more keys less mousing
 let g:netrw_liststyle       = 3                            " Tree style listing
 let g:netrw_winsize         = -30                          " Set absolute window size
 
-" an unscientific attempt to address zombie
+" an unscientific attempt to prevent zombie
 " buffers that netrw occasionally creates
-let g:netrw_mousemaps       = 0                            " Disable confusing mouse maps
 let g:netrw_menu            = 0                            " Disable the menu
 let g:netrw_use_errorwindow = 0                            " Do not use an error window
 
 " At launch, open netrw and navigate out of it
+" https://shapeshed.com/vim-netrw/
 augroup ProjectDrawer
   autocmd!
   autocmd VimEnter * :Lexplore
