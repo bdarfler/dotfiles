@@ -6,79 +6,79 @@ set nocompatible
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file, buffer, mru, tag, etc finder
-Plug 'JazzCore/ctrlp-cmatcher'                   " Better fuzzy finding
 Plug 'mileszs/ack.vim'                           " Vim plugin for the Perl module / CLI script 'ack'
-Plug 'derekwyatt/vim-scala'                      " Scala syntax highlighting
-Plug 'altercation/vim-colors-solarized'          " precision colorscheme for the vim text editor
-Plug 'ntpeters/vim-better-whitespace'            " highlight all trailing whitespace characters
-Plug 'vim-airline/vim-airline'                   " lean & mean status/tabline for vim
-Plug 'vim-airline/vim-airline-themes'            " A collection of themes for vim-airline
-Plug 'bling/vim-bufferline'                      " show the list of buffers in the command bar
-Plug 'airblade/vim-gitgutter'                    " shows a git diff in the gutter
-Plug 'godlygeek/tabular'                         " vertical alignment
+Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
+Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
+Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
+Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
+Plug 'ntpeters/vim-better-whitespace'                      " highlight all trailing whitespace characters
+Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
+Plug 'bling/vim-bufferline'                                " show the list of buffers in the command bar
+Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
+Plug 'godlygeek/tabular'                                   " vertical alignment
 
 call plug#end()
 
 " ================ General Config ===================
 
-set autoread                                     " Reload files changed outside vim
-set history=1000                                 " Store lots of :cmdline history
-set hidden                                       " Leave hidden buffers open
-set clipboard=unnamed                            " Allow vim to use the system clipboard
-set mouse=a                                      " Enable mouse support
-set spelllang=en_us                              " Set spelling for US english
+set autoread                                               " Reload files changed outside vim
+set history=1000                                           " Store lots of :cmdline history
+set hidden                                                 " Leave hidden buffers open
+set clipboard=unnamed                                      " Allow vim to use the system clipboard
+set mouse=a                                                " Enable mouse support
+set spelllang=en_us                                        " Set spelling for US english
 
-set nobackup                                     " no backup files
-set nowritebackup                                " no backup file while editing
-set noswapfile                                   " no swap files
+set nobackup                                               " no backup files
+set nowritebackup                                          " no backup file while editing
+set noswapfile                                             " no swap files
 
-set wildmenu                                     " Better command-line completion
-set wildmode=list:longest                        " List matches, complete longest common string
+set wildmenu                                               " Better command-line completion
+set wildmode=list:longest                                  " List matches, complete longest common string
 
-set incsearch                                    " Find the next match as we type the search
-set hlsearch                                     " Highlight searches by default
-set ignorecase                                   " Ignore case when searching...
-set smartcase                                    " ...unless we type a capital
+set incsearch                                              " Find the next match as we type the search
+set hlsearch                                               " Highlight searches by default
+set ignorecase                                             " Ignore case when searching...
+set smartcase                                              " ...unless we type a capital
 
-set backspace=2                                  " Allow backspace in insert mode
-set scrolloff=8                                  " Scroll when 8 lines away from edge
+set backspace=2                                            " Allow backspace in insert mode
+set scrolloff=8                                            " Scroll when 8 lines away from edge
 
-set autoindent                                   " Copy indent from current line when starting a new line
-set smartindent                                  " Enable smart indent
-set smarttab                                     " Enable smart tabs
-set shiftwidth=2                                 " Number of auto-indent spaces
-set softtabstop=2                                " Number of spaces per tab while editing
-set tabstop=2                                    " Number of spaces per tab in a file
-set expandtab                                    " Use spaces instead of tabs
+set autoindent                                             " Copy indent from current line when starting a new line
+set smartindent                                            " Enable smart indent
+set smarttab                                               " Enable smart tabs
+set shiftwidth=2                                           " Number of auto-indent spaces
+set softtabstop=2                                          " Number of spaces per tab while editing
+set tabstop=2                                              " Number of spaces per tab in a file
+set expandtab                                              " Use spaces instead of tabs
 
-set grepprg=rg\ --vimgrep\ --no-heading          " Use rg for grepping
+set grepprg=rg\ --vimgrep\ --no-heading                    " Use rg for grepping
 
-autocmd FileType gitcommit setlocal spell        " Enable spelling in gitcommits
+autocmd FileType gitcommit setlocal spell                  " Enable spelling in gitcommits
 
 " ================ Visual Config =====================
 
-set visualbell                                   " Visual alerts, not sounds
-set showbreak=↪                                  " Better line wraps
+set visualbell                                             " Visual alerts, not sounds
+set showbreak=↪                                            " Better line wraps
 
-set cursorline                                   " Highlight the current line
-set showmatch                                    " Highlight matching braces
-set colorcolumn=120                              " Highlight column width guide
+set cursorline                                             " Highlight the current line
+set showmatch                                              " Highlight matching braces
+set colorcolumn=120                                        " Highlight column width guide
 
-set number                                       " Show line numbers
-set relativenumber                               " Show relative line numbers
+set number                                                 " Show line numbers
+set relativenumber                                         " Show relative line numbers
 
-set splitbelow                                   " Split below for horizontal splits
-set splitright                                   " Split right for vertica splits
+set splitbelow                                             " Split below for horizontal splits
+set splitright                                             " Split right for vertica splits
 
-set showcmd                                      " Show incomplete cmds at the bottom
-set ruler                                        " Show column and line at the bottom
-set laststatus=2                                 " Show status line
-set noshowmode                                   " Hide current mode at the bottom
+set showcmd                                                " Show incomplete cmds at the bottom
+set ruler                                                  " Show column and line at the bottom
+set laststatus=2                                           " Show status line
+set noshowmode                                             " Hide current mode at the bottom
 
-syntax enable                                    " Enable syntax coloring
-set background=dark                              " Enable dark background colors
-colorscheme solarized                            " Enable solarized colorscheme
+syntax enable                                              " Enable syntax coloring
+set background=dark                                        " Enable dark background colors
+colorscheme solarized                                      " Enable solarized colorscheme
 
 " Set Font
 set guifont=Source\ Code\ Pro\ for\ Powerline:h14
@@ -86,15 +86,15 @@ set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 " ================ netrw Config ======================
 " https://shapeshed.com/vim-netrw/
 
-let g:netrw_banner          = 0                  " Disable banner information
-let g:netrw_liststyle       = 3                  " Tree style listing
-let g:netrw_winsize         = -30                " Set absolute window size
+let g:netrw_banner          = 0                            " Disable banner information
+let g:netrw_liststyle       = 3                            " Tree style listing
+let g:netrw_winsize         = -30                          " Set absolute window size
 
 " netrw occasionally leaves zombie buffers
 " unscientific attempt to address this
-let g:netrw_mousemaps       = 0                  " Disable confusing mouse maps
-let g:netrw_menu            = 0                  " Disable the menu
-let g:netrw_use_errorwindow = 0                  " Do not use an error window
+let g:netrw_mousemaps       = 0                            " Disable confusing mouse maps
+let g:netrw_menu            = 0                            " Disable the menu
+let g:netrw_use_errorwindow = 0                            " Do not use an error window
 
 " At launch, open netrw and navigate out of it
 augroup ProjectDrawer
@@ -105,8 +105,8 @@ augroup END
 
 " ================ Plugins Config ====================
 
-let g:bufferline_echo         = 0                " Do not echo buffers to the command bar
-let g:airline_powerline_fonts = 1                " Use powerline fonts in airline
+let g:bufferline_echo         = 0                          " Do not echo buffers to the command bar
+let g:airline_powerline_fonts = 1                          " Use powerline fonts in airline
 
 " Use better matching function for ctrlp
 let g:ctrlp_match_func   = {'match' : 'matcher#cmatch' }
