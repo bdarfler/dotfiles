@@ -6,7 +6,6 @@ set nocompatible
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'mileszs/ack.vim'                           " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
@@ -110,19 +109,20 @@ let g:airline_powerline_fonts = 1                          " Use powerline fonts
 
 " Use better matching function for ctrlp
 let g:ctrlp_match_func   = {'match' : 'matcher#cmatch' }
-let g:ctrlp_use_caching  = 0                     " Disable caching for ctrlp
-let g:ctrlp_user_command = 'rg --files  %s'      " Use rg for ctrlp
-
-" Use rg for ack.vim
-let g:ackprg = 'rg --smart-case ---vimgrep --no-heading'
+let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
+let g:ctrlp_user_command = 'rg --files --hidden %s'        " Use rg for ctrlp
 
 " ================ Custom Mapings ====================
 
 " Set leader to space
 let mapleader = " "
 
+" Grep which opens directly into quickfix window
+" http://vim.wikia.com/wiki/Find_in_files_within_Vim
+command! -nargs=+ Grep execute 'silent grep! <args>' | copen
+
 " Mappings for Plugins
-nnoremap <leader>f :Ack<Space>
+nnoremap <leader>f :Grep<Space>
 nnoremap <leader>a :Tabularize<Space>
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>ws :StripWhitespace<CR>
