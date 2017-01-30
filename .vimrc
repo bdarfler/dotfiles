@@ -52,8 +52,6 @@ set expandtab                                              " Use spaces instead 
 
 set grepprg=rg\ --vimgrep\ --no-heading                    " Use rg for grepping
 
-autocmd FileType gitcommit setlocal spell                  " Enable spelling in gitcommits
-
 " ================ Visual Config =====================
 
 set visualbell                                             " Visual alerts, not sounds
@@ -111,6 +109,8 @@ let g:ctrlp_user_command = 'rg --files --hidden %s'        " Use rg for ctrlp
 
 " ================ Custom Commands ===================
 
+" Enable spelling in gitcommits
+autocmd FileType gitcommit setlocal spell
 
 " Grep which opens directly into quickfix window
 " http://vim.wikia.com/wiki/Find_in_files_within_Vim
