@@ -105,7 +105,7 @@ augroup END
 let g:bufferline_echo         = 0                          " Do not echo buffers to the command bar
 let g:airline_powerline_fonts = 1                          " Use powerline fonts in airline
 
-let g:ctrlp_match_func   = {'match' : 'matcher#cmatch' }   " Use better matching function for ctrlp
+let g:ctrlp_match_func   = { 'match' : 'matcher#cmatch' }  " Use better matching function for ctrlp
 let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
 let g:ctrlp_user_command = 'rg --files --hidden %s'        " Use rg for ctrlp
 
