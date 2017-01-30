@@ -10,7 +10,6 @@ Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer,
 Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
-Plug 'ntpeters/vim-better-whitespace'                      " highlight all trailing whitespace characters
 Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
 Plug 'bling/vim-bufferline'                                " show the list of buffers in the command bar
