@@ -89,6 +89,7 @@ let g:netrw_winsize         = -30                          " Set absolute window
 " buffers that netrw occasionally creates
 let g:netrw_menu            = 0                            " Disable the menu
 let g:netrw_use_errorwindow = 0                            " Do not use an error window
+let g:netrw_fastbrowse      = 2                            " Do not refresh dir listings
 
 " At launch, open netrw and navigate out of it
 " https://shapeshed.com/vim-netrw/
