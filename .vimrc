@@ -25,7 +25,7 @@ set history=1000                                           " Store lots of :cmdl
 set hidden                                                 " Leave hidden buffers open
 set clipboard=unnamed                                      " Allow vim to use the system clipboard
 set mouse=a                                                " Enable mouse support
-set spelllang=en_us                                        " Set spelling for US english
+set spelllang=en_us                                        " Set spelling for US English
 
 set nobackup                                               " no backup files
 set nowritebackup                                          " no backup file while editing
@@ -55,7 +55,7 @@ set grepprg=rg\ --vimgrep\ --no-heading                    " Use rg for grepping
 " ================ Visual Config =====================
 
 set visualbell                                             " Visual alerts, not sounds
-set showbreak=↪                                            " Better line wraps
+set showbreak=↪                                            " Visually distinguish wrapped lines
 
 set cursorline                                             " Highlight the current line
 set showmatch                                              " Highlight matching braces
@@ -65,7 +65,7 @@ set number                                                 " Show line numbers
 set relativenumber                                         " Show relative line numbers
 
 set splitbelow                                             " Split below for horizontal splits
-set splitright                                             " Split right for vertica splits
+set splitright                                             " Split right for vertical splits
 
 set showcmd                                                " Show incomplete cmds at the bottom
 set ruler                                                  " Show column and line at the bottom
@@ -81,7 +81,7 @@ set guifont=Source\ Code\ Pro\ for\ Powerline:h14          " Set Font
 " ================ netrw Config ======================
 
 let g:netrw_banner          = 0                            " Disable banner information
-let g:netrw_mousemaps       = 0                            " Disable mouse maps, more keys less mousing
+let g:netrw_mousemaps       = 0                            " Disable mouse maps
 let g:netrw_liststyle       = 3                            " Tree style listing
 let g:netrw_winsize         = -30                          " Set absolute window size
 
@@ -127,7 +127,7 @@ autocmd InsertLeave,BufReadPost * exe 'match ExtraWhitespace "\s\+$"'
 " highlight all trailing whitespace except current line when in insert mode
 autocmd InsertEnter,CursorMovedI * exe 'match ExtraWhitespace "\%<' . line(".") . 'l\s\+$\|\%>' . line(".") . 'l\s\+$"'
 
-" ================ Custom Mapings ====================
+" ================ Custom Mappings ===================
 
 " Set leader to space
 let mapleader = " "
@@ -137,7 +137,7 @@ nnoremap <leader>a :Tabularize<Space>
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>t :Lexplore<CR>
 
-" Mappinsg for Commands
+" Mappings for Commands
 nnoremap <leader>f :Grep<Space>
 nnoremap <Leader>ws :%s/\s\+$//e<CR>
 
