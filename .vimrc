@@ -79,8 +79,7 @@ syntax enable                                              " Enable syntax color
 set background=dark                                        " Enable dark background colors
 colorscheme solarized                                      " Enable solarized colorscheme
 
-" Set Font
-set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14          " Set Font
 
 " ================ netrw Config ======================
 " https://shapeshed.com/vim-netrw/
@@ -89,8 +88,8 @@ let g:netrw_banner          = 0                            " Disable banner info
 let g:netrw_liststyle       = 3                            " Tree style listing
 let g:netrw_winsize         = -30                          " Set absolute window size
 
-" netrw occasionally leaves zombie buffers
-" unscientific attempt to address this
+" an unscientific attempt to address zombie
+" buffers that netrw occasionally creates
 let g:netrw_mousemaps       = 0                            " Disable confusing mouse maps
 let g:netrw_menu            = 0                            " Disable the menu
 let g:netrw_use_errorwindow = 0                            " Do not use an error window
@@ -107,8 +106,7 @@ augroup END
 let g:bufferline_echo         = 0                          " Do not echo buffers to the command bar
 let g:airline_powerline_fonts = 1                          " Use powerline fonts in airline
 
-" Use better matching function for ctrlp
-let g:ctrlp_match_func   = {'match' : 'matcher#cmatch' }
+let g:ctrlp_match_func   = {'match' : 'matcher#cmatch' }   " Use better matching function for ctrlp
 let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
 let g:ctrlp_user_command = 'rg --files --hidden %s'        " Use rg for ctrlp
 
