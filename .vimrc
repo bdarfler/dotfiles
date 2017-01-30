@@ -109,21 +109,35 @@ let g:ctrlp_match_func   = { 'match' : 'matcher#cmatch' }  " Use better matching
 let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
 let g:ctrlp_user_command = 'rg --files --hidden %s'        " Use rg for ctrlp
 
-" ================ Custom Mapings ====================
+" ================ Custom Commands ===================
 
-" Set leader to space
-let mapleader = " "
 
 " Grep which opens directly into quickfix window
 " http://vim.wikia.com/wiki/Find_in_files_within_Vim
 command! -nargs=+ Grep execute 'silent grep! <args>' | copen
 
+" Highlight trailing whitespace
+" https://github.com/ntpeters/vim-better-whitespace
+" define highlight group for trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+" highlight all trailing whitespace when exiting insert mode
+autocmd InsertLeave,BufReadPost * exe 'match ExtraWhitespace "\s\+$"'
+" highlight all trailing whitespace except current line when in insert mode
+autocmd InsertEnter,CursorMovedI * exe 'match ExtraWhitespace "\%<' . line(".") . 'l\s\+$\|\%>' . line(".") . 'l\s\+$"'
+
+" ================ Custom Mapings ====================
+
+" Set leader to space
+let mapleader = " "
+
 " Mappings for Plugins
-nnoremap <leader>f :Grep<Space>
 nnoremap <leader>a :Tabularize<Space>
 nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>ws :StripWhitespace<CR>
 nnoremap <leader>t :Lexplore<CR>
+
+" Mappinsg for Commands
+nnoremap <leader>f :Grep<Space>
+nnoremap <Leader>ws :%s/\s\+$//e<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
