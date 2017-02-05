@@ -109,3 +109,4 @@ mas 'GarageBand', id: 682658836
 mas 'Irvue', id: 1039633667
 mas 'Numbers', id: 409203825
 mas 'Boom 2', id: 948176063
+mas 'Hour', id: 569089415
