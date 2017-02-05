@@ -24,7 +24,6 @@ set autoread                                               " Reload files change
 set history=1000                                           " Store lots of :cmdline history
 set hidden                                                 " Leave hidden buffers open
 set clipboard=unnamed                                      " Allow vim to use the system clipboard
-set mouse=a                                                " Enable mouse support
 set spelllang=en_us                                        " Set spelling for US English
 
 set nobackup                                               " no backup files
