@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline-themes'                      " A collection of the
 Plug 'bling/vim-bufferline'                                " show the list of buffers in the command bar
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                                   " vertical alignment
+Plug 'jiangmiao/auto-pairs'                                " insert or delete brackets, parens, quotes in pair
 
 call plug#end()
 
