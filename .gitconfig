@@ -1,45 +1,45 @@
 [merge]
 	tool = p4merge
 [mergetool]
-  keepBackup = false
-  prompt = false
+	keepBackup = false
+	prompt = false
 [mergetool "p4merge"]
 	path = /Applications/p4merge.app/Contents/Resources/launchp4merge
 [diff]
-  tool = icdiff
+	tool = icdiff
 [difftool "icdiff"]
-  cmd = icdiff --no-bold $LOCAL $REMOTE
+	cmd = icdiff --no-bold $LOCAL $REMOTE
 [difftool]
-  prompt = false
+	prompt = false
 [pager]
-  difftool = true
+	difftool = true
 [pull]
-  rebase = true
+	rebase = true
 [log]
-  abbrevCommit = true
-  decorate = auto
+	abbrevCommit = true
+	decorate = auto
 [format]
-  pretty = oneline
+	pretty = oneline
 [status]
-  short = true
-  branch = true
+	short = true
+	branch = true
 [alias]
-  force-push = push --force-with-lease
-  amend = commit --amend --no-edit
-  unstage = reset HEAD
+	force-push = push --force-with-lease
+	amend = commit --amend --no-edit
+	unstage = reset HEAD
 [color]
-  ui = true
+	ui = true
 [user]
-  name = Benjamin Darfler
-  email = bdarfler@gmail.com
+	name = Benjamin Darfler
+	email = bdarfler@gmail.com
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 [include]
-  path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
 [core]
-  excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [commit]
-  gpgsign = true
+	gpgsign = true
 [rerere]
-  enabled = true
-  autoupdate = true
+	enabled = true
+	autoupdate = true
