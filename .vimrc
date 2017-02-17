@@ -133,10 +133,11 @@ let mapleader = " "
 " Mappings for Plugins
 nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>t :Lexplore<CR>
+nnoremap <leader>o :TagbarToggle<CR>
 
 " Mappings for Commands
-nnoremap <leader>f :Grep<Space>
+nnoremap <leader>g :Grep<Space>
+nnoremap <leader>t :Lexplore<CR>
 nnoremap <Leader>ws :%s/\s\+$//e<CR>
 
 " Disable Arrow Keys
