@@ -92,14 +92,6 @@ let g:netrw_use_errorwindow = 0                            " Do not use an error
 let g:netrw_fastbrowse      = 2                            " Do not refresh dir listings
 let g:netrw_dirhistmax      = 0                            " Disable dir history
 
-" At launch, open netrw and navigate out of it
-" https://shapeshed.com/vim-netrw/
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Lexplore
-  autocmd VimEnter * wincmd p
-augroup END
-
 " ================ Plugins Config ====================
 
 let g:bufferline_echo         = 0                          " Do not echo buffers to the command bar
@@ -108,6 +100,12 @@ let g:airline_powerline_fonts = 1                          " Use powerline fonts
 let g:ctrlp_match_func   = { 'match' : 'matcher#cmatch' }  " Use better matching function for ctrlp
 let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
 let g:ctrlp_user_command = 'rg --files --hidden %s'        " Use rg for ctrlp
+
+" ================= Open On Launch ===================
+
+autocmd VimEnter * :TagbarOpen                             " Open tagbar
+autocmd VimEnter * :Lexplore                               " Open netrw
+autocmd VimEnter * wincmd p                                " Move to center panel
 
 " ================ Custom Commands ===================
 
