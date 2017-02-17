@@ -131,7 +131,7 @@ autocmd InsertEnter,CursorMovedI * exe 'match ExtraWhitespace "\%<' . line(".") 
 let mapleader = " "
 
 " Mappings for Plugins
-nnoremap <leader>a :Tabularize<Space>
+nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>t :Lexplore<CR>
 
