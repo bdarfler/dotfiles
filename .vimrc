@@ -101,13 +101,12 @@ let g:ctrlp_match_func   = { 'match' : 'matcher#cmatch' }  " Use better matching
 let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
 let g:ctrlp_user_command = 'rg --files --hidden %s'        " Use rg for ctrlp
 
-" ================= Open On Launch ===================
+" ================ Custom Commands ===================
 
+" Open On Launch
 autocmd VimEnter * :TagbarOpen                             " Open tagbar
 autocmd VimEnter * :Lexplore                               " Open netrw
 autocmd VimEnter * wincmd p                                " Move to center panel
-
-" ================ Custom Commands ===================
 
 " Enable spelling in gitcommits
 autocmd FileType gitcommit setlocal spell
