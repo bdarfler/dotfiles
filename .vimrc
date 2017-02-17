@@ -12,11 +12,9 @@ Plug 'derekwyatt/vim-scala'                                " Scala syntax highli
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
 Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
-Plug 'bling/vim-bufferline'                                " show the list of buffers in the command bar
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                                   " vertical alignment
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
-Plug 'jeetsukumaran/vim-buffergator'                       " list, select and switch between buffers
 
 call plug#end()
 
@@ -95,8 +93,8 @@ let g:netrw_dirhistmax      = 0                            " Disable dir history
 
 " ================ Plugins Config ====================
 
-let g:bufferline_echo         = 0                          " Do not echo buffers to the command bar
-let g:airline_powerline_fonts = 1                          " Use powerline fonts in airline
+let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
+let g:airline_powerline_fonts            = 1               " Use powerline fonts in airline
 
 let g:ctrlp_match_func   = { 'match' : 'matcher#cmatch' }  " Use better matching function for ctrlp
 let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
@@ -140,6 +138,10 @@ nnoremap <leader>g :Grep<Space>
 nnoremap <leader>k :Grep<Space>"\b<C-R><C-W>\b"<CR>
 nnoremap <leader>t :Lexplore<CR>
 nnoremap <Leader>ws :%s/\s\+$//e<CR>
+
+" Cycle Through Buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
