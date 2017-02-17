@@ -16,6 +16,7 @@ Plug 'bling/vim-bufferline'                                " show the list of bu
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                                   " vertical alignment
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
+Plug 'jeetsukumaran/vim-buffergator'                       " list, select and switch between buffers
 
 call plug#end()
 
