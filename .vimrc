@@ -136,6 +136,7 @@ nnoremap <leader>o :TagbarToggle<CR>
 
 " Mappings for Commands
 nnoremap <leader>g :Grep<Space>
+nnoremap <leader>k :Grep<Space>"\b<C-R><C-W>\b"<CR>
 nnoremap <leader>t :Lexplore<CR>
 nnoremap <Leader>ws :%s/\s\+$//e<CR>
 
