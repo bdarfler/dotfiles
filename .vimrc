@@ -8,14 +8,12 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
-Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
 Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                                   " vertical alignment
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
-Plug 'fatih/vim-go'                                        " Go development
 
 call plug#end()
 
