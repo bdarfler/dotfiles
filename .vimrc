@@ -13,7 +13,6 @@ Plug 'vim-airline/vim-airline'                             " lean & mean status/
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                                   " vertical alignment
-Plug 'majutsushi/tagbar'                                   " displays tags in a window
 
 call plug#end()
 
@@ -104,7 +103,6 @@ let g:ctrlp_user_command = "rg --files --hidden --glob '!.git' %s"
 " ================ Custom Commands ===================
 
 " Open On Launch
-autocmd VimEnter * :TagbarOpen                             " Open tagbar
 autocmd VimEnter * :Lexplore                               " Open netrw
 autocmd VimEnter * wincmd p                                " Move to center panel
 
@@ -132,7 +130,6 @@ let mapleader = " "
 " Mappings for Plugins
 nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>o :TagbarToggle<CR>
 
 " Mappings for Commands
 nnoremap <leader>g :Grep<Space>
