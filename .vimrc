@@ -13,6 +13,7 @@ Plug 'vim-airline/vim-airline'                             " lean & mean status/
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                                   " vertical alignment
+Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
 
 call plug#end()
 
@@ -111,7 +112,7 @@ autocmd FileType gitcommit setlocal spell
 
 " Grep which opens directly into quickfix window
 " http://vim.wikia.com/wiki/Find_in_files_within_Vim
-command! -nargs=+ Grep execute 'silent grep! <args>' | botright copen
+command! -nargs=+ Grep execute 'silent grep! <args>' | botright copen 5
 
 " Highlight trailing whitespace
 " https://github.com/ntpeters/vim-better-whitespace
@@ -130,6 +131,7 @@ let mapleader = " "
 " Mappings for Plugins
 nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader>p :CtrlP<CR>
+nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 
 " Mappings for Commands
 nnoremap <leader>g :Grep<Space>
