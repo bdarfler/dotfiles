@@ -1,10 +1,9 @@
 [merge]
-	tool = p4merge
+	conflictstyle = diff3
+	tool = vimdiff
 [mergetool]
 	keepBackup = false
 	prompt = false
-[mergetool "p4merge"]
-	path = /Applications/p4merge.app/Contents/Resources/launchp4merge
 [diff]
 	tool = icdiff
 [difftool "icdiff"]

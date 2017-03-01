@@ -134,6 +134,7 @@ nnoremap <leader>p :CtrlP<CR>
 nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 
 " Mappings for Commands
+nnoremap <leader>d :diffget<Space>
 nnoremap <leader>g :Grep<Space>
 nnoremap <leader>k :Grep<Space>"\b<C-R><C-W>\b"<CR>
 nnoremap <leader>t :Lexplore<CR>
