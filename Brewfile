@@ -61,6 +61,7 @@ brew 'ruby-install'
 brew 'sbt'
 brew 'scala', args: ['with-docs', 'with-src']
 brew 'textql'
+brew 'tig'
 brew 'tldr'
 brew 'typesafe-activator'
 brew 'vim'
