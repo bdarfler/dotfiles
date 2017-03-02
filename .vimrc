@@ -107,8 +107,8 @@ let g:ctrlp_user_command = "rg --files --hidden --glob '!.git' %s"
 autocmd VimEnter * :Lexplore                               " Open netrw
 autocmd VimEnter * wincmd p                                " Move to center panel
 
-" Enable spelling in gitcommits
-autocmd FileType gitcommit setlocal spell
+" Spelling and wrapping for git commits
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Grep which opens directly into quickfix window
 " http://vim.wikia.com/wiki/Find_in_files_within_Vim
