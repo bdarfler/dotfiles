@@ -25,9 +25,6 @@ export EDITOR=vim                                      # Vim
 export VISUAL=vim                                      # Vim
 export GPG_TTY=$(tty)                                  # GPG
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)      # Java
-export GOPATH=$HOME/golang                             # Golang
-export GOROOT=/usr/local/opt/go/libexec                # Golang
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin              # Golang
 
 # ================ Visual Config ===========================
 
