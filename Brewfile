@@ -88,7 +88,6 @@ cask 'yujitach-menumeters'
 mas 'Keynote', id: 409183694
 mas 'iMovie', id: 408981434
 mas 'iPhoto', id: 408981381
-mas 'Escape', id: 1090969894
 mas 'iA Writer', id: 775737590
 mas 'Pages', id: 409201541
 mas 'Pixelmator', id: 407963104
