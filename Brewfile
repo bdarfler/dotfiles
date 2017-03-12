@@ -48,6 +48,8 @@ brew 'python3'
 brew 'ripgrep'
 brew 'ruby'
 brew 'ruby-install'
+brew 'sbt'
+brew 'scala', args: ['with-docs', 'with-src']
 brew 'tig'
 brew 'vim'
 brew 'youtube-dl'

@@ -14,6 +14,7 @@ Plug 'vim-airline/vim-airline-themes'                      " A collection of the
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                                   " vertical alignment
 Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
+Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 
 call plug#end()
 
