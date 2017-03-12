@@ -87,15 +87,16 @@ cask 'visualvm'
 cask 'vlc'
 cask 'whatsapp'
 cask 'yujitach-menumeters'
-mas 'Keynote', id: 409183694
+cask 'zoomus'
+mas 'Boom 2', id: 948176063
+mas 'GarageBand', id: 682658836
+mas 'Hour', id: 569089415
+mas 'iA Writer', id: 775737590
 mas 'iMovie', id: 408981434
 mas 'iPhoto', id: 408981381
-mas 'iA Writer', id: 775737590
+mas 'Irvue', id: 1039633667
+mas 'Keynote', id: 409183694
+mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
 mas 'Pixelmator', id: 407963104
 mas 'Polarr Photo Editor', id: 1058273036
-mas 'GarageBand', id: 682658836
-mas 'Irvue', id: 1039633667
-mas 'Numbers', id: 409203825
-mas 'Boom 2', id: 948176063
-mas 'Hour', id: 569089415
