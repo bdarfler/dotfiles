@@ -113,7 +113,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Grep which opens directly into quickfix window
 " http://vim.wikia.com/wiki/Find_in_files_within_Vim
-command! -nargs=+ Grep execute 'silent grep! <args>' | botright copen 5
+command! -nargs=+ Grep execute 'silent grep! <args>' | botright copen 10
 
 " Highlight trailing whitespace
 " https://github.com/ntpeters/vim-better-whitespace
