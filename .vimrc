@@ -12,6 +12,8 @@ Plug 'vim-syntastic/syntastic'                             " Syntax checking hac
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
 Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
+Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
+Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'godlygeek/tabular'                                   " vertical alignment
 Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
@@ -121,19 +123,6 @@ autocmd VimEnter * wincmd p                                " Move to center pane
 " Spelling and wrapping for git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" Grep which opens directly into quickfix window
-" http://vim.wikia.com/wiki/Find_in_files_within_Vim
-command! -nargs=+ Grep execute 'silent grep! <args>' | botright copen 10
-
-" Highlight trailing whitespace
-" https://github.com/ntpeters/vim-better-whitespace
-" define highlight group for trailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-" highlight all trailing whitespace when exiting insert mode
-autocmd InsertLeave,BufReadPost * exe 'match ExtraWhitespace "\s\+$"'
-" highlight all trailing whitespace except current line when in insert mode
-autocmd InsertEnter,CursorMovedI * exe 'match ExtraWhitespace "\%<' . line(".") . 'l\s\+$\|\%>' . line(".") . 'l\s\+$"'
-
 " ================ Custom Mappings ===================
 
 " Set leader to space
@@ -142,14 +131,13 @@ let mapleader = " "
 " Mappings for Plugins
 nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>ws :StripWhitespace<CR>
 nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 
 " Mappings for Commands
 nnoremap <leader>d :diffget<Space>
-nnoremap <leader>g :Grep<Space>
-nnoremap <leader>k :Grep<Space>"\b<C-R><C-W>\b"<CR>
+nnoremap <leader>g :Ack<Space>
 nnoremap <leader>t :Lexplore<CR>
-nnoremap <Leader>ws :%s/\s\+$//e<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
