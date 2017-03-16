@@ -64,7 +64,6 @@ set showmatch                                              " Highlight matching 
 set colorcolumn=120                                        " Highlight column width guide
 
 set number                                                 " Show line numbers
-set relativenumber                                         " Show relative line numbers
 
 set splitbelow                                             " Split below for horizontal splits
 set splitright                                             " Split right for vertical splits
