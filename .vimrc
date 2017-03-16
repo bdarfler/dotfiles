@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'                              " shows a git diff in
 Plug 'godlygeek/tabular'                                   " vertical alignment
 Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
+Plug 'fatih/vim-go'                                        " Go development
 
 call plug#end()
 
