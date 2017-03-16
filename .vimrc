@@ -8,6 +8,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
+Plug 'vim-syntastic/syntastic'                             " Syntax checking hacks for vim
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
 Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
@@ -90,6 +91,14 @@ let g:netrw_menu            = 0                            " Disable the menu
 let g:netrw_use_errorwindow = 0                            " Do not use an error window
 let g:netrw_fastbrowse      = 2                            " Do not refresh dir listings
 let g:netrw_dirhistmax      = 0                            " Disable dir history
+
+" =============== Syntastic Config ===================
+" https://github.com/vim-syntastic/syntastic#3-recommended-settings
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " ================ Plugins Config ====================
 
