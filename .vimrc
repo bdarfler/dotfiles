@@ -15,7 +15,7 @@ Plug 'vim-airline/vim-airline-themes'                      " A collection of the
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
-Plug 'godlygeek/tabular'                                   " vertical alignment
+Plug 'junegunn/vim-easy-align'                              " A Vim alignment plugin
 Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
@@ -124,9 +124,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 " Set leader to space
 let mapleader = " "
 
-" Mappings for Plugins
-nnoremap <leader>a :Tabularize<Space>/
-nnoremap <leader>p :CtrlP<CR>
+" Leader Mappings
 nnoremap <leader>ws :StripWhitespace<CR>
 nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 
