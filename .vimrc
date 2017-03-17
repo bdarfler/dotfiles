@@ -130,9 +130,6 @@ let mapleader = " "
 
 " Leader Mappings
 nnoremap <leader>ws :StripWhitespace<CR>
-nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
-
-" Mappings for Commands
 nnoremap <leader>d :diffget<Space>
 nnoremap <leader>a :Ack<Space>
 nnoremap <leader>t :Lexplore<CR>
