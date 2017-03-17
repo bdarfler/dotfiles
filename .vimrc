@@ -54,7 +54,8 @@ set softtabstop=2                                          " Number of spaces pe
 set tabstop=2                                              " Number of spaces per tab in a file
 set expandtab                                              " Use spaces instead of tabs
 
-set grepprg=rg\ --vimgrep\ --no-heading                    " Use rg for grepping
+" Use rg for grepping
+set grepprg=rg\ --smart-case\ --vimgrep\ --no-heading\ --hidden\ --glob\ '!.git'
 
 " ================ Visual Config =====================
 
@@ -110,6 +111,9 @@ let g:ctrlp_use_caching  = 0                               " Disable caching for
 " Use rg cmd for ctrlp
 let g:ctrlp_user_command = "rg --files --hidden --glob '!.git' %s"
 
+" Use rg for ack.vim
+let g:ackprg = "rg --smart-case ---vimgrep --no-heading --hidden --glob '!.git'"
+
 " ================ Custom Commands ===================
 
 " Open On Launch
@@ -130,7 +134,7 @@ nmap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 
 " Mappings for Commands
 nnoremap <leader>d :diffget<Space>
-nnoremap <leader>g :Ack<Space>
+nnoremap <leader>a :Ack<Space>
 nnoremap <leader>t :Lexplore<CR>
 
 " Disable Arrow Keys
