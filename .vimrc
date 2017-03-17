@@ -18,6 +18,7 @@ Plug 'airblade/vim-gitgutter'                              " shows a git diff in
 Plug 'junegunn/vim-easy-align'                              " A Vim alignment plugin
 Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
+Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
 
