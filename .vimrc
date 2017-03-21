@@ -23,6 +23,7 @@ Plug 'moll/vim-bbye'                                       " Close files without
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
 Plug 'ernstvanderlinden/vim-coldfusion'                    " ColdFusion Syntax Highlighter
+Plug 'pangloss/vim-javascript'                             " Vastly improved Javascript indentation and syntax
 
 call plug#end()
 
