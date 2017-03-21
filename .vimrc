@@ -102,8 +102,10 @@ let g:netrw_dirhistmax      = 0                            " Disable dir history
 " ================ Plugins Config ====================
 
 let g:syntastic_always_populate_loc_list = 1               " Fill in location list with errors
-let g:syntastic_auto_loc_list = 1                          " Auto open location list if errors exist
 let g:syntastic_check_on_open = 1                          " Run checks when files are opened
+
+" Ignore Angular attributes in HTML
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
 let g:airline_powerline_fonts            = 1               " Use powerline fonts in airline
