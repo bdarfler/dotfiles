@@ -21,6 +21,7 @@ Plug 'ajh17/VimCompletesMe'                                " simple, minimal, li
 Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
+Plug 'ernstvanderlinden/vim-coldfusion'                    " ColdFusion Syntax Highlighter
 
 call plug#end()
 
@@ -114,6 +115,10 @@ let g:ctrlp_user_command = "rg --files --hidden --glob '!.git' %s"
 
 " Use rg for ack.vim
 let g:ackprg = "rg --smart-case ---vimgrep --no-heading --hidden --glob '!.git'"
+
+" ColdFusion Syntax Highlighting
+autocmd Bufread,BufNewFile *.cfm set filetype=eoz
+autocmd Bufread,BufNewFile *.cfc set filetype=eoz
 
 " ================ Custom Commands ===================
 
