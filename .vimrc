@@ -15,8 +15,8 @@ Plug 'vim-airline/vim-airline-themes'                      " A collection of the
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
-Plug 'junegunn/vim-easy-align'                              " A Vim alignment plugin
-Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
+Plug 'junegunn/vim-easy-align'                             " A Vim alignment plugin
+Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
 Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
