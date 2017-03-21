@@ -20,10 +20,10 @@ Plug 'junegunn/vim-easy-align'                              " A Vim alignment pl
 Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
 Plug 'tpope/vim-commentary'                                " comment stuff out
+Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
 Plug 'ernstvanderlinden/vim-coldfusion'                    " ColdFusion Syntax Highlighter
-Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 
 call plug#end()
 
@@ -137,10 +137,11 @@ let mapleader = " "
 
 " Leader Mappings
 nnoremap <leader>ws :StripWhitespace<CR>
-nnoremap <leader>d :diffget<Space>
+nnoremap <leader>g :diffget<Space>
 nnoremap <leader>a :Ack!<Space>
 nnoremap <leader>t :Lexplore<CR>
 nnoremap <leader>o :TagbarToggle<CR>
+nnoremap <leader>d :Bdelete<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
