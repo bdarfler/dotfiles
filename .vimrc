@@ -57,8 +57,6 @@ set shiftwidth=2                                           " Number of auto-inde
 set softtabstop=2                                          " Number of spaces per tab while editing
 set tabstop=2                                              " Number of spaces per tab in a file
 
-set foldmethod=syntax                                      " Enable code folding based on syntax
-
 " Use rg for grepping
 set grepprg=rg\ --smart-case\ --vimgrep\ --no-heading\ --hidden\ --glob\ '!.git'
 
