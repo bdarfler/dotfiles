@@ -57,6 +57,8 @@ set softtabstop=2                                          " Number of spaces pe
 set tabstop=2                                              " Number of spaces per tab in a file
 set expandtab                                              " Use spaces instead of tabs
 
+set foldmethod=syntax                                      " Enable code folding based on syntax
+
 " Use rg for grepping
 set grepprg=rg\ --smart-case\ --vimgrep\ --no-heading\ --hidden\ --glob\ '!.git'
 
