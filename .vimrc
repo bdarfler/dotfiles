@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline-themes'                      " A collection of the
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
+Plug 'majutsushi/tagbar'                                   " displays tags in a window
 Plug 'junegunn/vim-easy-align'                              " A Vim alignment plugin
 Plug 'milkypostman/vim-togglelist'                         " toggle location and quickfix windows
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
@@ -139,6 +140,7 @@ nnoremap <leader>ws :StripWhitespace<CR>
 nnoremap <leader>d :diffget<Space>
 nnoremap <leader>a :Ack<Space>
 nnoremap <leader>t :Lexplore<CR>
+nnoremap <leader>o :TagbarToggle<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
