@@ -23,6 +23,7 @@ Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
 Plug 'ernstvanderlinden/vim-coldfusion'                    " ColdFusion Syntax Highlighter
+Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 
 call plug#end()
 
