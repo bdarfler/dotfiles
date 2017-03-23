@@ -119,15 +119,11 @@ let g:ctrlp_user_command = "rg --files --hidden --glob '!.git' %s"
 " Use rg for ack.vim
 let g:ackprg = "rg --smart-case ---vimgrep --no-heading --hidden --glob '!.git'"
 
+" ================ Custom Commands ===================
+
 " ColdFusion Syntax Highlighting
 autocmd Bufread,BufNewFile *.cfm set filetype=eoz
 autocmd Bufread,BufNewFile *.cfc set filetype=eoz
-
-" ================ Custom Commands ===================
-
-" Open On Launch
-autocmd VimEnter * :Lexplore                               " Open netrw
-autocmd VimEnter * wincmd p                                " Move to center panel
 
 " Spelling and wrapping for git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
