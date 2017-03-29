@@ -21,6 +21,7 @@ Plug 'ajh17/VimCompletesMe'                                " simple, minimal, li
 Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'tpope/vim-vinegar'                                   " combine with netrw to create a delicious salad dressing
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
+Plug 'ternjs/tern_for_vim'                                 " Tern plugin for Vim
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
