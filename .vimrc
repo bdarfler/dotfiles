@@ -20,6 +20,7 @@ Plug 'Valloric/ListToggle'                                 " toggle the quickfix
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
 Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'tpope/vim-vinegar'                                   " combine with netrw to create a delicious salad dressing
+Plug 'majutsushi/tagbar'                                   " displays tags in a window
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
@@ -125,6 +126,7 @@ nnoremap <leader>ws :StripWhitespace<CR>
 nnoremap <leader>g :diffget<Space>
 nnoremap <leader>a :Ack!<Space>
 nnoremap <leader>d :Bdelete<CR>
+nnoremap <leader>o :TagbarToggle<CR>
 
 " Disable Arrow Keys
 nnoremap <Left> <Nop>
