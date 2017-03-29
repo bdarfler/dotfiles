@@ -123,7 +123,6 @@ let mapleader = " "
 
 " Leader Mappings
 nnoremap <leader>ws :StripWhitespace<CR>
-nnoremap <leader>g :diffget<Space>
 nnoremap <leader>a :Ack!<Space>
 nnoremap <leader>d :Bdelete<CR>
 nnoremap <leader>o :TagbarToggle<CR>
