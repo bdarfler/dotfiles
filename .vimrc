@@ -19,6 +19,7 @@ Plug 'junegunn/vim-easy-align'                             " A Vim alignment plu
 Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
 Plug 'tpope/vim-commentary'                                " comment stuff out
+Plug 'tpope/vim-vinegar'                                   " combine with netrw to create a delicious salad dressing
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
@@ -85,19 +86,6 @@ colorscheme solarized                                      " Enable solarized co
 
 set guifont=Source\ Code\ Pro\ for\ Powerline:h14          " Set Font
 
-" ================ netrw Config ======================
-
-let g:netrw_banner          = 0                            " Disable banner information
-let g:netrw_mousemaps       = 0                            " Disable mouse maps
-let g:netrw_liststyle       = 3                            " Tree style listing
-let g:netrw_winsize         = -30                          " Set absolute window size
-
-" an unscientific attempt to prevent zombie
-" buffers that netrw occasionally creates
-let g:netrw_menu            = 0                            " Disable the menu
-let g:netrw_use_errorwindow = 0                            " Do not use an error window
-let g:netrw_dirhistmax      = 0                            " Disable dir history
-
 " ================ Plugins Config ====================
 
 let g:syntastic_always_populate_loc_list = 1               " Fill in location list with errors
@@ -136,7 +124,6 @@ let mapleader = " "
 nnoremap <leader>ws :StripWhitespace<CR>
 nnoremap <leader>g :diffget<Space>
 nnoremap <leader>a :Ack!<Space>
-nnoremap <leader>t :Lexplore<CR>
 nnoremap <leader>d :Bdelete<CR>
 
 " Disable Arrow Keys
