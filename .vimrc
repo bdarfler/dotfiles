@@ -100,6 +100,9 @@ set guifont=Source\ Code\ Pro\ for\ Powerline:h14          " Set Font
 
 let g:syntastic_always_populate_loc_list = 1               " Fill in location list with errors
 let g:syntastic_check_on_open = 1                          " Run checks when files are opened
+let g:syntastic_javascript_checkers = ['eslint']           " ESLint for linting javascript
+let g:syntastic_javascript_eslint_exec = 'eslint_d'        " ESLint_d for linting javascript
+let g:syntastic_go_checkers = ['gometalinter']             " gometalinter for linting golang
 
 " Ignore Angular attributes in HTML
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
