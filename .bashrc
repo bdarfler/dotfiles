@@ -35,6 +35,7 @@ alias cat='ccat'                                       # Colorize cat
 alias diff='colordiff'                                 # Colorize diff
 export CLICOLOR=1                                      # Colorize ls
 export GREP_OPTIONS='--color=auto'                     # Colorize grep
+export LESS='-R'                                       # Colorize less
 
 # ================ Dedupe History ==========================
 # http://superuser.com/a/410534
