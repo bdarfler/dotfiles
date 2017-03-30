@@ -6,27 +6,35 @@ set nocompatible
 
 call plug#begin('~/.vim/bundle')
 
+" Navigation Plugins
 Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
+Plug 'tpope/vim-vinegar'                                   " combine with netrw to create a delicious salad dressing
+
+" Development Plugins
+Plug 'majutsushi/tagbar'                                   " displays tags in a window
 Plug 'vim-syntastic/syntastic'                             " Syntax checking hacks for vim
-Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
-Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
-Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
+Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
 Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'junegunn/vim-easy-align'                             " A Vim alignment plugin
+Plug 'tpope/vim-commentary'                                " comment stuff out
+
+" Visual Plugins
+Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
+Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
 Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
-Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
-Plug 'tpope/vim-commentary'                                " comment stuff out
-Plug 'tpope/vim-vinegar'                                   " combine with netrw to create a delicious salad dressing
-Plug 'majutsushi/tagbar'                                   " displays tags in a window
-Plug 'ternjs/tern_for_vim'                                 " Tern plugin for Vim
+
+" Language Plugins
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
 Plug 'ernstvanderlinden/vim-coldfusion'                    " ColdFusion Syntax Highlighter
+Plug 'ternjs/tern_for_vim'                                 " Tern plugin for Vim
 Plug 'pangloss/vim-javascript'                             " Vastly improved Javascript indentation and syntax
+Plug 'maxmellon/vim-jsx-pretty'                            " React JSX syntax pretty highlighting for vim
 
 call plug#end()
 
