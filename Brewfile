@@ -111,7 +111,6 @@ cask 'vlc'
 cask 'whatsapp'
 cask 'yujitach-menumeters'
 cask 'zoomus'
-mas 'Boom 2', id: 948176063
 mas 'GarageBand', id: 682658836
 mas 'Hour', id: 569089415
 mas 'iA Writer', id: 775737590
