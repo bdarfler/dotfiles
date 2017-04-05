@@ -139,28 +139,6 @@ nnoremap <leader>a :Ack!<Space>
 nnoremap <leader>d :Bdelete<CR>
 nnoremap <leader>o :TagbarToggle<CR>
 
-" Disable Arrow Keys
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <PageUp> <Nop>
-nnoremap <PageDown> <Nop>
-
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <PageUp> <Nop>
-inoremap <PageDown> <Nop>
-
-vnoremap <Left> <Nop>
-vnoremap <Right> <Nop>
-vnoremap <Up> <Nop>
-vnoremap <Down> <Nop>
-vnoremap <PageUp> <Nop>
-vnoremap <PageDown> <Nop>
-
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
