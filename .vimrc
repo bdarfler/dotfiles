@@ -11,6 +11,9 @@ Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer,
 Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'tpope/vim-vinegar'                                   " combine with netrw to create a delicious salad dressing
+Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
+Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
+Plug 'tpope/vim-unimpaired'                                " pairs of handy bracket mappings
 
 " Development Plugins
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
@@ -25,8 +28,6 @@ Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
 Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
-Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
-Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 
 " Language Plugins
 Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
@@ -144,29 +145,3 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-" The good parts of tpope/unimparied
-nnoremap <silent> [a :previous<CR>
-nnoremap <silent> ]a :next<CR>
-nnoremap <silent> [A :first<CR>
-nnoremap <silent> ]A :last<CR>
-
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
-
-nnoremap <silent> [l :lprevious<CR>
-nnoremap <silent> ]l :lnext<CR>
-nnoremap <silent> [L :lfirst<CR>
-nnoremap <silent> ]L :llast<CR>
-
-nnoremap <silent> [t :tprevious<CR>
-nnoremap <silent> ]t :tnext<CR>
-nnoremap <silent> [T :tfirst<CR>
-nnoremap <silent> ]T :tlast<CR>
-
-nnoremap <silent> [c :cprevious<CR>
-nnoremap <silent> ]c :cnext<CR>
-nnoremap <silent> [C :cfirst<CR>
-nnoremap <silent> ]C :clast<CR>
