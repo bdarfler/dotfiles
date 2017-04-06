@@ -127,6 +127,9 @@ let g:ackprg = "rg --smart-case ---vimgrep --no-heading --hidden --glob '!.git'"
 autocmd Bufread,BufNewFile *.cfm set filetype=eoz
 autocmd Bufread,BufNewFile *.cfc set filetype=eoz
 
+" Automatically resize splits when resizing window
+autocmd VimResized * wincmd =
+
 " Spelling and wrapping for git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
