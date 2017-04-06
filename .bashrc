@@ -16,6 +16,10 @@ fi
 
 export PATH=$HOME/.dotfiles/bin:$PATH
 
+# ================ Commands ================================
+
+alias camfix='sudo killall VDCAssistant; sudo killall AppleCameraAssistant'
+
 # ================ General Config ==========================
 
 export HISTSIZE=10000                                  # More history
