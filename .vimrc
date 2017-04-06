@@ -23,6 +23,7 @@ Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace h
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'junegunn/vim-easy-align'                             " A Vim alignment plugin
 Plug 'tpope/vim-commentary'                                " comment stuff out
+Plug 'rizzatti/dash.vim'                                   " Search Dash.app from Vim
 
 " Visual Plugins
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
@@ -137,8 +138,9 @@ let mapleader = " "
 " Leader Mappings
 nnoremap <leader>ws :StripWhitespace<CR>
 nnoremap <leader>a :Ack!<Space>
-nnoremap <leader>d :Bdelete<CR>
+nnoremap <leader>x :Bdelete<CR>
 nnoremap <leader>o :TagbarToggle<CR>
+nmap <silent> <leader>d <Plug>DashSearch
 
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
