@@ -133,6 +133,9 @@ autocmd VimResized * wincmd =
 " Spelling and wrapping for git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
+" Spaces not tabs in javascript
+autocmd Filetype javascript setlocal expandtab
+
 " ================ Custom Mappings ===================
 
 " Set leader to space
