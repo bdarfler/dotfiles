@@ -17,7 +17,7 @@ Plug 'tpope/vim-unimpaired'                                " pairs of handy brac
 
 " Development Plugins
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
-Plug 'vim-syntastic/syntastic'                             " Syntax checking hacks for vim
+Plug 'w0rp/ale'                                            " Asynchronous Lint Engine
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
 Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
@@ -99,15 +99,7 @@ colorscheme solarized                                      " Enable solarized co
 set guifont=Source\ Code\ Pro\ for\ Powerline:h14          " Set Font
 
 " ================ Plugins Config ====================
-
-let g:syntastic_always_populate_loc_list = 1               " Fill in location list with errors
-let g:syntastic_check_on_open = 1                          " Run checks when files are opened
-let g:syntastic_javascript_checkers = ['eslint']           " ESLint for linting javascript
-let g:syntastic_javascript_eslint_exec = 'eslint_d'        " ESLint_d for linting javascript
-let g:syntastic_go_checkers = ['go', 'govet', 'golint', 'gotype', 'gofmt']
-
-" Ignore Angular attributes in HTML
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:ale_javascript_eslint_executable = 'eslint_d'        " eslint_d for linting javascript
 
 let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
 let g:airline_powerline_fonts            = 1               " Use powerline fonts in airline
@@ -146,6 +138,8 @@ nnoremap <leader>ws :StripWhitespace<CR>
 nnoremap <leader>a :Ack!<Space>
 nnoremap <leader>x :Bdelete<CR>
 nnoremap <leader>o :TagbarToggle<CR>
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>ale :ALELint<CR>
 nmap <silent> <leader>d <Plug>DashSearch
 
 " Remap for easier split navigation
