@@ -69,7 +69,6 @@ set smarttab                                               " Enable smart tabs
 set shiftwidth=2                                           " Number of auto-indent spaces
 set softtabstop=2                                          " Number of spaces per tab while editing
 set tabstop=2                                              " Number of spaces per tab in a file
-set expandtab                                              " Use spaces instead of tabs
 
 " Use rg for grepping
 set grepprg=rg\ --smart-case\ --vimgrep\ --no-heading\ --hidden\ --glob\ '!.git'
@@ -119,16 +118,12 @@ let g:ackprg = "rg --smart-case ---vimgrep --no-heading --hidden --glob '!.git'"
 " ColdFusion Support
 autocmd Bufread,BufNewFile *.cfm set filetype=eoz
 autocmd Bufread,BufNewFile *.cfc set filetype=eoz
-autocmd Filetype eoz setlocal noexpandtab
 
 " Automatically resize splits when resizing window
 autocmd VimResized * wincmd =
 
 " Spelling and wrapping for git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
-
-" Tabs not spaces for go
-autocmd Filetype go setlocal noexpandtab
 
 " ================ Custom Mappings ===================
 
