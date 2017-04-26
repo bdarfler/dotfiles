@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+pod_tag && pod_update && pod_upload

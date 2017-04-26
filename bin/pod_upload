@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 aws s3 sync ~/Dropbox/Podcasting s3://bdarfler-podcast \
   --delete \
   --profile personal \
