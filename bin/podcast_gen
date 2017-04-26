@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+for i in *.mp3
+do
+	id3v2 -2 --TIT2 "${i::-4}" "$i"
+done
+
 podcast \
 	--dir ~/Dropbox/Podcasting \
 	--title "bdarfler podcast" \
