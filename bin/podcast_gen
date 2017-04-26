@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 for i in *.mp3
 do
-	id3v2 -2 --TIT2 "${i::-4}" "$i"
+	# If the file is missing title tag
+	if [ -z "$(id3v2 -l "$i" | egrep TI?T2)" ];
+	then
+		# Set the title tag to the filename
+		id3v2 -2 --TIT2 "${i::-4}" "$i"
+	fi
 done
 
 podcast \
