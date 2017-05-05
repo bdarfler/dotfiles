@@ -25,7 +25,13 @@
 [alias]
 	force-push = push --force-with-lease
 	amend = commit --amend --no-edit
-	unstage = reset HEAD
+	unstage = reset -q HEAD
+	uncommit = reset --mixed HEAD~
+	br = branch
+	ci = commit
+	co = checkout
+	st = status
+	rb = rebase
 [color]
 	ui = true
 [user]
