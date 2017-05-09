@@ -24,6 +24,7 @@ Plug 'airblade/vim-gitgutter'                              " shows a git diff in
 Plug 'junegunn/vim-easy-align'                             " A Vim alignment plugin
 Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'rizzatti/dash.vim'                                   " Search Dash.app from Vim
+Plug 'editorconfig/editorconfig-vim'                       " EditorConfig plugin for Vim
 
 " Visual Plugins
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
