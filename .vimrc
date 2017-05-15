@@ -131,6 +131,10 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 " Set leader to space
 let mapleader = " "
 
+" EasyAlign Mappings
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 " Leader Mappings
 nnoremap <leader>ws :StripWhitespace<CR>
 nnoremap <leader>g :Ack!<Space>
