@@ -126,6 +126,9 @@ autocmd VimResized * wincmd =
 " Spelling and wrapping for git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
+" Spelling for markdown
+autocmd BufRead,BufNewFile *.md setlocal spell
+
 " ================ Custom Mappings ===================
 
 " Set leader to space
