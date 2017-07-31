@@ -25,6 +25,8 @@ Plug 'junegunn/vim-easy-align'                             " A Vim alignment plu
 Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'rizzatti/dash.vim'                                   " Search Dash.app from Vim
 Plug 'editorconfig/editorconfig-vim'                       " EditorConfig plugin for Vim
+Plug 'tpope/vim-fugitive'                                  " Better git integration
+Plug 'tpope/vim-rhubarb'                                   " Needed for fugitive Gbrowse
 
 " Visual Plugins
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
