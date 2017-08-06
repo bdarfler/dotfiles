@@ -26,7 +26,6 @@ alias dc='docker-compose'
 export HISTSIZE=10000                                  # More history
 shopt -s histappend                                    # Append history
 shopt -s globstar                                      # ** globing
-export LESS='-RFX'                                     # Colorize and handle short files
 export EDITOR=vim                                      # Vim
 export VISUAL=vim                                      # Vim
 export GPG_TTY=$(tty)                                  # GPG
@@ -44,6 +43,7 @@ alias cat='ccat'                                       # Colorize cat
 alias diff='colordiff'                                 # Colorize diff
 export CLICOLOR=1                                      # Colorize ls
 export GREP_OPTIONS='--color=auto'                     # Colorize grep
+export LESS='-RFX'                                     # Colorize and handle short files
 
 # ================ Dedupe History ==========================
 # http://superuser.com/a/410534
