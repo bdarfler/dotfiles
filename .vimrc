@@ -27,6 +27,7 @@ Plug 'rizzatti/dash.vim'                                   " Search Dash.app fro
 Plug 'editorconfig/editorconfig-vim'                       " EditorConfig plugin for Vim
 Plug 'tpope/vim-fugitive'                                  " Better git integration
 Plug 'tpope/vim-rhubarb'                                   " Needed for fugitive Gbrowse
+Plug 'tpope/vim-sleuth'                                    " Heuristically set buffer options
 
 " Visual Plugins
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
@@ -67,8 +68,8 @@ set backspace=2                                            " Allow backspace in 
 set scrolloff=8                                            " Scroll when 8 lines away from edge
 
 set autoindent                                             " Copy indent from current line when starting a new line
-set smartindent                                            " Enable smart indent
-set smarttab                                               " Enable smart tabs
+set smartindent                                            " Inserts one extra level of indentation in some cases
+set expandtab                                              " <TAB> will insert 'softtabstop' amount of spaces
 set shiftwidth=2                                           " Number of auto-indent spaces
 set softtabstop=2                                          " Number of spaces per tab while editing
 set tabstop=2                                              " Number of spaces per tab in a file
