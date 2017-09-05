@@ -101,7 +101,7 @@ syntax enable                                              " Enable syntax color
 set background=dark                                        " Enable dark background colors
 colorscheme solarized                                      " Enable solarized colorscheme
 
-set guifont=Source\ Code\ Pro\ for\ Powerline:h14          " Set Font
+set guifont=Source\ Code\ Pro\ for\ Powerline:h16          " Set Font
 
 " ================ Plugins Config ====================
 let g:ale_javascript_eslint_executable = 'eslint_d'        " eslint_d for linting javascript
