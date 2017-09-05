@@ -143,7 +143,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Leader Mappings
-nnoremap <leader>ws :StripWhitespace<CR>
+nnoremap <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <leader>g :Ack!<Space>
 nnoremap <leader>x :Bdelete<CR>
 nnoremap <leader>o :TagbarToggle<CR>
