@@ -28,6 +28,7 @@ Plug 'editorconfig/editorconfig-vim'                       " EditorConfig plugin
 Plug 'tpope/vim-fugitive'                                  " Better git integration
 Plug 'tpope/vim-rhubarb'                                   " Needed for fugitive Gbrowse
 Plug 'tpope/vim-sleuth'                                    " Heuristically set buffer options
+Plug 'rhysd/conflict-marker.vim'                           " Highlight, Jump and Resolve Conflict Markers Quickly
 
 " Visual Plugins
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
