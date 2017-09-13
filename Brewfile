@@ -47,6 +47,7 @@ brew "libyaml"
 brew "lnav"
 brew "mas"
 brew "mysql"
+brew "node"
 brew "node@6"
 brew "pkg-config"
 brew "python"
@@ -113,6 +114,9 @@ mas "iMovie", id: 408981434
 mas "iPhoto", id: 408981381
 mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
 mas "Polarr Photo Editor", id: 1058273036
 mas "Xcode", id: 497799835
