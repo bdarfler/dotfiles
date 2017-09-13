@@ -24,9 +24,6 @@ brew "xvid"
 brew "ffmpeg"
 brew "freetype"
 brew "fontconfig"
-brew "jpeg"
-brew "libtiff"
-brew "webp"
 brew "gd"
 brew "gdbm"
 brew "gmp"
@@ -108,7 +105,6 @@ cask "vlc"
 cask "whatsapp"
 cask "yujitach-menumeters"
 cask "zoomus"
-mas "FullContact", id: 1094748271
 mas "GarageBand", id: 682658836
 mas "GIFHunter", id: 1031163338
 mas "Hour", id: 569089415
@@ -117,9 +113,6 @@ mas "iMovie", id: 408981434
 mas "iPhoto", id: 408981381
 mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
 mas "Polarr Photo Editor", id: 1058273036
 mas "Xcode", id: 497799835
