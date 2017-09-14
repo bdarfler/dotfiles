@@ -19,16 +19,20 @@ Plug 'tpope/vim-unimpaired'                                " pairs of handy brac
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
 Plug 'w0rp/ale'                                            " Asynchronous Lint Engine
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
-Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
-Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
-Plug 'junegunn/vim-easy-align'                             " A Vim alignment plugin
-Plug 'tpope/vim-commentary'                                " comment stuff out
 Plug 'rizzatti/dash.vim'                                   " Search Dash.app from Vim
-Plug 'editorconfig/editorconfig-vim'                       " EditorConfig plugin for Vim
+
+" Git Plugins
 Plug 'tpope/vim-fugitive'                                  " Better git integration
 Plug 'tpope/vim-rhubarb'                                   " Needed for fugitive Gbrowse
-Plug 'tpope/vim-sleuth'                                    " Heuristically set buffer options
+Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
 Plug 'rhysd/conflict-marker.vim'                           " Highlight, Jump and Resolve Conflict Markers Quickly
+
+" Editor Plugins
+Plug 'tpope/vim-sleuth'                                    " Heuristically set buffer options
+Plug 'editorconfig/editorconfig-vim'                       " EditorConfig plugin for Vim
+Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
+Plug 'junegunn/vim-easy-align'                             " A Vim alignment plugin
+Plug 'tpope/vim-commentary'                                " comment stuff out
 
 " Visual Plugins
 Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
@@ -36,7 +40,6 @@ Plug 'vim-airline/vim-airline'                             " lean & mean status/
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
 
 " Language Plugins
-Plug 'derekwyatt/vim-scala'                                " Scala syntax highlighting
 Plug 'fatih/vim-go'                                        " Go development
 Plug 'ernstvanderlinden/vim-coldfusion'                    " ColdFusion Syntax Highlighter
 Plug 'ternjs/tern_for_vim'                                 " Tern plugin for Vim
