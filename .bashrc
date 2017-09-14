@@ -28,6 +28,7 @@ shopt -s histappend                                    # Append history
 shopt -s globstar                                      # ** globing
 export EDITOR=vim                                      # Vim
 export VISUAL=vim                                      # Vim
+export PAGER=less                                      # Less
 export GPG_TTY=$(tty)                                  # GPG
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)      # Java
 export GOPATH=$HOME/go                                 # Go
