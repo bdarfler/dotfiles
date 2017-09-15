@@ -107,6 +107,8 @@ colorscheme solarized                                      " Enable solarized co
 set guifont=Source\ Code\ Pro\ for\ Powerline:h16          " Set Font
 
 " ================ Plugins Config ====================
+let g:conflict_marker_enable_mappings = 0                  " Disable default mappings
+
 let g:ale_javascript_eslint_executable = 'eslint_d'        " eslint_d for linting javascript
 
 let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
@@ -140,6 +142,10 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Set leader to space
 let mapleader = " "
+
+" Conflict Marker Mappings
+nmap <buffer>]d <Plug>(conflict-marker-next-hunk)
+nmap <buffer>[d <Plug>(conflict-marker-prev-hunk)
 
 " EasyAlign Mappings
 xmap ga <Plug>(EasyAlign)
