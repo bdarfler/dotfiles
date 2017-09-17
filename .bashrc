@@ -82,6 +82,11 @@ if [ -d /usr/local/opt/chruby ]; then
   chruby ruby-2.4.0
 fi
 
+# ================ pyenv ===================================
+# https://github.com/pyenv/pyenv
+
+eval "$(pyenv init -)"
+
 # ================ Local .bashrc ===========================
 
 if [ -f ~/.bashrc.local ]; then
