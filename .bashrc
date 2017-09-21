@@ -34,6 +34,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)      # Java
 export GOPATH=$HOME/go                                 # Go
 export GOROOT=/usr/local/opt/go/libexec                # Go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin              # Go
+export PATH=/usr/local/sbin:$PATH                      # Homebrew
 
 # Follow Physical Directory Structure
 set -o physical
