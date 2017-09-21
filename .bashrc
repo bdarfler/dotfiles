@@ -18,6 +18,7 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 
 # ================ Commands ================================
 
+alias brewpu='brew update && brew upgrade && brew cleanup'
 alias camfix='sudo killall VDCAssistant; sudo killall AppleCameraAssistant'
 alias dc='docker-compose'
 
