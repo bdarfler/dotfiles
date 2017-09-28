@@ -1,8 +1,8 @@
-tap "caskroom/cask"
-tap "caskroom/versions"
-tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/versions"
+tap "homebrew/bundle"
+tap "caskroom/versions"
+tap "caskroom/cask"
 brew "automake"
 brew "aws-shell"
 brew "awscli"
@@ -14,9 +14,10 @@ brew "chruby"
 brew "colordiff"
 brew "ctags"
 brew "ctop"
-brew "gdbm"
 brew "perl"
 brew "git"
+brew "ffmpeg"
+brew "gdbm"
 brew "gmp"
 brew "go"
 brew "gotags"
@@ -105,5 +106,4 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
 mas "Polarr Photo Editor", id: 1058273036
-mas "Trello", id: 1278508951
 mas "Xcode", id: 497799835
