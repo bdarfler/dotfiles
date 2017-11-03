@@ -157,16 +157,15 @@ nmap <buffer>]d <Plug>(conflict-marker-next-hunk)
 nmap <buffer>[d <Plug>(conflict-marker-prev-hunk)
 
 " EasyAlign Mappings
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+xmap ea <Plug>(EasyAlign)
+nmap ea <Plug>(EasyAlign)
 
 " Leader Mappings
 nnoremap <leader>ws :StripWhitespace<CR> <bar> :w<CR>
-nnoremap <leader>g :Ack!<Space>
+nnoremap <leader>a :Ack!<Space>
 nnoremap <leader>x :Bdelete<CR>
 nnoremap <leader>o :TagbarToggle<CR>
 nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>ale :ALELint<CR>
 nmap <silent> <leader>d <Plug>DashSearch
 
 " Remap for easier split navigation
