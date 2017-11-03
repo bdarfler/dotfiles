@@ -104,6 +104,8 @@ syntax enable                                              " Enable syntax color
 set background=dark                                        " Enable dark background colors
 colorscheme solarized                                      " Enable solarized colorscheme
 
+set updatetime=250                                         " Quicker updates
+
 set guifont=Source\ Code\ Pro\ for\ Powerline:h16          " Set Font
 
 " ================ Plugins Config ====================
@@ -113,6 +115,9 @@ let g:ale_javascript_eslint_executable = 'eslint_d'        " eslint_d for lintin
 
 let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
 let g:airline_powerline_fonts            = 1               " Use powerline fonts in airline
+
+let g:go_fmt_command = "goimports"                         " Run goimports on save
+let g:go_auto_type_info = 1                                " Add type info in status line
 
 let g:ctrlp_match_func   = { 'match' : 'matcher#cmatch' }  " Use better matching function for ctrlp
 let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
@@ -142,6 +147,10 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Set leader to space
 let mapleader = " "
+
+" vim-go Mappings
+autocmd FileType go nmap <Leader>gr <Plug>(go-rename)
+autocmd FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
 
 " Conflict Marker Mappings
 nmap <buffer>]d <Plug>(conflict-marker-next-hunk)
