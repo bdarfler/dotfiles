@@ -19,6 +19,7 @@ Plug 'tpope/vim-unimpaired'                                " pairs of handy brac
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
 Plug 'w0rp/ale'                                            " Asynchronous Lint Engine
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
+Plug 'vim-scripts/AutoComplPop'                            " Automatically opens popup menu for completions
 Plug 'rizzatti/dash.vim'                                   " Search Dash.app from Vim
 
 " Git Plugins
