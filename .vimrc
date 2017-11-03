@@ -106,6 +106,7 @@ set background=dark                                        " Enable dark backgro
 colorscheme solarized                                      " Enable solarized colorscheme
 
 set updatetime=250                                         " Quicker updates
+set signcolumn=yes                                         " Always show sign column
 
 set guifont=Source\ Code\ Pro\ for\ Powerline:h16          " Set Font
 
