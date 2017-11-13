@@ -49,7 +49,7 @@ alias diff='colordiff'                                 # Colorize diff
 export CLICOLOR=1                                      # Colorize ls
 export GREP_OPTIONS='--color=auto'                     # Colorize grep
 export LESS='-RFX'                                     # Colorize and handle short files
-export HH_CONFIG=hicolor                               # Colorize hh
+export HH_CONFIG='hicolor'                             # Colorize hh
 
 # ================ Dedupe History ==========================
 # http://superuser.com/a/410534
