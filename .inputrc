@@ -1,0 +1,12 @@
+# tab through all completions
+TAB:menu-complete
+
+# show all completions
+set show-all-if-ambiguous on
+
+# ignore case for completions
+set completion-ignore-case on
+
+# colorize completions
+set colored-stats
+set colored-completion-prefix on
