@@ -39,6 +39,9 @@ export PATH=/usr/local/sbin:$PATH                      # Homebrew
 # Follow Physical Directory Structure
 set -o physical
 
+# if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hh -- \C-j"'; fi
+
 # ================ Visual Config ===========================
 
 alias cat='ccat'                                       # Colorize cat
@@ -46,6 +49,7 @@ alias diff='colordiff'                                 # Colorize diff
 export CLICOLOR=1                                      # Colorize ls
 export GREP_OPTIONS='--color=auto'                     # Colorize grep
 export LESS='-RFX'                                     # Colorize and handle short files
+export HH_CONFIG=hicolor                               # Colorize hh
 
 # ================ Dedupe History ==========================
 # http://superuser.com/a/410534
