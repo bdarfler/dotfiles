@@ -1,12 +1,16 @@
-# tab through all completions
+# Tab through all completions
 TAB:menu-complete
-
-# show all completions
+# Display common prefix before cycling through
+set menu-complete-display-prefix on
+# Show all completions
 set show-all-if-ambiguous on
-
-# ignore case for completions
+# Ignore case for completions
 set completion-ignore-case on
-
-# colorize completions
-set colored-stats
+# Color files by types
+set colored-stats on
+# Append char to indicate type
+set visible-stats on
+# Mark symlinked directories
+set mark-symlinked-directories on
+# Color the common prefix
 set colored-completion-prefix on
