@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+git for-each-ref \
+  --sort=-committerdate \
+  refs/heads \
+  --color=auto \
+  --format="%(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))" \
+  --merged | grep -v master
+

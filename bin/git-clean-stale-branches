@@ -1,0 +1,4 @@
+#!/bin/bash
+
+set -e
+git show-stale-branches | awk '{print $1}' | xargs git branch -D
