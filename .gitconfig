@@ -44,6 +44,7 @@
 	path = ~/.gitconfig.local
 [core]
 	excludesfile = ~/.gitignore_global
+	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [commit]
 	gpgsign = true
 [rerere]
