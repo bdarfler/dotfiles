@@ -23,6 +23,7 @@ alias dc='docker-compose'
 
 # ================ General Config ==========================
 
+export HH_CONFIG='hicolor,rawhistory'                  # Configure hh
 export HISTSIZE=10000                                  # More history
 shopt -s histappend                                    # Append history
 shopt -s globstar                                      # ** globing
@@ -49,7 +50,6 @@ alias diff='colordiff'                                 # Colorize diff
 export CLICOLOR=1                                      # Colorize ls
 export GREP_OPTIONS='--color=auto'                     # Colorize grep
 export LESS='-RFX'                                     # Colorize and handle short files
-export HH_CONFIG='hicolor'                             # Colorize hh
 
 # ================ Dedupe History ==========================
 # http://superuser.com/a/410534
