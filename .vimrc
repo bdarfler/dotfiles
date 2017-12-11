@@ -10,7 +10,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
-Plug 'tpope/vim-vinegar'                                   " combine with netrw to create a delicious salad dressing
+Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
 Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'tpope/vim-unimpaired'                                " pairs of handy bracket mappings
