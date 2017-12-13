@@ -18,8 +18,6 @@ Plug 'tpope/vim-unimpaired'                                " pairs of handy brac
 " Development Plugins
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
 Plug 'w0rp/ale'                                            " Asynchronous Lint Engine
-Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
-Plug 'vim-scripts/AutoComplPop'                            " Automatically opens popup menu for completions
 Plug 'rizzatti/dash.vim'                                   " Search Dash.app from Vim
 
 " Git Plugins
@@ -78,6 +76,8 @@ set expandtab                                              " <TAB> will insert '
 set shiftwidth=2                                           " Number of auto-indent spaces
 set softtabstop=2                                          " Number of spaces per tab while editing
 set tabstop=2                                              " Number of spaces per tab in a file
+
+set completeopt=menuone                                    " Always show completion menu
 
 " Use rg for grepping
 set grepprg=rg\ --smart-case\ --vimgrep\ --no-heading\ --hidden\ --glob\ '!.git'
@@ -179,3 +179,6 @@ nnoremap <C-H> <C-W><C-H>
 " Remap for easier movement with wrapping
 nnoremap j gj
 nnoremap k gk
+
+" Simple tab completion
+inoremap <tab> <C-n>
