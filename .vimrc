@@ -142,7 +142,11 @@ autocmd VimResized * wincmd =
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Spelling for markdown
-autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd Filetype markdown setlocal spell
+
+" Simple completion for markdown
+autocmd FileType markdown inoremap <tab> <C-n>
+autocmd FileType markdown inoremap <s-tab> <C-p>
 
 " ================ Custom Mappings ===================
 
