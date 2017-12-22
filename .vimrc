@@ -25,7 +25,6 @@ Plug 'rizzatti/dash.vim'                                   " Search Dash.app fro
 Plug 'tpope/vim-fugitive'                                  " Better git integration
 Plug 'tpope/vim-rhubarb'                                   " Needed for fugitive Gbrowse
 Plug 'airblade/vim-gitgutter'                              " shows a git diff in the gutter
-Plug 'rhysd/conflict-marker.vim'                           " Highlight, Jump and Resolve Conflict Markers Quickly
 
 " Editor Plugins
 Plug 'tpope/vim-sleuth'                                    " Heuristically set buffer options
@@ -110,7 +109,6 @@ set signcolumn=yes                                         " Always show sign co
 set guifont=Source\ Code\ Pro\ for\ Powerline:h16          " Set Font
 
 " ================ Plugins Config ====================
-let g:conflict_marker_enable_mappings = 0                  " Disable default mappings
 
 let g:ale_javascript_eslint_executable = 'eslint_d'        " eslint_d for linting javascript
 
@@ -156,10 +154,6 @@ let mapleader = " "
 " vim-go Mappings
 autocmd FileType go nmap <Leader>gr <Plug>(go-rename)
 autocmd FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
-
-" Conflict Marker Mappings
-nmap <buffer>]d <Plug>(conflict-marker-next-hunk)
-nmap <buffer>[d <Plug>(conflict-marker-prev-hunk)
 
 " EasyAlign Mappings
 xmap ea <Plug>(EasyAlign)
