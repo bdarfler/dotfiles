@@ -43,7 +43,6 @@ brew "pyenv"
 brew "python"
 brew "ranger"
 brew "ripgrep"
-brew "ruby"
 brew "ruby-install"
 brew "tig"
 brew "vim"
@@ -71,6 +70,7 @@ cask "jet"
 cask "kap"
 cask "keka"
 cask "keycastr"
+cask "libreoffice"
 cask "macvim"
 cask "mat"
 cask "pandora"
@@ -102,5 +102,5 @@ mas "Logitech Camera Settings", id: 638332853
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
-mas "Polarr Photo Editor", id: 1058273036
+mas "Polarr Photo Editor Pro", id: 1058273036
 mas "Xcode", id: 497799835
