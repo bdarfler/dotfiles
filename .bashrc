@@ -89,6 +89,12 @@ fi
 
 eval "$(pyenv init -)"
 
+# ================ nvm =====================================
+# https://github.com/creationix/nvm
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 # ================ Local .bashrc ===========================
 
 if [ -f ~/.bashrc.local ]; then
