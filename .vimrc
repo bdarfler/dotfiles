@@ -12,6 +12,7 @@ Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy findin
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
 Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
+Plug 'sk1418/QFGrep'                                       " filter quickfix and location list results
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'tpope/vim-unimpaired'                                " pairs of handy bracket mappings
 
