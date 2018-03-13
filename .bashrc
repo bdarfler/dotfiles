@@ -19,7 +19,6 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 
 # ================ Commands ================================
 
-alias camfix='sudo killall VDCAssistant; sudo killall AppleCameraAssistant'
 alias dc='docker-compose'
 
 # ================ General Config ==========================
