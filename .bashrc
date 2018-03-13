@@ -17,9 +17,12 @@ fi
 
 export PATH=$HOME/.dotfiles/bin:$PATH
 
-# ================ Commands ================================
+# ================ Docker Compose ==========================
 
-alias dc='docker-compose'
+# docker-compose alias with bash completion
+alias dc=docker-compose
+_completion_loader docker-compose
+complete -F _docker_compose dc
 
 # ================ General Config ==========================
 
