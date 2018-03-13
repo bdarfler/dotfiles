@@ -1,7 +1,7 @@
 # ================ Bash Completion =========================
 
-if [ -f /usr/local/etc/bash_completion ]; then
-  . /usr/local/etc/bash_completion
+if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+  . /usr/local/share/bash-completion/bash_completion
 fi
 
 # ================ Git Prompt ==============================
