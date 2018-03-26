@@ -113,6 +113,12 @@ set guifont=Source\ Code\ Pro\ for\ Powerline:h16          " Set Font
 " ================ Plugins Config ====================
 
 let g:ale_javascript_eslint_executable = 'eslint_d'        " eslint_d for linting javascript
+let g:ale_javascript_eslint_use_global = 1                 " eslint_d for linting javascript
+let g:ale_fixers = { 'javascript': ['eslint'] }            " Enable eslint fixing
+let g:ale_fix_on_save = 1                                  " Fix on save
+
+let g:tern_map_keys = 1                                    " Enable tern mappings
+let g:tern_map_prefix = '<Leader>'                         " Set tern mapping pefix to Leader
 
 let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
 let g:airline_powerline_fonts            = 1               " Use powerline fonts in airline
