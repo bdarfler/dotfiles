@@ -121,13 +121,13 @@ let g:tern_map_keys = 1                                    " Enable tern mapping
 let g:tern_map_prefix = '<Leader>'                         " Set tern mapping pefix to Leader
 
 let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
-let g:airline_powerline_fonts            = 1               " Use powerline fonts in airline
+let g:airline_powerline_fonts = 1                          " Use powerline fonts in airline
 
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 let g:go_auto_type_info = 1                                " Add type info in status line
 
-let g:ctrlp_match_func   = { 'match' : 'matcher#cmatch' }  " Use better matching function for ctrlp
-let g:ctrlp_use_caching  = 0                               " Disable caching for ctrlp
+let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }    " Use better matching function for ctrlp
+let g:ctrlp_use_caching = 0                                " Disable caching for ctrlp
 
 " Use rg cmd for ctrlp
 let g:ctrlp_user_command = "rg --files --hidden --glob '!.git' %s"
@@ -173,7 +173,7 @@ nnoremap <leader>a :Ack!<Space>
 nnoremap <leader>x :Bdelete<CR>
 nnoremap <leader>o :TagbarToggle<CR>
 nnoremap <leader>p :CtrlP<CR>
-nmap <silent> <leader>d <Plug>DashSearch
+nmap <silent> <leader>d <Plug>(DashSearch)
 
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
