@@ -45,8 +45,7 @@ Plug 'fatih/vim-go'                                        " Go development
 Plug 'ernstvanderlinden/vim-coldfusion'                    " ColdFusion Syntax Highlighter
 Plug 'ternjs/tern_for_vim'                                 " Tern plugin for Vim
 Plug 'pangloss/vim-javascript'                             " Vastly improved Javascript indentation and syntax
-Plug 'maxmellon/vim-jsx-pretty'                            " React JSX syntax pretty highlighting for vim
-Plug 'quramy/vim-js-pretty-template'                       " Highlights JavaScript's Template Strings
+Plug 'mxw/vim-jsx'                                         " React JSX syntax highlighting and indenting
 
 call plug#end()
 
