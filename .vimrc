@@ -17,6 +17,7 @@ Plug 'moll/vim-bbye'                                       " Close files without
 Plug 'tpope/vim-unimpaired'                                " pairs of handy bracket mappings
 
 " Development Plugins
+Plug 'ludovicchabant/vim-gutentags'                        " manages your tag files
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
 Plug 'w0rp/ale'                                            " Asynchronous Lint Engine
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
@@ -116,6 +117,9 @@ let g:ale_javascript_eslint_executable = 'eslint_d'        " eslint_d for lintin
 let g:ale_javascript_eslint_use_global = 1                 " eslint_d for linting javascript
 let g:ale_fixers = { 'javascript': ['eslint'] }            " Enable eslint fixing
 let g:ale_fix_on_save = 1                                  " Fix on save
+
+let g:tagbar_autofocus = 1                                 " Jump to tagbar on open
+let g:tagbar_autoclose = 1                                 " Close tagbar on select
 
 let g:tern_map_keys = 1                                    " Enable tern mappings
 let g:tern_map_prefix = '<Leader>'                         " Set tern mapping pefix to Leader
