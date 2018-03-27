@@ -99,7 +99,6 @@ cask "whatsapp"
 cask "yujitach-menumeters"
 cask "zoomus"
 mas "GarageBand", id: 682658836
-mas "GifCreator", id: 661058588
 mas "GIFHunter", id: 1031163338
 mas "Hour", id: 569089415
 mas "iA Writer", id: 775737590
