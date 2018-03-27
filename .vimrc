@@ -117,9 +117,6 @@ let g:ale_javascript_eslint_use_global = 1                 " eslint_d for lintin
 let g:ale_fixers = { 'javascript': ['eslint'] }            " Enable eslint fixing
 let g:ale_fix_on_save = 1                                  " Fix on save
 
-let g:tagbar_autofocus = 1                                 " Jump to tagbar on open
-let g:tagbar_autoclose = 1                                 " Close tagbar on select
-
 let g:tern_map_keys = 1                                    " Enable tern mappings
 let g:tern_map_prefix = '<Leader>'                         " Set tern mapping pefix to Leader
 
@@ -175,7 +172,7 @@ nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <silent> <leader>a :Ack!<Space>
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>p :CtrlP<CR>
-nnoremap <silent> <leader>o :TagbarToggle<CR>
+nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
 nnoremap <silent> <leader>d <Plug>(DashSearch)
 
 " Remap for easier split navigation
