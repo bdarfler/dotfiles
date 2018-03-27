@@ -171,12 +171,12 @@ xmap ea <Plug>(EasyAlign)
 nmap ea <Plug>(EasyAlign)
 
 " Leader Mappings
-nnoremap <leader>ws :StripWhitespace<CR> <bar> :w<CR>
-nnoremap <leader>a :Ack!<Space>
-nnoremap <leader>x :Bdelete<CR>
-nnoremap <leader>o :TagbarToggle<CR>
-nnoremap <leader>p :CtrlP<CR>
-nmap <silent> <leader>d <Plug>(DashSearch)
+nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
+nnoremap <silent> <leader>a :Ack!<Space>
+nnoremap <silent> <leader>x :Bdelete<CR>
+nnoremap <silent> <leader>p :CtrlP<CR>
+nnoremap <silent> <leader>o :TagbarToggle<CR>
+nnoremap <silent> <leader>d <Plug>(DashSearch)
 
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
