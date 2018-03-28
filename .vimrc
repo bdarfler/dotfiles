@@ -125,7 +125,6 @@ let g:airline#extensions#tabline#enabled = 1               " Show buffers when o
 let g:airline_powerline_fonts = 1                          " Use powerline fonts in airline
 
 let g:go_fmt_command = "goimports"                         " Run goimports on save
-let g:go_auto_type_info = 1                                " Add type info in status line
 
 let g:ctrlp_funky_multi_buffers = 1                        " Ctrlp funky across all buffers
 
