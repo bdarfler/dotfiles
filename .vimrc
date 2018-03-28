@@ -168,10 +168,10 @@ xmap ea <Plug>(EasyAlign)
 nmap ea <Plug>(EasyAlign)
 
 " Leader Mappings
-nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
-nnoremap <silent> <leader>a :Ack!<Space>
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>a :Ack!<Space>
 nnoremap <silent> <leader>x :Bdelete<CR>
-nnoremap <silent> <leader>p :CtrlP<CR>
+nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
 nnoremap <silent> <leader>d <Plug>(DashSearch)
 
