@@ -2,13 +2,13 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" ================ Vundle Plugins ===================
+" ================ Plugins ==========================
 
 call plug#begin('~/.vim/bundle')
 
 " Navigation Plugins
 Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
-Plug 'JazzCore/ctrlp-cmatcher'                             " Better fuzzy finding
+Plug 'nixprime/cpsm', { 'do': './install.sh' }             " A CtrlP matcher, specialized for paths
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
 Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
@@ -126,7 +126,7 @@ let g:airline_powerline_fonts = 1                          " Use powerline fonts
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 let g:go_auto_type_info = 1                                " Add type info in status line
 
-let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }    " Use better matching function for ctrlp
+let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }    " Use better matching function for ctrlp
 let g:ctrlp_use_caching = 0                                " Disable caching for ctrlp
 
 " Use rg cmd for ctrlp
