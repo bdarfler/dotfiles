@@ -9,6 +9,7 @@ call plug#begin('~/.vim/bundle')
 " Navigation Plugins
 Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'nixprime/cpsm', { 'do': './install.sh' }             " A CtrlP matcher, specialized for paths
+Plug 'tacahiroy/ctrlp-funky'                               " A simple function navigator for ctrlp.vim
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
 Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
@@ -126,6 +127,8 @@ let g:airline_powerline_fonts = 1                          " Use powerline fonts
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 let g:go_auto_type_info = 1                                " Add type info in status line
 
+let g:ctrlp_funky_multi_buffers = 1                        " Ctrlp funky across all buffers
+
 let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }    " Use better matching function for ctrlp
 let g:ctrlp_use_caching = 0                                " Disable caching for ctrlp
 
@@ -170,6 +173,7 @@ nmap ea <Plug>(EasyAlign)
 " Leader Mappings
 nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>a :Ack!<Space>
+nnoremap <silent> <leader>f :execute 'CtrlPFunky ' . expand('<cword>')<CR>
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
