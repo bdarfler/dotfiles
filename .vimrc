@@ -8,7 +8,7 @@ call plug#begin('~/.vim/bundle')
 
 " Navigation Plugins
 Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
-Plug 'nixprime/cpsm', { 'do': './install.sh' }             " A CtrlP matcher, specialized for paths
+Plug 'JazzCore/ctrlp-cmatcher', { 'do': './install.sh' }   " CtrlP C matching extension
 Plug 'tacahiroy/ctrlp-funky'                               " A simple function navigator for ctrlp.vim
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
@@ -128,7 +128,7 @@ let g:go_fmt_command = "goimports"                         " Run goimports on sa
 
 let g:ctrlp_funky_multi_buffers = 1                        " Ctrlp funky across all buffers
 
-let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }    " Use better matching function for ctrlp
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }     " Use better matching function for ctrlp
 let g:ctrlp_use_caching = 0                                " Disable caching for ctrlp
 
 " Use rg cmd for ctrlp
