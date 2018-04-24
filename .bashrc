@@ -13,6 +13,10 @@ if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
+# =================== fzf ==================================
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # ================ Scripts =================================
 
 export PATH=$HOME/.dotfiles/bin:$PATH
@@ -26,7 +30,6 @@ complete -F _docker_compose dc
 
 # ================ General Config ==========================
 
-export HH_CONFIG='hicolor,rawhistory'                  # Configure hh
 export HISTSIZE=10000                                  # More history
 shopt -s histappend                                    # Append history
 shopt -s globstar                                      # ** globing
@@ -42,9 +45,6 @@ export PATH=/usr/local/sbin:$PATH                      # Homebrew
 
 # Follow Physical Directory Structure
 set -o physical
-
-# if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
-if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hh -- \C-j"'; fi
 
 # ================ Visual Config ===========================
 
