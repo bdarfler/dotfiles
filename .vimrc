@@ -162,6 +162,7 @@ nmap ea <Plug>(EasyAlign)
 
 " Leader Mappings
 nnoremap <leader>p :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>a :Ack!<Space>
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
