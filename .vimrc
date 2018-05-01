@@ -7,15 +7,14 @@ set nocompatible
 call plug#begin('~/.vim/bundle')
 
 " Navigation Plugins
-Plug 'ctrlpvim/ctrlp.vim'                                  " Fuzzy file, buffer, mru, tag, etc finder
-Plug 'JazzCore/ctrlp-cmatcher', { 'do': './install.sh' }   " CtrlP C matching extension
-Plug 'tacahiroy/ctrlp-funky'                               " A simple function navigator for ctrlp.vim
 Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
 Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
 Plug 'sk1418/QFGrep'                                       " filter quickfix and location list results
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'tpope/vim-unimpaired'                                " pairs of handy bracket mappings
+Plug '/usr/local/opt/fzf'                                  " A command-line fuzzy finder
+Plug 'junegunn/fzf.vim'                                    " A command-line fuzzy finder
 
 " Development Plugins
 Plug 'ludovicchabant/vim-gutentags'                        " manages your tag files
@@ -126,14 +125,6 @@ let g:airline_powerline_fonts = 1                          " Use powerline fonts
 
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 
-let g:ctrlp_funky_multi_buffers = 1                        " Ctrlp funky across all buffers
-
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }     " Use better matching function for ctrlp
-let g:ctrlp_use_caching = 0                                " Disable caching for ctrlp
-
-" Use rg cmd for ctrlp
-let g:ctrlp_user_command = "rg --files --hidden --glob '!.git' %s"
-
 " Use rg for ack.vim
 let g:ackprg = "rg --smart-case ---vimgrep --no-heading --hidden --glob '!.git'"
 
@@ -170,9 +161,8 @@ xmap ea <Plug>(EasyAlign)
 nmap ea <Plug>(EasyAlign)
 
 " Leader Mappings
-nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>p :Files<CR>
 nnoremap <leader>a :Ack!<Space>
-nnoremap <silent> <leader>f :execute 'CtrlPFunky ' . expand('<cword>')<CR>
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
