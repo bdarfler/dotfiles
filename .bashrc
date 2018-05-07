@@ -18,6 +18,12 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
+# =================== autojump =============================
+
+if [ -f /usr/local/etc/profile.d/autojump.sh ]; then
+  . /usr/local/etc/profile.d/autojump.sh
+fi
+
 # ================ Scripts =================================
 
 export PATH=$HOME/.dotfiles/bin:$PATH
