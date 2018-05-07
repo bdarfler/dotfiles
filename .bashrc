@@ -18,10 +18,10 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
-# =================== autojump =============================
+# ==================== z ===================================
 
-if [ -f /usr/local/etc/profile.d/autojump.sh ]; then
-  . /usr/local/etc/profile.d/autojump.sh
+if [ -f /usr/local/etc/profile.d/z.sh ]; then
+  . /usr/local/etc/profile.d/z.sh
 fi
 
 # ================ Scripts =================================
