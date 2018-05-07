@@ -113,7 +113,6 @@ mas "iPhoto", id: 408981381
 mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
-mas "Logitech Camera Settings", id: 638332853
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
