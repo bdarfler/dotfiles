@@ -51,3 +51,5 @@
 [rerere]
 	enabled = true
 	autoupdate = true
+[interactive]
+	diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight
