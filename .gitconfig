@@ -33,7 +33,6 @@
 	st = status
 	rb = rebase
 	cp = cherry-pick
-	rbm = rebase-master
 [color]
 	ui = true
 [user]
