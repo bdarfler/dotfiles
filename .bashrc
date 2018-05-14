@@ -49,6 +49,8 @@ complete -F _docker_compose dc
 export HISTSIZE=10000                                  # More history
 shopt -s histappend                                    # Append history
 shopt -s globstar                                      # ** globing
+shopt -s nocaseglob                                    # Case-insensitive globbing
+shopt -s nocasematch                                   # Case-insensitive matching
 export EDITOR=vim                                      # Vim
 export VISUAL=vim                                      # Vim
 export PAGER=less                                      # Less
