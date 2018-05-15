@@ -153,8 +153,9 @@ autocmd FileType markdown inoremap <s-tab> <C-p>
 let mapleader = " "
 
 " vim-go Mappings
-autocmd FileType go nmap <Leader>gr <Plug>(go-rename)
-autocmd FileType go nmap <Leader>ga <Plug>(go-alternate-edit)
+autocmd FileType go nmap gr <Plug>(go-rename)
+autocmd FileType go nmap ga <Plug>(go-alternate-edit)
+autocmd FileType go nmap gi <Plug>(go-info)
 
 " EasyAlign Mappings
 xmap ea <Plug>(EasyAlign)
