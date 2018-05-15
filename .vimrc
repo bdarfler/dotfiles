@@ -165,10 +165,10 @@ nmap ea <Plug>(EasyAlign)
 nnoremap <leader>p :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>a :Ack!<Space>
+nmap <silent> <leader>d <Plug>DashSearch
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
-nnoremap <silent> <leader>d <Plug>(DashSearch)
 
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
