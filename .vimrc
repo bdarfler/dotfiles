@@ -156,6 +156,7 @@ let mapleader = " "
 autocmd FileType go nmap gr <Plug>(go-rename)
 autocmd FileType go nmap ga <Plug>(go-alternate-edit)
 autocmd FileType go nmap gi <Plug>(go-info)
+autocmd FileType go nmap gc <Plug>(go-callers)
 
 " EasyAlign Mappings
 xmap ea <Plug>(EasyAlign)
