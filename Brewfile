@@ -1,9 +1,9 @@
+tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/versions"
+tap "homebrew/cask"
 tap "homebrew/bundle"
 tap "homebrew/services"
-tap "caskroom/versions"
-tap "caskroom/cask"
 tap "universal-ctags/universal-ctags"
 brew "automake"
 brew "gdbm"
@@ -28,6 +28,7 @@ brew "git"
 brew "gmp"
 brew "go"
 brew "gotags"
+brew "hexcurse"
 brew "httpie"
 brew "hub"
 brew "icdiff"
@@ -113,6 +114,7 @@ mas "iPhoto", id: 408981381
 mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
+mas "NeoOffice", id: 639210716
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
