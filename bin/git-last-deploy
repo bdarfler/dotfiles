@@ -1,4 +1,4 @@
 #!/bin/bash
 
 set -e
-git log --merges $(git describe --tags --abbrev=0)..HEAD | sed \$d
+git log --merges $(git describe --tags --abbrev=0)..HEAD | sed \$d | grep -v "Merge branch"
