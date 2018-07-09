@@ -2,6 +2,12 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Works around py3 deprecation. Remove when this issue is closed.
+" https://github.com/vim/vim/issues/3117
+if has('python3')
+  silent! python3 1
+endif
+
 " ================ Plugins ==========================
 
 call plug#begin('~/.vim/bundle')
