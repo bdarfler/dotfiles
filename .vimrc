@@ -2,12 +2,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Works around py3 deprecation. Remove when this issue is closed.
-" https://github.com/vim/vim/issues/3117
-if has('python3')
-  silent! python3 1
-endif
-
 " ================ Plugins ==========================
 
 call plug#begin('~/.vim/bundle')
@@ -36,7 +30,7 @@ Plug 'airblade/vim-gitgutter'                              " shows a git diff in
 
 " Editor Plugins
 Plug 'tpope/vim-sleuth'                                    " Heuristically set buffer options
-Plug 'editorconfig/editorconfig-vim'                       " EditorConfig plugin for Vim
+Plug 'sgur/vim-editorconfig'                               " Yet another Vim plugin for EditorConfig
 Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
 Plug 'junegunn/vim-easy-align'                             " A Vim alignment plugin
 Plug 'tpope/vim-commentary'                                " comment stuff out
