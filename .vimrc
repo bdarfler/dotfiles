@@ -131,6 +131,9 @@ let g:airline_powerline_fonts = 1                          " Use powerline fonts
 
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 
+let g:lt_location_list_toggle_map = '<leader>ql'           " Toggle location
+let g:lt_quickfix_list_toggle_map = '<leader>qq'           " Toggle quickfix
+
 " Use rg for ack.vim
 let g:ackprg = "rg --smart-case ---vimgrep --no-heading --hidden --glob '!.git'"
 
@@ -171,12 +174,13 @@ nmap ea <Plug>(EasyAlign)
 " Leader Mappings
 nnoremap <leader>p :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>l :Lines<CR>
 nnoremap <leader>a :Ack!<Space>
 nmap <silent> <leader>d <Plug>DashSearch
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
-nnoremap <silent> <leader>s :pclose<CR>
+nnoremap <silent> <leader>qp :pclose<CR>
 
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
