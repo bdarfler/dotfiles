@@ -6,5 +6,5 @@ youtube-dl \
   --audio-format "mp3" \
   --audio-quality "9" \
   --add-metadata \
-  --output "~/Dropbox/Podcasting/%(title)s.%(ext)s" \
+  --output "~/Dropbox/Podcast/%(title)s.%(ext)s" \
   "$@"
