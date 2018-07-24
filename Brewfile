@@ -1,9 +1,9 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "homebrew/versions"
-tap "homebrew/cask"
-tap "homebrew/bundle"
 tap "homebrew/services"
+tap "homebrew/versions"
 tap "universal-ctags/universal-ctags"
 brew "automake"
 brew "gdbm"
@@ -120,6 +120,5 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
 mas "Polarr Photo Editor Pro", id: 1058273036
-mas "Publisher Master - Graphic Design & Page Layout Creator", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
 mas "Xcode", id: 497799835
