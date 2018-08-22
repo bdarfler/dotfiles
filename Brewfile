@@ -48,6 +48,7 @@ brew "mysql"
 brew "namebench"
 brew "node"
 brew "nvm"
+brew "parallel"
 brew "pkg-config"
 brew "prettyping"
 brew "pyenv"
@@ -107,7 +108,7 @@ cask "whatsapp"
 cask "yujitach-menumeters"
 cask "zoomus"
 mas "GarageBand", id: 682658836
-mas "GIFHunter", id: 1031163338
+mas "GIF Keyboard", id: 1043270657
 mas "Hour", id: 569089415
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
