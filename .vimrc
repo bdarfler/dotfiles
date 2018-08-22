@@ -157,9 +157,9 @@ let mapleader = " "
 
 " vim-go Mappings
 autocmd FileType go nmap gr <Plug>(go-rename)
-autocmd FileType go nmap ga <Plug>(go-alternate-edit)
 autocmd FileType go nmap gi <Plug>(go-info)
 autocmd FileType go nmap gc <Plug>(go-callers)
+autocmd FileType go nmap gs :GoFillStruct<CR>
 
 " EasyAlign Mappings
 xmap ea <Plug>(EasyAlign)
@@ -172,6 +172,7 @@ nnoremap <leader>l :Lines<CR>
 nnoremap <leader>a :Ack!<Space>
 nmap <silent> <leader>d <Plug>DashSearch
 nnoremap <silent> <leader>x :Bdelete<CR>
+nnoremap <silent> <leader>X :Bdelete!<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
 nnoremap <silent> <leader>qp :pclose<CR>
