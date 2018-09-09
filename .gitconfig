@@ -44,11 +44,9 @@
 	path = ~/.gitconfig.local
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [commit]
 	gpgsign = true
 [rerere]
 	enabled = true
 	autoupdate = true
-[interactive]
-	diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight
