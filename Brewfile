@@ -108,6 +108,7 @@ cask "vlc"
 cask "whatsapp"
 cask "yujitach-menumeters"
 cask "zoomus"
+mas "Anesidora", id: 1369500258
 mas "GarageBand", id: 682658836
 mas "GIF Keyboard", id: 1043270657
 mas "Hour", id: 569089415
