@@ -66,7 +66,7 @@ set -o physical
 
 # ================ Visual Config ===========================
 
-alias cat='ccat'                                       # Colorize cat
+alias cat='bat'                                        # Colorize cat
 alias diff='colordiff'                                 # Colorize diff
 export CLICOLOR=1                                      # Colorize ls
 export GREP_OPTIONS='--color=auto'                     # Colorize grep
