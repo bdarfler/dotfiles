@@ -84,6 +84,11 @@ clean_hist () {
 
 trap clean_hist EXIT
 
+# ================ go-jira =================================
+# https://github.com/go-jira/go-jira
+
+eval "$(jira --completion-script-bash)"
+
 # ================ Hub =====================================
 # https://hub.github.com/
 
