@@ -3,7 +3,6 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "homebrew/versions"
 tap "universal-ctags/universal-ctags"
 brew "automake"
 brew "gdbm"
@@ -112,21 +111,21 @@ cask "vlc"
 cask "whatsapp"
 cask "yujitach-menumeters"
 cask "zoomus"
-mas "co.polarr.ppeosx", id: 1058273036
-mas "com.apple.garageband10", id: 682658836
-mas "com.apple.iMovieApp", id: 408981434
-mas "com.apple.iPhoto", id: 408981381
-mas "com.apple.iWork.Keynote", id: 409183694
-mas "com.apple.iWork.Numbers", id: 409203825
-mas "com.apple.iWork.Pages", id: 409201541
-mas "com.belightsoft.SwiftPublisher5", id: 1058362543
-mas "com.fabriceleyne.hourlite", id: 569089415
-mas "com.icvt.JPEGminiLite", id: 525742250
-mas "com.leonspok.osx.Irvue", id: 1039633667
-mas "com.pixelmatorteam.pixelmator", id: 407963104
-mas "com.riffsy.GIF-for-Mac", id: 1043270657
-mas "com.swipesapp.Swipes", id: 1008187030
-mas "com.wombatapps.publisherosx", id: 998756839
-mas "org.neooffice.NeoOfficeSecureEdition", id: 639210716
-mas "pl.micropixels.Anesidora-MAS", id: 1369500258
-mas "pro.writer.mac", id: 775737590
+mas "Anesidora", id: 1369500258
+mas "GarageBand", id: 682658836
+mas "GIF Keyboard", id: 1043270657
+mas "Hour", id: 569089415
+mas "iA Writer", id: 775737590
+mas "iMovie", id: 408981434
+mas "iPhoto", id: 408981381
+mas "Irvue", id: 1039633667
+mas "JPEGmini Lite", id: 525742250
+mas "Keynote", id: 409183694
+mas "NeoOffice", id: 639210716
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Pixelmator", id: 407963104
+mas "Polarr Photo Editor", id: 1058273036
+mas "Publisher Master", id: 998756839
+mas "Swift Publisher 5", id: 1058362543
+mas "Swipes", id: 1008187030
