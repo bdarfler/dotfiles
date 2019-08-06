@@ -37,6 +37,14 @@ z() {
 
 export PATH=$HOME/.dotfiles/bin:$PATH
 
+# ================ Docker ==================================
+
+alias docker-restart='osascript -e "quit app \"Docker\"" && \
+  open --background -a Docker && \
+  while ! docker system info > /dev/null 2>&1; do sleep 1; done'
+
+alias docker-nuke='docker system prune --all --volumes'
+
 # ================ Docker Compose ==========================
 
 # docker-compose alias with bash completion
