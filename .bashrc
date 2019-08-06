@@ -39,9 +39,12 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 
 # ================ Docker ==================================
 
-alias docker-restart='osascript -e "quit app \"Docker\"" && \
-  open --background -a Docker && \
+alias docker-stop='osascript -e "quit app \"Docker\""'
+
+alias docker-start='open --background -a Docker && \
   while ! docker system info > /dev/null 2>&1; do sleep 1; done'
+
+alias docker-restart='docker-stop && docker-start'
 
 alias docker-nuke='docker system prune --all --volumes'
 
