@@ -112,7 +112,6 @@ cask "tomighty"
 cask "visualvm"
 cask "vlc"
 cask "whatsapp"
-cask "yujitach-menumeters"
 cask "zoomus"
 mas "Anesidora", id: 1369500258
 mas "GarageBand", id: 682658836
@@ -132,3 +131,4 @@ mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
 mas "Swipes", id: 1008187030
+mas "System Monitor", id: 423368786
