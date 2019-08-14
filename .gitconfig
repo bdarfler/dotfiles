@@ -50,3 +50,5 @@
 [rerere]
 	enabled = true
 	autoupdate = true
+[tag]
+	forceSignAnnotated = true
