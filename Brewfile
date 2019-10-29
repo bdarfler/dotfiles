@@ -133,6 +133,7 @@ mas "NeoOffice", id: 639210716
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
+mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
