@@ -1,18 +1,13 @@
-# ================ Bash Completion =========================
+# ================ go-jira =================================
+# https://github.com/go-jira/go-jira
 
-HOMEBREW_PREFIX=$(brew --prefix)
-if type brew &>/dev/null; then
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-    done
-  fi
-fi
+eval "$(jira --completion-script-bash)"
 
-if [ -f /usr/local/share/bash-completion/bash_completion ]; then
-  . /usr/local/share/bash-completion/bash_completion
+# ================ Hub =====================================
+# https://hub.github.com/
+
+if [ -x "$(command -v hub)" ]; then
+  alias git=hub
 fi
 
 # ================ Git Prompt ==============================
@@ -43,6 +38,11 @@ z() {
   [ $# -gt 0 ] && _z "$*" && return
   cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
+
+# ================ Bash Completion =========================
+
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # ================ Scripts =================================
 
@@ -105,18 +105,6 @@ clean_hist () {
 }
 
 trap clean_hist EXIT
-
-# ================ go-jira =================================
-# https://github.com/go-jira/go-jira
-
-eval "$(jira --completion-script-bash)"
-
-# ================ Hub =====================================
-# https://hub.github.com/
-
-if [ -x "$(command -v hub)" ]; then
-  alias git=hub
-fi
 
 # ================ jEnv ====================================
 # http://www.jenv.be/
