@@ -113,6 +113,7 @@ cask "skype"
 cask "slack"
 cask "smallpdf"
 cask "spectacle"
+cask "spotify"
 cask "time-out"
 cask "tomighty"
 cask "visualvm"
@@ -125,7 +126,6 @@ mas "GIF Keyboard", id: 1043270657
 mas "Hour", id: 569089415
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
-mas "iPhoto", id: 408981381
 mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
