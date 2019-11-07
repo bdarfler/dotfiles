@@ -70,6 +70,7 @@ brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "adobe-acrobat-reader"
 cask "alfred"
 cask "appcleaner"
+cask "apptivate"
 cask "atext"
 cask "authy"
 cask "avibrazil-rdm"
