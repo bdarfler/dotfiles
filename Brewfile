@@ -69,6 +69,7 @@ brew "mongodb/brew/mongodb-community"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "adobe-acrobat-reader"
 cask "alfred"
+cask "app-cleaner"
 cask "appcleaner"
 cask "apptivate"
 cask "atext"
@@ -133,10 +134,8 @@ mas "Keynote", id: 409183694
 mas "NeoOffice", id: 639210716
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Pixelmator", id: 407963104
 mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
-mas "Swipes", id: 1008187030
 mas "System Monitor", id: 423368786
