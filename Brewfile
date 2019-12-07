@@ -76,6 +76,7 @@ cask "authy"
 cask "avibrazil-rdm"
 cask "bartender"
 cask "ccleaner"
+cask "chatmate-for-whatsapp"
 cask "dash"
 cask "docker"
 cask "drop-to-gif"
@@ -127,6 +128,7 @@ mas "GIF Keyboard", id: 1043270657
 mas "Hour", id: 569089415
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
+mas "InstaCal", id: 1247292524
 mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
