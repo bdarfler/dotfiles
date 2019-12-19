@@ -130,6 +130,7 @@ mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "InstaCal", id: 1247292524
 mas "Irvue", id: 1039633667
+mas "Jira", id: 1475897096
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
 mas "NeoOffice", id: 639210716
