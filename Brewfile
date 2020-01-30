@@ -68,6 +68,7 @@ brew "mongodb/brew/mongodb-community"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "adobe-acrobat-reader"
 cask "alfred"
+cask "android-messages"
 cask "app-cleaner"
 cask "appcleaner"
 cask "apptivate"
@@ -121,6 +122,7 @@ cask "tomighty"
 cask "visualvm"
 cask "vlc"
 cask "whatsapp"
+cask "yakyak"
 cask "zoomus"
 mas "Anesidora", id: 1369500258
 mas "GarageBand", id: 682658836
