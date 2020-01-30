@@ -1,3 +1,4 @@
+tap "github/gh"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
@@ -64,6 +65,7 @@ brew "vim"
 brew "yarn"
 brew "youtube-dl"
 brew "z"
+brew "github/gh/gh"
 brew "mongodb/brew/mongodb-community"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "adobe-acrobat-reader"
