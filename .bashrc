@@ -88,8 +88,6 @@ set -o physical
 
 # ================ Visual Config ===========================
 
-alias cat='bat'                                        # Colorize cat
-alias diff='colordiff'                                 # Colorize diff
 export CLICOLOR=1                                      # Colorize ls
 export GREP_OPTIONS='--color=auto'                     # Colorize grep
 export LESS='-RFX'                                     # Colorize and handle short files
@@ -136,6 +134,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 # This loads nvm bash_completion
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+
+# ================ Better Versions =========================
+
+alias cat='bat'
+alias less='bat'
+alias diff='colordiff'
+alias find='fdfind'
+alias top='ytop'
+alias ps='procs'
+alias ls='exa'
+alias grep='rg'
 
 # ================ Local .bashrc ===========================
 
