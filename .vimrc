@@ -108,7 +108,8 @@ colorscheme solarized                                      " Enable solarized co
 set updatetime=250                                         " Quicker updates
 set signcolumn=yes                                         " Always show sign column
 
-set guifont=Source\ Code\ Pro\ for\ Powerline:h16          " Set Font
+set macligatures
+set guifont=Fira\ Code:h16                                 " Set Font
 
 " ================ Plugins Config ====================
 
