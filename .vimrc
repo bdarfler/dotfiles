@@ -108,8 +108,10 @@ colorscheme solarized                                      " Enable solarized co
 set updatetime=250                                         " Quicker updates
 set signcolumn=yes                                         " Always show sign column
 
-set macligatures
 set guifont=Fira\ Code:h16                                 " Set Font
+if has("gui_macvim")
+  set macligatures
+endif
 
 " ================ Plugins Config ====================
 
