@@ -110,6 +110,7 @@ cask "jet"
 cask "kap"
 cask "keka"
 cask "keycastr"
+cask "latest"
 cask "libreoffice"
 cask "macvim"
 cask "mat"
@@ -135,6 +136,7 @@ cask "whatsapp"
 cask "yakyak"
 cask "zoomus"
 mas "Anesidora", id: 1369500258
+mas "CopyClip", id: 1020812363
 mas "GarageBand", id: 682658836
 mas "GIF Keyboard", id: 1043270657
 mas "Hour", id: 569089415
