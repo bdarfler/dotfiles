@@ -83,7 +83,6 @@ cask "appcleaner"
 cask "apptivate"
 cask "atext"
 cask "authy"
-cask "avibrazil-rdm"
 cask "bartender"
 cask "beardedspice"
 cask "ccleaner"
@@ -129,20 +128,17 @@ cask "smallpdf"
 cask "spotify"
 cask "time-out"
 cask "tomighty"
-cask "vanilla"
 cask "visualvm"
 cask "vlc"
 cask "whatsapp"
 cask "yakyak"
 cask "zoomus"
-mas "Anesidora", id: 1369500258
 mas "CopyClip", id: 1020812363
 mas "GarageBand", id: 682658836
 mas "GIF Keyboard", id: 1043270657
 mas "Hour", id: 569089415
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
-mas "InstaCal", id: 1247292524
 mas "Irvue", id: 1039633667
 mas "Jira", id: 1475897096
 mas "JPEGmini Lite", id: 525742250
