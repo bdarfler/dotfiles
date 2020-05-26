@@ -131,7 +131,6 @@ cask "tomighty"
 cask "visualvm"
 cask "vlc"
 cask "whatsapp"
-cask "yakyak"
 cask "zoomus"
 mas "CopyClip", id: 1020812363
 mas "GarageBand", id: 682658836
