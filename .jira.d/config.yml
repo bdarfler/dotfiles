@@ -1,0 +1,42 @@
+endpoint: https://invisionapp.atlassian.net
+password-source: keyring
+user: bendarfler@invisionapp.com
+project: rhapsody
+queries:
+  checkin: |
+    resolutiondate > -29d and project = '{{.project}}' and type != Epic and status != "Cancelled ✌️"
+  retro: |
+    resolutiondate > -13d and project = '{{.project}}' and type != Epic and status != "Cancelled ✌️"
+  status: |
+    resolutiondate > -8d and project = '{{.project}}' and type != Epic and status != "Cancelled ✌️"
+  new: |
+     createddate > -8d and project = '{{.project}}' and type != Epic and status != "Cancelled ✌️"
+  standup: |
+    sprint in openSprints() and project = '{{.project}}' and status not in ("New", "Cancelled ✌️", "Shipped 🚢")
+custom-commands:
+  - name: pv
+    help: displays results with a preview pane
+    options:
+      - name: namedquery
+        short: n
+      - name: query
+        short: q
+    script: |-
+      {{jira}} ls {{if options.namedquery}} -n {{options.namedquery}} {{else if options.query}} -q {{options.query}} {{end}} \
+      | fzf --preview-window="down:32" --preview="echo {} | cut -d : -f 1 | xargs -I % sh -c 'jira view %' | bat --color=always -l=yml -p"
+  - name: status
+    help: display status results
+    script: |-
+      {{jira}} ls -n status
+  - name: new
+    help: display new results
+    script: |-
+      {{jira}} ls -n new
+  - name: retro
+    help: display retro results
+    script: |-
+      {{jira}} ls -n retro
+  - name: checkin
+    help: display checkin results
+    script: |-
+      {{jira}} ls -n checkin
