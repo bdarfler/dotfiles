@@ -159,6 +159,7 @@ mas "Irvue", id: 1039633667
 mas "Jira", id: 1475897096
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
+mas "Meeter", id: 1510445899
 mas "Messenger", id: 1480068668
 mas "NeoOffice", id: 639210716
 mas "Numbers", id: 409203825
