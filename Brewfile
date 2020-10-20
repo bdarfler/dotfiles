@@ -172,3 +172,4 @@ mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
 mas "System Monitor", id: 423368786
+mas "Webcam Settings", id: 533696630
