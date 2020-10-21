@@ -77,7 +77,6 @@ export EDITOR=vim                                      # Vim
 export VISUAL=vim                                      # Vim
 export PAGER=less                                      # Less
 export GPG_TTY=$(tty)                                  # GPG
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)      # Java
 export GOPATH=$HOME/go                                 # Go
 export GOROOT=/usr/local/opt/go/libexec                # Go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin              # Go
@@ -118,7 +117,6 @@ fi
 if [ -d /usr/local/opt/chruby ]; then
   source  /usr/local/opt/chruby/share/chruby/chruby.sh
   source  /usr/local/opt/chruby/share/chruby/auto.sh
-  chruby ruby-2.4.1
 fi
 
 # ================ pyenv ===================================
