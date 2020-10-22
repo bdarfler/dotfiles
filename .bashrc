@@ -90,27 +90,27 @@ if [ -x "$(command -v jenv)" ]; then
   eval "$(jenv init -)"
 fi
 
-# ================ chruby ==================================
-# https://github.com/postmodern/chruby
+# ================ rbenv ===================================
+# https://github.com/rbenv/rbenv
 
-if [ -d /usr/local/opt/chruby ]; then
-  source  /usr/local/opt/chruby/share/chruby/chruby.sh
-  source  /usr/local/opt/chruby/share/chruby/auto.sh
+if [ -x "$(command -v rbenv)" ]; then
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+  eval "$(rbenv init -)"
 fi
 
 # ================ pyenv ===================================
 # https://github.com/pyenv/pyenv
 
-eval "$(pyenv init -)"
+if [ -x "$(command -v pyenv)" ]; then
+  eval "$(pyenv init -)"
+fi
 
-# ================ nvm =====================================
-# https://github.com/creationix/nvm
+# ================ nodenv ==================================
+# https://github.com/nodenv/nodenv
 
-export NVM_DIR="$HOME/.nvm"
-# This loads nvm
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-# This loads nvm bash_completion
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+if [ -x "$(command -v nodenv)" ]; then
+  eval "$(nodenv init -)"
+fi
 
 # ================ Better Versions =========================
 
