@@ -61,6 +61,7 @@ export EDITOR=vim                                      # Vim
 export VISUAL=vim                                      # Vim
 export PAGER=less                                      # Less
 export GPG_TTY=$(tty)                                  # GPG
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)       # Java
 export GOPATH=$HOME/go                                 # Go
 export GOROOT=/usr/local/opt/go/libexec                # Go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin              # Go
