@@ -70,12 +70,6 @@ export PATH=/usr/local/sbin:$PATH                      # Homebrew
 # Follow Physical Directory Structure
 set -o physical
 
-# ================ Visual Config ===========================
-
-export CLICOLOR=1                                      # Colorize ls
-export GREP_OPTIONS='--color=auto'                     # Colorize grep
-export LESS='-RFX'                                     # Colorize and handle short files
-
 # ================ Dedupe History ==========================
 # http://superuser.com/a/410534
 # http://unix.stackexchange.com/a/78846
@@ -124,10 +118,13 @@ alias cat='bat'
 alias less='bat'
 alias diff='colordiff'
 alias find='fdfind'
-alias top='ytop'
+alias top='htop'
 alias ps='procs'
 alias ls='exa'
 alias grep='rg'
+alias ping='prettyping --nolegend'
+alias df='duf'
+alias du='dust'
 
 # ================ Local .bashrc ===========================
 
