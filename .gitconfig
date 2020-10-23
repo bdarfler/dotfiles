@@ -4,14 +4,6 @@
 [mergetool]
 	keepBackup = false
 	prompt = false
-[diff]
-	tool = icdiff
-[difftool "icdiff"]
-	cmd = icdiff --no-bold $LOCAL $REMOTE
-[difftool]
-	prompt = false
-[pager]
-	difftool = true
 [pull]
 	rebase = true
 [log]
@@ -44,9 +36,9 @@
 	path = ~/.gitconfig.local
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = delta
+	pager = delta --dark
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --dark --color-only
 [commit]
 	gpgsign = true
 [rerere]
@@ -57,8 +49,8 @@
 	gpgsign = true
 [delta]
 	features = side-by-side line-numbers decorations
-  whitespace-error-style = 22 reverse
+	whitespace-error-style = 22 reverse
 [delta "decorations"]
-  commit-decoration-style = bold yellow box ul
-  file-style = bold yellow ul
-  file-decoration-style = none
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none

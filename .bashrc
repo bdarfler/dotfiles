@@ -116,7 +116,7 @@ fi
 
 alias cat='bat'
 alias less='bat'
-alias diff='colordiff'
+alias diff='delta'
 alias find='fdfind'
 alias top='htop'
 alias ps='procs'
