@@ -32,8 +32,8 @@
 	email = bdarfler@gmail.com
 [credential]
 	helper = osxkeychain
-[include]
-	path = ~/.gitconfig.local
+[user]
+  signingkey = 3537A447
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = delta --dark
