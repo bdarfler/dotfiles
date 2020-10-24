@@ -2,5 +2,5 @@
 
 aws s3 sync ~/Dropbox/Podcast s3://bdarfler-podcast \
   --delete \
-  --profile personal \
+  --profile podcast \
   --exclude .DS_Store

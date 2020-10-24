@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
-podcast \
-	--dir ~/Dropbox/Podcast \
-	--title "bdarfler podcast" \
-	--description "bdarfler podcast" \
-	--link "http://bdarfler.com" \
-	--version "2.0" \
-	--base "https://s3-us-west-2.amazonaws.com/bdarfler-podcast" \
-	--image "https://s3-us-west-2.amazonaws.com/bdarfler-podcast/icon.png" \
-	--out ~/Dropbox/Podcast/podcast.xml
+dropcaster \
+  --channel ~/Dropbox/Podcast/channel.yml \
+  ~/Dropbox/Podcast \
+  > podcast.xml
