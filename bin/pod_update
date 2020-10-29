@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-dropcaster \
-  --channel ~/Dropbox/Podcast/channel.yml \
-  ~/Dropbox/Podcast \
-  > ~/Dropbox/Podcast/podcast.xml
+(cd ~/Dropbox/Podcast && dropcaster > podcast.xml)
