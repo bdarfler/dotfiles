@@ -3,4 +3,4 @@
 dropcaster \
   --channel ~/Dropbox/Podcast/channel.yml \
   ~/Dropbox/Podcast \
-  > podcast.xml
+  > ~/Dropbox/Podcast/podcast.xml
