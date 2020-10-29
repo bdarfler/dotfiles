@@ -144,6 +144,7 @@ cask "time-out"
 cask "tomighty"
 cask "typora"
 cask "visualvm"
+cask "vsee"
 cask "whatsapp"
 cask "zoomus"
 mas "CopyClip", id: 1020812363
