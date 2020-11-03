@@ -124,6 +124,7 @@ cask "notable"
 cask "obsidian"
 cask "pingplotter"
 cask "prefs-editor"
+cask "quip"
 cask "rocket"
 cask "screenflick"
 cask "send-to-kindle"
@@ -155,6 +156,7 @@ mas "Keynote", id: 409183694
 mas "Meeter", id: 1510445899
 mas "Messenger", id: 1480068668
 mas "NeoOffice", id: 639210716
+mas "Nimble Commander", id: 905202937
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PDF Squeezer 3", id: 504700302
