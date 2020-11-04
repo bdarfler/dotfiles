@@ -152,7 +152,6 @@ mas "Hour", id: 569089415
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "Irvue", id: 1039633667
-mas "Jira", id: 1475897096
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
 mas "Meeter", id: 1510445899
