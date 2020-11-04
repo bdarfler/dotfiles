@@ -81,6 +81,7 @@ cask "adobe-acrobat-reader"
 cask "adoptopenjdk"
 cask "adoptopenjdk11"
 cask "alfred"
+cask "amazon-chime"
 cask "app-cleaner"
 cask "appcleaner"
 cask "apptivate"
@@ -145,6 +146,7 @@ cask "zoomus"
 mas "CopyClip", id: 1020812363
 mas "GarageBand", id: 682658836
 mas "GIF Keyboard", id: 1043270657
+mas "Hand Mirror", id: 1502839586
 mas "Horo", id: 1437226581
 mas "Hour", id: 569089415
 mas "iA Writer", id: 775737590
