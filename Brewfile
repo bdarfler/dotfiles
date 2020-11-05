@@ -38,7 +38,7 @@ brew "gh"
 brew "git"
 brew "git-delta"
 brew "gnupg"
-brew "go"
+brew "goenv", args: ["HEAD"]
 brew "gotags"
 brew "graphviz"
 brew "hexcurse"

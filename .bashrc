@@ -112,6 +112,13 @@ if [ -x "$(command -v nodenv)" ]; then
   eval "$(nodenv init -)"
 fi
 
+# ================ nodenv ==================================
+# https://github.com/syndbg/goenv
+
+if [ -x "$(command -v goenv)" ]; then
+  eval "$(goenv init -)"
+fi
+
 # ================ Better Versions =========================
 
 alias cat='bat'
