@@ -32,7 +32,6 @@ brew "libtool"
 brew "pkg-config"
 brew "icu4c"
 brew "ffmpeg"
-brew "node", link: false
 brew "fx"
 brew "fzf"
 brew "gh"
