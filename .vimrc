@@ -42,7 +42,6 @@ Plug 'vim-airline/vim-airline-themes'                      " A collection of the
 
 " Language Plugins
 Plug 'fatih/vim-go'                                        " Go development
-Plug 'ernstvanderlinden/vim-coldfusion'                    " ColdFusion Syntax Highlighter
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }        " Tern plugin for Vim
 Plug 'pangloss/vim-javascript'                             " Vastly improved Javascript indentation and syntax
 Plug 'mxw/vim-jsx'                                         " React JSX syntax highlighting and indenting
