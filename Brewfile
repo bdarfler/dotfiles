@@ -157,6 +157,7 @@ mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
 mas "Meeter", id: 1510445899
 mas "Messenger", id: 1480068668
+mas "MindNode", id: 1289197285
 mas "NeoOffice", id: 639210716
 mas "Nimble Commander", id: 905202937
 mas "Numbers", id: 409203825
