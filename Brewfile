@@ -143,7 +143,7 @@ cask "typora"
 cask "visualvm"
 cask "vsee"
 cask "whatsapp"
-cask "zoomus"
+cask "zoom"
 mas "CopyClip", id: 1020812363
 mas "GarageBand", id: 682658836
 mas "GIF Keyboard", id: 1043270657
