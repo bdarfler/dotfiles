@@ -138,6 +138,7 @@ cask "spotify"
 cask "time-out"
 cask "tomighty"
 cask "vsee"
+cask "webex"
 cask "whatsapp"
 cask "zoom"
 mas "CopyClip", id: 1020812363
