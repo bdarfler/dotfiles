@@ -144,6 +144,7 @@ cask "vsee"
 cask "webex"
 cask "whatsapp"
 cask "zoom"
+mas "com.pixelmatorteam.pixelmator.x", id: 1289583905
 mas "CopyClip", id: 1020812363
 mas "GarageBand", id: 682658836
 mas "GIF Keyboard", id: 1043270657
@@ -162,9 +163,9 @@ mas "NeoOffice", id: 639210716
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PDF Squeezer 3", id: 504700302
-mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
 mas "System Monitor", id: 423368786
+mas "Weather for Status Bar", id: 1448031908
 mas "Webcam Settings", id: 533696630
