@@ -62,6 +62,8 @@ export VISUAL=vim                                      # Vim
 export PAGER=less                                      # Less
 export GPG_TTY=$(tty)                                  # GPG
 export JAVA_HOME=$(/usr/libexec/java_home -v 11)       # Java
+export PYENV_ROOT="$HOME/.pyenv"                       # Python
+export PATH="$PYENV_ROOT/bin:$PATH"                    # Python
 export GOPATH=$HOME/go                                 # Go
 export GOROOT=/usr/local/opt/go/libexec                # Go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin              # Go
@@ -102,6 +104,7 @@ fi
 # https://github.com/pyenv/pyenv
 
 if [ -x "$(command -v pyenv)" ]; then
+  eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
 fi
 
