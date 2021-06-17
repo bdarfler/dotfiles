@@ -6,6 +6,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "lindell/multi-gitter"
 tap "muesli/tap"
 tap "tilt-dev/tap"
 tap "universal-ctags/universal-ctags"
@@ -41,6 +42,7 @@ brew "gh"
 brew "git"
 brew "git-delta"
 brew "git-quick-stats"
+brew "gitbatch"
 brew "gnupg"
 brew "gotags"
 brew "graphviz"
@@ -75,6 +77,7 @@ brew "yarn"
 brew "youtube-dl"
 brew "zoxide"
 brew "clementtsang/bottom/bottom"
+brew "lindell/multi-gitter/multi-gitter"
 brew "muesli/tap/duf"
 brew "tilt-dev/tap/tilt"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
@@ -152,7 +155,7 @@ mas "iMovie", id: 408981434
 mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
-mas "Meeter", id: 1510445899
+mas "MeetingBar", id: 1532419400
 mas "Messenger", id: 1480068668
 mas "MindNode", id: 1289197285
 mas "NeoOffice", id: 639210716
@@ -164,5 +167,6 @@ mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
 mas "System Monitor", id: 423368786
+mas "Twitter", id: 1482454543
 mas "Weather for Status Bar", id: 1448031908
 mas "Webcam Settings", id: 533696630
