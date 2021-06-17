@@ -19,7 +19,7 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
-# =================== zoxide================================
+# =================== zoxide ===============================
 
 eval "$(zoxide init bash)"
 
@@ -61,12 +61,6 @@ export EDITOR=vim                                      # Vim
 export VISUAL=vim                                      # Vim
 export PAGER=less                                      # Less
 export GPG_TTY=$(tty)                                  # GPG
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)       # Java
-export PYENV_ROOT="$HOME/.pyenv"                       # Python
-export PATH="$PYENV_ROOT/bin:$PATH"                    # Python
-export GOPATH=$HOME/go                                 # Go
-export GOROOT=/usr/local/opt/go/libexec                # Go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin              # Go
 export PATH=/usr/local/sbin:$PATH                      # Homebrew
 
 # Follow Physical Directory Structure
@@ -84,43 +78,9 @@ clean_hist () {
 
 trap clean_hist EXIT
 
-# ================ jEnv ====================================
-# http://www.jenv.be/
+# =================== asdf =================================
 
-if [ -x "$(command -v jenv)" ]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-fi
-
-# ================ rbenv ===================================
-# https://github.com/rbenv/rbenv
-
-if [ -x "$(command -v rbenv)" ]; then
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-  eval "$(rbenv init -)"
-fi
-
-# ================ pyenv ===================================
-# https://github.com/pyenv/pyenv
-
-if [ -x "$(command -v pyenv)" ]; then
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-fi
-
-# ================ nodenv ==================================
-# https://github.com/nodenv/nodenv
-
-if [ -x "$(command -v nodenv)" ]; then
-  eval "$(nodenv init -)"
-fi
-
-# ================ nodenv ==================================
-# https://github.com/syndbg/goenv
-
-if [ -x "$(command -v goenv)" ]; then
-  eval "$(goenv init -)"
-fi
+source $(brew --prefix asdf)/asdf.sh
 
 # ================ Better Versions =========================
 
