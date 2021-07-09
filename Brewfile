@@ -126,6 +126,7 @@ cask "kid3"
 cask "latest"
 cask "libreoffice"
 cask "macvim"
+cask "messenger"
 cask "microsoft-edge"
 cask "moom"
 cask "ngrok"
@@ -160,7 +161,6 @@ mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
 mas "MeetingBar", id: 1532419400
-mas "Messenger", id: 1480068668
 mas "MindNode", id: 1289197285
 mas "NeoOffice", id: 639210716
 mas "Numbers", id: 409203825
