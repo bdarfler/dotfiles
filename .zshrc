@@ -29,12 +29,16 @@ fi
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=074'
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-bindkey '\t' autosuggest-accept
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ================ Scripts =================================
 
 export PATH=$HOME/.dotfiles/bin:$PATH
+
+# ================ Binding =================================
+
+bindkey -e                                         # Use emacs movement bindings
+bindkey '\t' autosuggest-accept                    # Use tab to accept autosuggest
 
 # ================ History =================================
 
