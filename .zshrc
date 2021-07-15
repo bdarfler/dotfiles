@@ -14,9 +14,9 @@ eval "$(zoxide init zsh)"
 
 # =================== asdf =================================
 
-source $(brew --prefix asdf)/asdf.sh
+source /usr/local/opt/asdf/asdf.sh
 
-# ================= zsh Completion =========================
+# ================= Auto Completion ========================
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -25,11 +25,12 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# ================= Autosuggest ============================
+# ================ Auto Suggestions ========================
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=074'
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '\t' autosuggest-accept
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ================ Scripts =================================
 
