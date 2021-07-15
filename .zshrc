@@ -25,6 +25,10 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+# ================= Autosuggest ============================
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=074'
+
 # ================ Scripts =================================
 
 export PATH=$HOME/.dotfiles/bin:$PATH
@@ -51,6 +55,10 @@ clean_hist () {
 }
 
 trap clean_hist EXIT
+
+# ================ Auto Suggestions ========================
+
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ================ Better Versions =========================
 
