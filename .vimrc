@@ -21,7 +21,6 @@ Plug 'ludovicchabant/vim-gutentags'                        " manages your tag fi
 Plug 'majutsushi/tagbar'                                   " displays tags in a window
 Plug 'w0rp/ale'                                            " Asynchronous Lint Engine
 Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
-Plug 'rizzatti/dash.vim'                                   " Search Dash.app from Vim
 
 " Git Plugins
 Plug 'tpope/vim-fugitive'                                  " Better git integration
@@ -42,9 +41,6 @@ Plug 'vim-airline/vim-airline-themes'                      " A collection of the
 
 " Language Plugins
 Plug 'fatih/vim-go'                                        " Go development
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }        " Tern plugin for Vim
-Plug 'pangloss/vim-javascript'                             " Vastly improved Javascript indentation and syntax
-Plug 'mxw/vim-jsx'                                         " React JSX syntax highlighting and indenting
 
 call plug#end()
 
@@ -113,14 +109,6 @@ if has("gui_macvim")
 endif
 
 " ================ Plugins Config ====================
-
-let g:ale_javascript_eslint_executable = 'eslint_d'        " eslint_d for linting javascript
-let g:ale_javascript_eslint_use_global = 1                 " eslint_d for linting javascript
-let g:ale_fixers = { 'javascript': ['eslint'] }            " Enable eslint fixing
-let g:ale_fix_on_save = 1                                  " Fix on save
-
-let g:tern_map_keys = 1                                    " Enable tern mappings
-let g:tern_map_prefix = '<Leader>'                         " Set tern mapping pefix to Leader
 
 let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
 let g:airline_powerline_fonts = 1                          " Use powerline fonts in airline
