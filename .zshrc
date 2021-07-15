@@ -54,7 +54,7 @@ trap clean_hist EXIT
 
 # ================ Better Versions =========================
 
-alias git=hub
+alias git='hub'
 alias cat='bat'
 alias less='bat'
 alias diff='delta'
