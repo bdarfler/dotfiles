@@ -28,6 +28,7 @@ fi
 # ================= Autosuggest ============================
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=074'
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # ================ Scripts =================================
 
