@@ -1,18 +1,13 @@
 # ================ Hub =====================================
-# https://hub.github.com/
 
 if [ -x "$(command -v hub)" ]; then
   alias git=hub
 fi
 
-# ================ Git Prompt ==============================
-# https://github.com/magicmonty/bash-git-prompt
+# ================ Starship ================================
 
-if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
-  GIT_PROMPT_THEME=Solarized_NoExitState
-  source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
-fi
+export STARSHIP_CONFIG=~/.starship/config.toml
+eval "$(starship init bash)"
 
 # =================== fzf ==================================
 
