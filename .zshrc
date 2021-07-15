@@ -36,32 +36,14 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export PATH=$HOME/.dotfiles/bin:$PATH
 
-# ================ Docker ==================================
+# ================ History =================================
 
-alias docker-stop='osascript -e "quit app \"Docker\""'
+export HISTFILE=~/.zsh_history                     # Set history file location
+export HISTSIZE=10000                              # More history in memory
+export SAVEHIST=10000                              # More history on disk
 
-alias docker-start='open --background -a Docker && \
-  while ! docker system info > /dev/null 2>&1; do sleep 1; done'
-
-alias docker-restart='docker-stop && docker-start'
-
-alias docker-nuke='docker system prune --all --volumes'
-
-# ================ Dedupe History ==========================
-# http://superuser.com/a/410534
-# http://unix.stackexchange.com/a/78846
-# http://unix.stackexchange.com/a/114043
-
-clean_hist () {
-  tail -r ~/.zsh_history | awk '!a[$0]++' | tail -r > .zsh_history.tmp
-  mv -f .zsh_history.tmp ~/.zsh_history
-}
-
-trap clean_hist EXIT
-
-# ================ Auto Suggestions ========================
-
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+setopt INC_APPEND_HISTORY                          # Append history incrementally
+setopt HIST_IGNORE_ALL_DUPS                        # Ignore all duplicates
 
 # ================ Better Versions =========================
 
