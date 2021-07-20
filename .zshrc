@@ -22,7 +22,7 @@ eval "$(starship init zsh)"
 # =================== fzf ==================================
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.fzf.zsh
 
 # =================== zoxide ===============================
 
@@ -34,12 +34,8 @@ source /usr/local/opt/asdf/asdf.sh
 
 # ================= Auto Completion ========================
 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
+fpath=(/usr/local/share/zsh/site-functions $fpath)
+autoload -Uz compinit && compinit
 
 # ================ Auto Suggestions ========================
 
@@ -77,6 +73,4 @@ alias du='dust'
 
 # ================ Local .zshrc ============================
 
-if [ -f ~/.zshrc.local ]; then
-    source ~/.zshrc.local
-fi
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
