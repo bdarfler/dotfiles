@@ -7,7 +7,7 @@ bindkey -e                                     # Use emacs movement bindings
 # Delete Git's official completions to allow Zsh's official Git completions to work.
 # This is also necessary for hub's Zsh completions to work:
 # https://github.com/github/hub/issues/1956
-if [ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
+[ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
 
 # Workaround to fix bug with hub completions.
 # hub completions only work when this alias is set.
