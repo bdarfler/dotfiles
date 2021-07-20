@@ -1,6 +1,6 @@
 # ================ Bindings ================================
 
-bindkey -e                                         # Use emacs movement bindings
+bindkey -e                                     # Use emacs movement bindings
 
 # ================ Hub =====================================
 
@@ -54,12 +54,12 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 
 # ================ History =================================
 
-export HISTFILE=~/.zsh_history                     # Set history file location
-export HISTSIZE=10000                              # More history in memory
-export SAVEHIST=10000                              # More history on disk
+export HISTFILE=~/.zsh_history                 # Set history file location
+export HISTSIZE=10000                          # More history in memory
+export SAVEHIST=10000                          # More history on disk
 
-setopt INC_APPEND_HISTORY                          # Append history incrementally
-setopt HIST_IGNORE_ALL_DUPS                        # Ignore all duplicates
+setopt INC_APPEND_HISTORY                      # Append history incrementally
+setopt HIST_IGNORE_ALL_DUPS                    # Ignore all duplicates
 
 # ================ Better Versions =========================
 
@@ -75,7 +75,7 @@ alias ping='prettyping --nolegend'
 alias df='duf'
 alias du='dust'
 
-# ================= Local .zshrc ===========================
+# ================ Local .zshrc ============================
 
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
