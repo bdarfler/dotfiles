@@ -1,5 +1,0 @@
-#!/bin/bash
-
-set -e
-git show-merged-branches | awk '{print $1}' | xargs git branch -d
-
