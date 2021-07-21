@@ -58,3 +58,5 @@
 	protocol = https
 [push]
 	default = current
+[fetch]
+	prune = true
