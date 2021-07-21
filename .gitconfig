@@ -15,10 +15,10 @@
 	short = true
 	branch = true
 [alias]
-	force-push = push --force-with-lease
-	amend = commit --amend --no-edit
-	unstage = reset -q HEAD
+	unstage = reset --quiet HEAD
 	uncommit = reset --mixed HEAD~
+	force-push = push --force-with-lease
+        fp = force-push
 	br = branch
 	ci = commit
 	co = checkout

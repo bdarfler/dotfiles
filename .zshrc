@@ -2,18 +2,6 @@
 
 bindkey -e                                     # Use emacs movement bindings
 
-# ================ Hub =====================================
-
-# Delete Git's official completions to allow Zsh's official Git completions to work.
-# This is also necessary for hub's Zsh completions to work:
-# https://github.com/github/hub/issues/1956
-[ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
-
-# Workaround to fix bug with hub completions.
-# hub completions only work when this alias is set.
-# https://github.com/github/hub/issues/1792#issuecomment-403413131
-alias git=hub
-
 # ================ Starship ================================
 
 export STARSHIP_CONFIG=~/.starship/config.toml
@@ -36,6 +24,21 @@ source /usr/local/opt/asdf/asdf.sh
 
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
+
+# ================ Hub =====================================
+
+# Delete Git's official completions to allow Zsh's official Git completions to work.
+# This is also necessary for hub's Zsh completions to work:
+# https://github.com/github/hub/issues/1956
+[ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
+
+# Workaround to map hub pr command to pull-request.
+# https://github.com/github/hub/issues/1536
+_gh () {
+  if [ "pr" = "$1" ]; then hub pull-request; else hub "$@"; fi
+}
+compdef _hub _gh=hub
+alias git=_gh
 
 # ================ Auto Suggestions ========================
 
