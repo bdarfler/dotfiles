@@ -56,3 +56,5 @@
 	file-decoration-style = none
 [hub]
 	protocol = https
+[push]
+	default = current
