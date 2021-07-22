@@ -1,5 +1,5 @@
 [aws]
 disabled = true
 
-[time]
+[cmd_duration]
 disabled = true
