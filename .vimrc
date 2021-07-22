@@ -35,7 +35,7 @@ Plug 'junegunn/vim-easy-align'                             " A Vim alignment plu
 Plug 'tpope/vim-commentary'                                " comment stuff out
 
 " Visual Plugins
-Plug 'altercation/vim-colors-solarized'                    " precision colorscheme for the vim text editor
+Plug 'chriskempson/base16-vim'                             " An architecture for building themes
 Plug 'vim-airline/vim-airline'                             " lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'                      " A collection of themes for vim-airline
 
@@ -98,7 +98,7 @@ set noshowmode                                             " Hide current mode a
 
 syntax enable                                              " Enable syntax coloring
 set background=dark                                        " Enable dark background colors
-colorscheme solarized                                      " Enable solarized colorscheme
+colorscheme base16-gruvbox-dark-medium                     " Enable colorscheme
 
 set updatetime=250                                         " Quicker updates
 set signcolumn=yes                                         " Always show sign column
@@ -112,6 +112,7 @@ endif
 
 let g:airline#extensions#tabline#enabled = 1               " Show buffers when one tab is open
 let g:airline_powerline_fonts = 1                          " Use powerline fonts in airline
+let g:airline_theme='base16_gruvbox_dark_medium'           " Matching airline theme
 
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 
