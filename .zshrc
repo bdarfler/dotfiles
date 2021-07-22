@@ -42,7 +42,7 @@ alias git=_gh
 
 # ================ Auto Suggestions ========================
 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=074'
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=236"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
