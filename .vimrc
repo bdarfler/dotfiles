@@ -96,6 +96,10 @@ set ruler                                                  " Show column and lin
 set laststatus=2                                           " Show status line
 set noshowmode                                             " Hide current mode at the bottom
 
+if !has("gui_running")                                      " Compatible colors in shell
+  let base16colorspace=256
+endif
+
 syntax enable                                              " Enable syntax coloring
 set background=dark                                        " Enable dark background colors
 colorscheme base16-gruvbox-dark-medium                     " Enable colorscheme
@@ -104,7 +108,7 @@ set updatetime=250                                         " Quicker updates
 set signcolumn=yes                                         " Always show sign column
 
 set guifont=Fira\ Code:h16                                 " Set Font
-if has("gui_macvim")
+if has("gui_macvim")                                       " Enable ligutures in macvim
   set macligatures
 endif
 
