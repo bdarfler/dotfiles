@@ -44,6 +44,7 @@ alias git=_gh
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=074'
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '\t' forward-word                      # tab
 bindkey '^[[Z' backward-word                   # shift-tab
