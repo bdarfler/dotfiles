@@ -65,6 +65,13 @@ export SAVEHIST=10000                          # More history on disk
 setopt INC_APPEND_HISTORY                      # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                    # Ignore all duplicates
 
+# ================ Aliases =================================
+
+alias brewup='brew update && brew upgrade && brew cleanup'
+alias gdon='for i in /Volumes/GoogleDrive*; do mdutil $i -i on; done'
+alias gdoff='for i in /Volumes/GoogleDrive*; do mdutil $i -i off; done'
+alias gdst='for i in /Volumes/GoogleDrive*; do mdutil $i -s; done'
+
 # ================ Better Versions =========================
 
 alias cat='bat'
