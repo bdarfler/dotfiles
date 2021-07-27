@@ -58,12 +58,18 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 
 # ================ History =================================
 
-export HISTFILE=~/.zsh_history                 # Set history file location
 export HISTSIZE=10000                          # More history in memory
 export SAVEHIST=10000                          # More history on disk
 
 setopt INC_APPEND_HISTORY                      # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                    # Ignore all duplicates
+
+# History per working directory
+# https://unix.stackexchange.com/questions/204833/keeping-history-per-working-directory-cf-per-shell-session
+HISTFILE=~/.zsh/dirhist/${PWD//\//@}
+chpwd() {
+  [[ $PWD = $OLDPWD ]] || fc -Pp ~/.zsh/dirhist/${PWD//\//@}
+}
 
 # ================ Aliases =================================
 
