@@ -1,2 +1,0 @@
-{{ range .issues }}{{ .key | append ":" | printf "%-12s"}} {{ "(" | append .fields.issuetype.name | append ")" | printf "%-6s" }} {{ .fields.summary }}
-{{ end }}

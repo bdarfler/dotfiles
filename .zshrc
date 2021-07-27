@@ -8,7 +8,6 @@ source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 # ================ Starship ================================
 
-export STARSHIP_CONFIG=~/.starship/config.toml
 eval "$(starship init zsh)"
 
 # =================== fzf ==================================
