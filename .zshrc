@@ -11,11 +11,6 @@ source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 eval "$(starship init zsh)"
 
-# =================== fzf ==================================
-
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-source ~/.fzf.zsh
-
 # =================== zoxide ===============================
 
 eval "$(zoxide init zsh)"
@@ -23,18 +18,16 @@ eval "$(zoxide init zsh)"
 # =================== asdf =================================
 
 source /usr/local/opt/asdf/asdf.sh
+#
+# =================== fzf ==================================
 
-# ================= Auto Completion ========================
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+source ~/.fzf.zsh
+
+# ================= fzf-tab ========================
 
 autoload -Uz compinit && compinit
 source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
-
-# ================ Auto Suggestions ========================
-
-export ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *"  # ignore git history
-export WORDCHARS=${WORDCHARS/\/}               # stop at slashes
-bindkey '^[[Z' forward-word                    # shift-tab
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ================ Hub =====================================
 
@@ -50,6 +43,12 @@ _gh () {
 }
 compdef _hub _gh=hub
 alias git=_gh
+
+# ================ Auto Suggestions ========================
+
+export WORDCHARS=${WORDCHARS/\/}               # stop at slashes
+bindkey '^[[Z' forward-word                    # shift-tab
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ================ History =================================
 
