@@ -46,8 +46,8 @@ alias git=_gh
 
 # ================ Auto Suggestions ========================
 
-export WORDCHARS=${WORDCHARS/\/}               # stop at slashes
-bindkey '^[[Z' forward-word                    # shift-tab
+bindkey '^[[Z' forward-word                    # shift-tab for partial completion
+export WORDCHARS=${WORDCHARS/\/}               # stop at slashes for partial completion
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ================ History =================================
