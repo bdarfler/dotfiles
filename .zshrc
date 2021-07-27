@@ -1,6 +1,7 @@
-# ================ Bindings ================================
+# ================ Config ==================================
 
 bindkey -e                                     # Use emacs movement bindings
+export PATH=$HOME/.dotfiles/bin:$PATH          # Adds my binaries
 
 # ================ Theme ===================================
 
@@ -27,6 +28,19 @@ source /usr/local/opt/asdf/asdf.sh
 
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
+zmodload zsh/complist
+
+# agressivly enable the completion menu
+zstyle ':completion:*' menu yes select
+# color the completion menu
+zstyle ':completion:*' list-colors “${(s.:.)LS_COLORS}”
+# use the vi navigation keys in menu completion
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+# completes hidden files
+setopt globdots
 
 # ================ Hub =====================================
 
@@ -48,13 +62,8 @@ alias git=_gh
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '\t' forward-word                      # tab
-bindkey '^[[Z' backward-word                   # shift-tab
+bindkey '^[[Z' forward-word                    # shift-tab
 export WORDCHARS=${WORDCHARS/\/}               # tab to slashes
-
-# ================ Scripts =================================
-
-export PATH=$HOME/.dotfiles/bin:$PATH
 
 # ================ History =================================
 
@@ -64,12 +73,14 @@ export SAVEHIST=10000                          # More history on disk
 setopt INC_APPEND_HISTORY                      # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                    # Ignore all duplicates
 
+source ~/.zsh/zsh-prioritize-cwd-history/zsh-prioritize-cwd-history.zsh
+
 # History per working directory
 # https://unix.stackexchange.com/questions/204833/keeping-history-per-working-directory-cf-per-shell-session
-HISTFILE=~/.zsh/dirhist/${PWD//\//@}
-chpwd() {
-  [[ $PWD = $OLDPWD ]] || fc -Pp ~/.zsh/dirhist/${PWD//\//@}
-}
+# HISTFILE=~/.zsh/dirhist/${PWD//\//@}
+# chpwd() {
+#   [[ $PWD = $OLDPWD ]] || fc -Pp ~/.zsh/dirhist/${PWD//\//@}
+# }
 
 # ================ Aliases =================================
 
