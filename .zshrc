@@ -50,6 +50,7 @@ export ZSH_AUTOSUGGEST_HISTORY_IGNORE="git *"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '\t' forward-word                      # tab
 bindkey '^[[Z' backward-word                   # shift-tab
+export WORDCHARS=${WORDCHARS/\/}               # tab to slashes
 
 # ================ Scripts =================================
 
