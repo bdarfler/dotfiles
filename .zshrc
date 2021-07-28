@@ -4,6 +4,7 @@ eval "$(starship init zsh)"                            # Cross-Shell Prompt
 eval "$(zoxide init zsh)"                              # A smarter cd command
 source /usr/local/opt/asdf/asdf.sh                     # Manage multiple runtime versions
 source ~/.fzf.zsh                                      # Command-line fuzzy finder
+source /usr/local/share/antigen/antigen.zsh            # Plugin manager for zsh
 
 # https://docs.brew.sh/Shell-Completion
 fpath=(/usr/local/share/zsh/site-functions $fpath)
@@ -11,12 +12,9 @@ autoload -Uz compinit && compinit
 
 # ================ Antigen =================================
 
-source /usr/local/share/antigen/antigen.zsh
-
 antigen bundle zsh-users/zsh-autosuggestions           # Autosuggestions
 antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current working directory
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
-
 antigen apply
 
 # ================ Config ==================================
