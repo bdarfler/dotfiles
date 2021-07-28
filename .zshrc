@@ -1,15 +1,6 @@
-# ================ Config ==================================
+# =============== Theme ===================================
 
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
-
-bindkey -e                                             # Use emacs movement bindings
-export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
-
-export HISTFILE=~/.zsh_history                         # Set history file location
-export HISTSIZE=10000                                  # More history in memory
-export SAVEHIST=10000                                  # More history on disk
-setopt INC_APPEND_HISTORY                              # Append history incrementally
-setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 # ================ Plugins ================================
 
@@ -19,7 +10,8 @@ eval "$(zoxide init zsh)"                              # A smarter cd command
 source /usr/local/opt/asdf/asdf.sh                     # Manage multiple runtime versions
 source ~/.fzf.zsh                                      # Command-line fuzzy finder
 
-# Homebrew Completions: https://docs.brew.sh/Shell-Completion
+# Homebrew Completions
+# https://docs.brew.sh/Shell-Completion
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
 
@@ -30,9 +22,19 @@ antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history base
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
 antigen apply
 
-# ================ Plugin Config ===========================
+# ================ Config ==================================
 
+bindkey -e                                             # Use emacs movement bindings
 bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
+export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
+
+# ================ History =================================
+
+export HISTFILE=~/.zsh_history                         # Set history file location
+export HISTSIZE=10000                                  # More history in memory
+export SAVEHIST=10000                                  # More history on disk
+setopt INC_APPEND_HISTORY                              # Append history incrementally
+setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 # ================ Hub =====================================
 
