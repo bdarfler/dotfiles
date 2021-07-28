@@ -3,31 +3,34 @@
 bindkey -e                                     # Use emacs movement bindings
 export PATH=$HOME/.dotfiles/bin:$PATH          # Adds my binaries
 
-# ================ Theme ===================================
+bindkey '^[[Z' forward-word                    # shift-tab for partial autosuggest completion
+export WORDCHARS=${WORDCHARS/\/}               # partial autosuggest completion stops at slashes
+
+export HISTFILE=~/.zsh_history                 # Set history file location
+export HISTSIZE=10000                          # More history in memory
+export SAVEHIST=10000                          # More history on disk
+setopt INC_APPEND_HISTORY                      # Append history incrementally
+setopt HIST_IGNORE_ALL_DUPS                    # Ignore all duplicates
 
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
-# ================ Starship ================================
+# ================ Plugins ================================
 
-eval "$(starship init zsh)"
+eval "$(starship init zsh)"                    # Cross-Shell Prompt
+eval "$(zoxide init zsh)"                      # A smarter cd command
+source /usr/local/opt/asdf/asdf.sh             # Manage multiple runtime versions
+source ~/.fzf.zsh                              # Command-line fuzzy finder
 
-# =================== zoxide ===============================
-
-eval "$(zoxide init zsh)"
-
-# =================== asdf =================================
-
-source /usr/local/opt/asdf/asdf.sh
-#
-# =================== fzf ==================================
-
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-source ~/.fzf.zsh
-
-# ================= fzf-tab ========================
-
+# Homebrew shell completions: https://docs.brew.sh/Shell-Completion
+fpath=(/usr/local/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
-source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
+
+# Antigen Plugin Manager
+source /usr/local/share/antigen/antigen.zsh
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle Aloxaf/fzf-tab
+antigen bundle gezalore/zsh-prioritize-cwd-history
+antigen apply
 
 # ================ Hub =====================================
 
@@ -44,30 +47,7 @@ _gh () {
 compdef _hub _gh=hub
 alias git=_gh
 
-# ================ Auto Suggestions ========================
-
-bindkey '^[[Z' forward-word                    # shift-tab for partial completion
-export WORDCHARS=${WORDCHARS/\/}               # stop at slashes for partial completion
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# ================ History =================================
-
-export HISTFILE=~/.zsh_history                 # Set history file location
-export HISTSIZE=10000                          # More history in memory
-export SAVEHIST=10000                          # More history on disk
-
-setopt INC_APPEND_HISTORY                      # Append history incrementally
-setopt HIST_IGNORE_ALL_DUPS                    # Ignore all duplicates
-
-# priortize history based on the current working directory
-source ~/.zsh/zsh-prioritize-cwd-history/zsh-prioritize-cwd-history.zsh
-
-# ================ Aliases =================================
-
-alias brewup='brew update && brew upgrade && brew cleanup'
-alias gdon='for i in /Volumes/GoogleDrive*; do mdutil $i -i on; done'
-alias gdoff='for i in /Volumes/GoogleDrive*; do mdutil $i -i off; done'
-alias gdst='for i in /Volumes/GoogleDrive*; do mdutil $i -s; done'
 
 # ================ Better Versions =========================
 
@@ -82,6 +62,13 @@ alias grep='rg'
 alias ping='prettyping --nolegend'
 alias df='duf'
 alias du='dust'
+
+# ================ Aliases =================================
+
+alias brewup='brew update && brew upgrade && brew cleanup'
+alias gdon='for i in /Volumes/GoogleDrive*; do mdutil $i -i on; done'
+alias gdoff='for i in /Volumes/GoogleDrive*; do mdutil $i -i off; done'
+alias gdst='for i in /Volumes/GoogleDrive*; do mdutil $i -s; done'
 
 # ================ Local .zshrc ============================
 
