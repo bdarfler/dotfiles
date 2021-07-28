@@ -1,36 +1,38 @@
 # ================ Config ==================================
 
-bindkey -e                                     # Use emacs movement bindings
-export PATH=$HOME/.dotfiles/bin:$PATH          # Adds my binaries
-
-bindkey '^[[Z' forward-word                    # shift-tab for partial autosuggest completion
-export WORDCHARS=${WORDCHARS/\/}               # partial autosuggest completion stops at slashes
-
-export HISTFILE=~/.zsh_history                 # Set history file location
-export HISTSIZE=10000                          # More history in memory
-export SAVEHIST=10000                          # More history on disk
-setopt INC_APPEND_HISTORY                      # Append history incrementally
-setopt HIST_IGNORE_ALL_DUPS                    # Ignore all duplicates
-
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
+
+bindkey -e                                             # Use emacs movement bindings
+export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
+
+export HISTFILE=~/.zsh_history                         # Set history file location
+export HISTSIZE=10000                                  # More history in memory
+export SAVEHIST=10000                                  # More history on disk
+setopt INC_APPEND_HISTORY                              # Append history incrementally
+setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 # ================ Plugins ================================
 
-eval "$(starship init zsh)"                    # Cross-Shell Prompt
-eval "$(zoxide init zsh)"                      # A smarter cd command
-source /usr/local/opt/asdf/asdf.sh             # Manage multiple runtime versions
-source ~/.fzf.zsh                              # Command-line fuzzy finder
+# Homebrew Plugins
+eval "$(starship init zsh)"                            # Cross-Shell Prompt
+eval "$(zoxide init zsh)"                              # A smarter cd command
+source /usr/local/opt/asdf/asdf.sh                     # Manage multiple runtime versions
+source ~/.fzf.zsh                                      # Command-line fuzzy finder
 
-# Homebrew shell completions: https://docs.brew.sh/Shell-Completion
+# Homebrew Completions: https://docs.brew.sh/Shell-Completion
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
 
-# Antigen Plugin Manager
+# Antigen Plugins
 source /usr/local/share/antigen/antigen.zsh
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle Aloxaf/fzf-tab
-antigen bundle gezalore/zsh-prioritize-cwd-history
+antigen bundle zsh-users/zsh-autosuggestions           # Autosuggestions
+antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current working directory
+antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
 antigen apply
+
+# ================ Plugin Config ===========================
+
+bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
 
 # ================ Hub =====================================
 
@@ -46,8 +48,6 @@ _gh () {
 }
 compdef _hub _gh=hub
 alias git=_gh
-
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ================ Better Versions =========================
 
