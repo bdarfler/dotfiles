@@ -1,25 +1,26 @@
-# =============== Theme ===================================
+# ================ Theme ===================================
 
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
-# ================ Plugins ================================
+# ================ Homebrew ================================
 
-# Homebrew Plugins
 eval "$(starship init zsh)"                            # Cross-Shell Prompt
 eval "$(zoxide init zsh)"                              # A smarter cd command
 source /usr/local/opt/asdf/asdf.sh                     # Manage multiple runtime versions
 source ~/.fzf.zsh                                      # Command-line fuzzy finder
 
-# Homebrew Completions
 # https://docs.brew.sh/Shell-Completion
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
 
-# Antigen Plugins
+# ================ Antigen =================================
+
 source /usr/local/share/antigen/antigen.zsh
+
 antigen bundle zsh-users/zsh-autosuggestions           # Autosuggestions
 antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current working directory
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
+
 antigen apply
 
 # ================ Config ==================================
