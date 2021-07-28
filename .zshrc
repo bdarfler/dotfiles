@@ -1,7 +1,3 @@
-# ================ Theme ===================================
-
-source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
-
 # ================ Homebrew ================================
 
 eval "$(starship init zsh)"                            # Cross-Shell Prompt
