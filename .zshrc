@@ -13,7 +13,7 @@ autoload -Uz compinit && compinit
 # ================ Antigen =================================
 
 antigen bundle zsh-users/zsh-autosuggestions           # Autosuggestions
-antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current working directory
+antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current dir
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
 antigen apply
 
@@ -22,6 +22,7 @@ antigen apply
 bindkey -e                                             # Use emacs movement bindings
 bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
 export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
+alias brewup='brew update && brew upgrade && brew cleanup'
 
 # ================ History =================================
 
@@ -59,13 +60,6 @@ alias grep='rg'
 alias ping='prettyping --nolegend'
 alias df='duf'
 alias du='dust'
-
-# ================ Aliases =================================
-
-alias brewup='brew update && brew upgrade && brew cleanup'
-alias gdon='for i in /Volumes/GoogleDrive*; do mdutil $i -i on; done'
-alias gdoff='for i in /Volumes/GoogleDrive*; do mdutil $i -i off; done'
-alias gdst='for i in /Volumes/GoogleDrive*; do mdutil $i -s; done'
 
 # ================ Local .zshrc ============================
 
