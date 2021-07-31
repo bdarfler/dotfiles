@@ -29,7 +29,7 @@ Plug 'airblade/vim-gitgutter'                              " shows a git diff in
 
 " Editor Plugins
 Plug 'tpope/vim-sleuth'                                    " Heuristically set buffer options
-Plug 'sgur/vim-editorconfig'                               " Yet another Vim plugin for EditorConfig
+Plug 'editorconfig/editorconfig-vim'                       " EditorConfig plugin for Vim
 Plug 'ntpeters/vim-better-whitespace'                      " Better whitespace highlighting for Vim
 Plug 'junegunn/vim-easy-align'                             " A Vim alignment plugin
 Plug 'tpope/vim-commentary'                                " comment stuff out
