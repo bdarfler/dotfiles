@@ -23,6 +23,7 @@ bindkey -e                                             # Use emacs movement bind
 bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
 export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
 alias brewup='brew update && brew upgrade && brew cleanup'
+source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 # ================ History =================================
 
