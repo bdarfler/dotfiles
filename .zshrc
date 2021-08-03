@@ -48,6 +48,12 @@ _gh () {
 compdef _hub _gh=hub
 alias git=_gh
 
+# ================ Podget ==================================
+
+alias podget='noglob youtube-dl --restrict-filenames \
+  --extract-audio --audio-format "mp3" --audio-quality "9" \
+  --add-metadata --output "~/Dropbox/Podcast/%(title)s.%(ext)s" "$@"'
+
 # ================ Better Versions =========================
 
 alias cat='bat'
