@@ -22,7 +22,6 @@ antigen apply
 bindkey -e                                             # Use emacs movement bindings
 bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
 export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
-alias brewup='brew update && brew upgrade && brew cleanup'
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 # ================ History =================================
@@ -48,7 +47,9 @@ _gh () {
 compdef _hub _gh=hub
 alias git=_gh
 
-# ================ Podget ==================================
+# ================ Aliases =================================
+
+alias brewup='brew update && brew upgrade && brew cleanup'
 
 alias podget='noglob youtube-dl --restrict-filenames \
   --extract-audio --audio-format "mp3" --audio-quality "9" \
