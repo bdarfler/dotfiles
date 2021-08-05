@@ -20,7 +20,8 @@ antigen apply
 # ================ Config ==================================
 
 bindkey -e                                             # Use emacs movement bindings
-bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
+bindkey '^[[Z' complete-word                           # shift-tab to accept completion
+bindkey '\t' autosuggest-accept                        # tab to accept autosuggestion
 export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
