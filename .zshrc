@@ -50,8 +50,6 @@ alias git=_gh
 
 # ================ Aliases =================================
 
-alias brewup='brew update && brew upgrade && brew cleanup'
-
 alias podget='noglob youtube-dl --restrict-filenames \
   --extract-audio --audio-format "mp3" --audio-quality "9" \
   --add-metadata --output "~/Dropbox/Podcast/%(title)s.%(ext)s" "$@"'
