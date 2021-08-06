@@ -1,3 +1,9 @@
+# ================ Config ==================================
+
+bindkey -e                                             # Use emacs movement bindings
+export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
+source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
+
 # ================ Homebrew ================================
 
 eval "$(starship init zsh)"                            # Cross-Shell Prompt
@@ -17,13 +23,7 @@ antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history base
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
 antigen apply
 
-# ================ Config ==================================
-
-bindkey -e                                             # Use emacs movement bindings
-bindkey '^[[Z' complete-word                           # shift-tab to accept completion
-bindkey '\t' autosuggest-accept                        # tab to accept autosuggestion
-export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
-source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
+bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
 
 # ================ History =================================
 
