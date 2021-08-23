@@ -3,6 +3,7 @@
 bindkey -e                                             # Use emacs movement bindings
 bindkey "^[[1;3C" forward-word                         # Option Forward Arrow
 bindkey "^[[1;3D" backward-word                        # Option Back Arrow
+setopt globdots                                        # match files starting with .
 export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
