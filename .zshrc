@@ -1,6 +1,8 @@
 # ================ Config ==================================
 
 bindkey -e                                             # Use emacs movement bindings
+bindkey "^[[1;3C" forward-word                         # Option Forward Arrow
+bindkey "^[[1;3D" backward-word                        # Option Back Arrow
 export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
@@ -23,7 +25,8 @@ antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history base
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
 antigen apply
 
-bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
+bindkey '\t' autosuggest-accept                        # tab to accept autosuggestion
+bindkey '^[[Z' fzf-tab-complete                        # shift-tab to complete
 
 # ================ History =================================
 
