@@ -43,14 +43,6 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 # https://github.com/github/hub/issues/1956
 [ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
 
-# Workaround to map hub pr command to pull-request.
-# https://github.com/github/hub/issues/1536
-_gh () {
-  if [ "pr" = "$1" ]; then hub pull-request; else hub "$@"; fi
-}
-compdef _hub _gh=hub
-alias git=_gh
-
 # ================ Aliases =================================
 
 alias podget='noglob youtube-dl --restrict-filenames \
@@ -59,6 +51,7 @@ alias podget='noglob youtube-dl --restrict-filenames \
 
 # ================ Better Versions =========================
 
+alias git='hub'
 alias cat='bat'
 alias less='bat'
 alias diff='delta'
