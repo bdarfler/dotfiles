@@ -21,6 +21,8 @@ autoload -Uz compinit && compinit
 
 # ================ Antigen =================================
 
+export ADOTDIR=~/.antigen                              # Explict default value for Topgrade
+
 antigen bundle zsh-users/zsh-autosuggestions           # Autosuggestions
 antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current dir
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
