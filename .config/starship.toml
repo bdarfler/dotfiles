@@ -1,8 +1,8 @@
 [aws]
-disabled = false
+disabled = true
 
 [cmd_duration]
 disabled = true
 
 [kubernetes]
-disabled = false
+disabled = true
