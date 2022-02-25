@@ -57,6 +57,7 @@ brew "htop"
 brew "hub"
 brew "icdiff"
 brew "id3v2"
+brew "jless"
 brew "jq"
 brew "k9s"
 brew "lf"
@@ -64,7 +65,7 @@ brew "lnav"
 brew "mas"
 brew "mtr"
 brew "mycli"
-brew "mysql", restart_service: true
+brew "mysql"
 brew "ncdu"
 brew "parallel"
 brew "pinentry-mac"
@@ -110,6 +111,7 @@ cask "drop-to-gif"
 cask "dropbox"
 cask "firefox"
 cask "font-fira-code"
+cask "font-smoothing-adjuster"
 cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-drive"
@@ -170,6 +172,7 @@ mas "iMovie", id: 408981434
 mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
+mas "Kindle", id: 405399194
 mas "MeetingBar", id: 1532419400
 mas "MindNode", id: 1289197285
 mas "NeoOffice", id: 639210716
