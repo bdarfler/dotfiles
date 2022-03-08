@@ -110,6 +110,7 @@ cask "docker"
 cask "drop-to-gif"
 cask "dropbox"
 cask "firefox"
+cask "fman"
 cask "font-fira-code"
 cask "font-smoothing-adjuster"
 cask "google-backup-and-sync"
@@ -185,5 +186,4 @@ mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
 mas "System Monitor", id: 423368786
 mas "Twitter", id: 1482454543
-mas "Weather for Status Bar", id: 1448031908
 mas "Webcam Settings", id: 533696630
