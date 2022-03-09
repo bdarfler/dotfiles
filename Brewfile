@@ -107,7 +107,6 @@ cask "beardedspice"
 cask "dash"
 cask "datweatherdoe"
 cask "docker"
-cask "drop-to-gif"
 cask "dropbox"
 cask "firefox"
 cask "fman"
@@ -165,6 +164,7 @@ cask "zoom"
 mas "CopyClip", id: 1020812363
 mas "GarageBand", id: 682658836
 mas "GIF Keyboard", id: 1043270657
+mas "Gifski", id: 1351639930
 mas "Hand Mirror", id: 1502839586
 mas "Horo", id: 1437226581
 mas "Hour", id: 569089415
