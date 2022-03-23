@@ -52,6 +52,10 @@ alias podget='noglob youtube-dl --restrict-filenames \
   --extract-audio --audio-format "mp3" --audio-quality "9" \
   --add-metadata --output "~/Dropbox/Podcast/%(title)s.%(ext)s" "$@"'
 
+alias kget='cp /Volumes/Kindle/documents/My\ Clippings.txt \
+  /Users/bdarfler/Dropbox/0\ Inbox/My\ Clippings.md && \
+  osascript -e "tell application \"Finder\" to eject \"Kindle\""'
+
 # ================ Better Versions =========================
 
 alias git='hub'
