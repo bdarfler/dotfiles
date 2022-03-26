@@ -54,7 +54,8 @@ alias podget='noglob youtube-dl --restrict-filenames \
 
 alias kget='cp /Volumes/Kindle/documents/My\ Clippings.txt \
   /Users/bdarfler/Dropbox/0\ Inbox/My\ Clippings.md && \
-  osascript -e "tell application \"Finder\" to eject \"Kindle\""'
+  osascript -e "tell application \"Finder\" to eject \"Kindle\"" &&\
+  open /Users/bdarfler/Dropbox/0\ Inbox/My\ Clippings.md'
 
 # ================ Better Versions =========================
 
