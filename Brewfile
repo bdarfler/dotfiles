@@ -149,6 +149,7 @@ cask "ngrok"
 cask "pingplotter"
 cask "prefs-editor"
 cask "quip"
+cask "raycast"
 cask "rectangle"
 cask "rocket"
 cask "screenflick"
@@ -191,5 +192,4 @@ mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
 mas "System Monitor", id: 423368786
-mas "Twitter", id: 1482454543
 mas "Webcam Settings", id: 533696630
