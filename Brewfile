@@ -1,4 +1,3 @@
-tap "adoptopenjdk/openjdk"
 tap "clementtsang/bottom"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -97,8 +96,6 @@ brew "muesli/tap/duf"
 brew "tilt-dev/tap/tilt"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "adobe-acrobat-reader"
-cask "adoptopenjdk"
-cask "adoptopenjdk11"
 cask "alfred"
 cask "amazon-chime"
 cask "app-cleaner"
