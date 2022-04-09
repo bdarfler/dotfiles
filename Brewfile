@@ -1,4 +1,3 @@
-tap "clementtsang/bottom"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
