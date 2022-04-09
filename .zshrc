@@ -11,7 +11,7 @@ source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 eval "$(starship init zsh)"                            # Cross-Shell Prompt
 eval "$(zoxide init zsh)"                              # A smarter cd command
-source /usr/local/opt/asdf/asdf.sh                     # Manage multiple runtime versions
+source /usr/local/opt/asdf/libexec/asdf.sh             # Manage multiple runtime versions
 source ~/.fzf.zsh                                      # Command-line fuzzy finder
 source /usr/local/share/antigen/antigen.zsh            # Plugin manager for zsh
 
