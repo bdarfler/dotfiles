@@ -48,7 +48,7 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 # ================ Aliases =================================
 
-alias podget='noglob youtube-dl --restrict-filenames \
+alias podget='noglob yt-dlp --restrict-filenames \
   --extract-audio --audio-format "mp3" --audio-quality "9" \
   --add-metadata --output "~/Dropbox/Podcast/%(title)s.%(ext)s" "$@"'
 
