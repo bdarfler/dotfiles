@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-aws s3 sync ~/Dropbox/Podcast s3://bdarfler-podcast \
+aws s3 sync /Users/bdarfler/Library/CloudStorage/Dropbox/Podcast s3://bdarfler-podcast \
   --delete \
   --profile podcast \
   --exclude .DS_Store

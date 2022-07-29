@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for path in ~/Dropbox/Podcast/*.mp3
+for path in /Users/bdarfler/Library/CloudStorage/Dropbox/Podcast/*.mp3
 do
 	# If the file is missing title tag
 	if [ -z "$(id3v2 -l "$path" | egrep TI?T2)" ];
