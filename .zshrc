@@ -50,7 +50,7 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 alias podget='noglob yt-dlp --restrict-filenames \
   --extract-audio --audio-format "mp3" --audio-quality "9" \
-  --add-metadata --output "Users/bdarfler/Library/CloudStorage/Dropbox/Podcast/%(title)s.%(ext)s" "$@"'
+  --add-metadata --output "/Users/bdarfler/Library/CloudStorage/Dropbox/Podcast/%(title)s.%(ext)s" "$@"'
 
 alias kget='cp /Volumes/Kindle/documents/My\ Clippings.txt \
   /Users/bdarfler/Library/CloudStorage/Dropbox/0\ Inbox/My\ Clippings.md && \
