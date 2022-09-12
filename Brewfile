@@ -165,6 +165,7 @@ cask "skitch"
 cask "skype"
 cask "slack"
 cask "softmaker-freeoffice"
+cask "sol"
 cask "sound-control"
 cask "spotify"
 cask "stats"
@@ -199,4 +200,5 @@ mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
 mas "System Monitor", id: 423368786
+mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
