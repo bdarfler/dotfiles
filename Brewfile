@@ -164,8 +164,6 @@ cask "signal"
 cask "skitch"
 cask "skype"
 cask "slack"
-cask "softmaker-freeoffice"
-cask "sol"
 cask "sound-control"
 cask "spotify"
 cask "stats"
@@ -177,7 +175,6 @@ cask "webex"
 cask "whatsapp"
 cask "wpsoffice"
 cask "zoom"
-mas "CopyClip", id: 1020812363
 mas "GarageBand", id: 682658836
 mas "Gifski", id: 1351639930
 mas "Hand Mirror", id: 1502839586
@@ -189,7 +186,6 @@ mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
-mas "MeetingBar", id: 1532419400
 mas "MindNode", id: 1289197285
 mas "NeoOffice", id: 639210716
 mas "Numbers", id: 409203825
@@ -199,6 +195,5 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Swift Publisher 5", id: 1058362543
-mas "System Monitor", id: 423368786
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
