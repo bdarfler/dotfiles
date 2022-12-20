@@ -104,7 +104,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "/Users/bdarfler/.asdf/shims/uvcc set absolute_zoom 120"
+                                        "shell_command": "/Users/bdarfler/.asdf/shims/uvcc set absolute_zoom 105"
                                     }
                                 ],
                                 "type": "basic"
