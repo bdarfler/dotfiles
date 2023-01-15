@@ -11,6 +11,7 @@ tap "tilt-dev/tap"
 tap "universal-ctags/universal-ctags"
 tap "yt-dlp/taps"
 brew "antigen"
+brew "xz"
 brew "automake"
 brew "gmp"
 brew "libtool"
@@ -21,7 +22,6 @@ brew "asdf"
 brew "gdbm"
 brew "openssl@1.1"
 brew "sqlite"
-brew "xz"
 brew "python@3.10"
 brew "aws-shell"
 brew "awscli"
@@ -152,10 +152,12 @@ cask "messenger"
 cask "microsoft-edge"
 cask "microsoft-teams"
 cask "mmhmm"
+cask "modern-csv"
 cask "ngrok"
 cask "pingplotter"
 cask "prefs-editor"
 cask "quip"
+cask "quitter"
 cask "raycast"
 cask "rectangle"
 cask "rocket"
@@ -190,7 +192,6 @@ mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "MindNode", id: 1289197285
-mas "NeoOffice", id: 639210716
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PDF Squeezer 3", id: 504700302
