@@ -22,7 +22,7 @@ brew "asdf"
 brew "gdbm"
 brew "openssl@1.1"
 brew "sqlite"
-brew "python@3.10"
+brew "python@3.10", link: false
 brew "aws-shell"
 brew "awscli"
 brew "bat"
