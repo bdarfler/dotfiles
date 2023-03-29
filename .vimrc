@@ -17,9 +17,9 @@ Plug 'junegunn/fzf.vim'                                    " A command-line fuzz
 
 " Development Plugins
 Plug 'ludovicchabant/vim-gutentags'                        " manages your tag files
-Plug 'majutsushi/tagbar'                                   " displays tags in a window
-Plug 'w0rp/ale'                                            " Asynchronous Lint Engine
-Plug 'ajh17/VimCompletesMe'                                " simple, minimal, light-weight tab completion
+Plug 'preservim/tagbar'                                    " displays tags in a window
+Plug 'dense-analysis/ale'                                  " Asynchronous Lint Engine
+Plug 'ervandew/supertab'                                   " use <Tab> for all your insert completion needs
 
 " Git Plugins
 Plug 'tpope/vim-fugitive'                                  " Better git integration
