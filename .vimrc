@@ -7,7 +7,6 @@ set nocompatible
 call plug#begin('~/.vim/bundle')
 
 " Navigation Plugins
-Plug 'mileszs/ack.vim'                                     " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
 Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
 Plug 'sk1418/QFGrep'                                       " filter quickfix and location list results
@@ -123,9 +122,6 @@ let g:go_fmt_command = "goimports"                         " Run goimports on sa
 let g:lt_location_list_toggle_map = '<leader>ql'           " Toggle location
 let g:lt_quickfix_list_toggle_map = '<leader>qq'           " Toggle quickfix
 
-" Use rg for ack.vim
-let g:ackprg = "rg --smart-case ---vimgrep --no-heading --hidden --glob '!.git'"
-
 " ================ Custom Commands ===================
 
 " Automatically resize splits when resizing window
@@ -160,8 +156,7 @@ nmap ea <Plug>(EasyAlign)
 nnoremap <leader>p :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>l :Lines<CR>
-nnoremap <leader>a :Ack!<Space>
-nmap <silent> <leader>d <Plug>DashSearch
+nnoremap <leader>a :Rg<Space>
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>X :Bdelete!<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
