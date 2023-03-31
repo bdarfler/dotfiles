@@ -156,7 +156,7 @@ nmap ea <Plug>(EasyAlign)
 nnoremap <leader>p :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>l :Lines<CR>
-nnoremap <leader>a :Rg<Space>
+nnoremap <silent><Leader>a :Rg <C-R><C-W><CR>
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>X :Bdelete!<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
