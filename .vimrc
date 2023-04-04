@@ -153,7 +153,7 @@ xmap ea <Plug>(EasyAlign)
 nmap ea <Plug>(EasyAlign)
 
 " Leader Mappings
-nnoremap <leader>p :Files<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>l :Lines<CR>
 nnoremap <silent><Leader>r :Rg <C-R><C-W><CR>
