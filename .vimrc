@@ -154,7 +154,7 @@ nnoremap <silent><Leader>r :Rg <C-R><C-W><CR>
 nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>X :Bdelete!<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
-nnoremap <silent> <leader>o :TagbarToggle<CR>
+nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
 
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
