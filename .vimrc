@@ -8,8 +8,6 @@ call plug#begin('~/.vim/bundle')
 
 " Navigation Plugins
 Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
-Plug 'Valloric/ListToggle'                                 " toggle the quickfix and location list
-Plug 'sk1418/QFGrep'                                       " filter quickfix and location list results
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'tpope/vim-unimpaired'                                " pairs of handy bracket mappings
 Plug '/usr/local/opt/fzf'                                  " A command-line fuzzy finder
@@ -119,9 +117,6 @@ let g:airline_theme='base16_gruvbox_dark_medium'           " Matching airline th
 
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 
-let g:lt_location_list_toggle_map = '<leader>ql'           " Toggle location
-let g:lt_quickfix_list_toggle_map = '<leader>qq'           " Toggle quickfix
-
 " ================ Custom Commands ===================
 
 " Automatically resize splits when resizing window
@@ -161,7 +156,6 @@ nnoremap <silent> <leader>x :Bdelete<CR>
 nnoremap <silent> <leader>X :Bdelete!<CR>
 nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
 nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
-nnoremap <silent> <leader>qp :pclose<CR>
 
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
