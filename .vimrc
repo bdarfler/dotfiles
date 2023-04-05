@@ -15,7 +15,6 @@ Plug 'junegunn/fzf.vim'                                    " A command-line fuzz
 
 " Development Plugins
 Plug 'ludovicchabant/vim-gutentags'                        " manages your tag files
-Plug 'preservim/tagbar'                                    " displays tags in a window
 Plug 'dense-analysis/ale'                                  " Asynchronous Lint Engine
 Plug 'ervandew/supertab'                                   " use <Tab> for all your insert completion needs
 
@@ -117,7 +116,7 @@ let g:airline_theme='base16_gruvbox_dark_medium'           " Matching airline th
 
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 
-" ================ Custom Commands ===================
+" ================ Custom Config =====================
 
 " Automatically resize splits when resizing window
 autocmd VimResized * wincmd =
@@ -140,7 +139,6 @@ let mapleader = " "
 " vim-go Mappings
 autocmd FileType go nmap gr <Plug>(go-rename)
 autocmd FileType go nmap gi <Plug>(go-info)
-autocmd FileType go nmap gc <Plug>(go-callers)
 
 " EasyAlign Mappings
 xmap ea <Plug>(EasyAlign)
@@ -149,12 +147,12 @@ nmap ea <Plug>(EasyAlign)
 " Leader Mappings
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>l :Lines<CR>
-nnoremap <silent><Leader>r :Rg <C-R><C-W><CR>
-nnoremap <silent> <leader>x :Bdelete<CR>
-nnoremap <silent> <leader>X :Bdelete!<CR>
-nnoremap <silent> <leader>ws :StripWhitespace<CR> <bar> :w<CR>
-nnoremap <silent> <leader>o :TagbarOpenAutoClose<CR>
+nnoremap <leader>l :BLines<CR>
+nnoremap <leader>t :BTags<CR>
+nnoremap <Leader>r :Rg <CR>
+nnoremap <leader>x :Bdelete<CR>
+nnoremap <leader>X :Bdelete!<CR>
+nnoremap <leader>ws :StripWhitespace<CR>
 
 " Remap for easier split navigation
 nnoremap <C-J> <C-W><C-J>
