@@ -22,7 +22,7 @@ brew "asdf"
 brew "gdbm"
 brew "openssl@1.1"
 brew "sqlite"
-brew "python@3.10", link: false
+brew "python@3.10"
 brew "aws-shell"
 brew "awscli"
 brew "bat"
@@ -179,6 +179,7 @@ cask "tomighty"
 cask "webex"
 cask "whatsapp"
 cask "wpsoffice"
+cask "yubico-yubikey-manager"
 cask "zoom"
 mas "GarageBand", id: 682658836
 mas "GCal for Google Calendar", id: 1107163858
