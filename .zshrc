@@ -25,6 +25,7 @@ export ADOTDIR=~/.antigen                              # Explict default value f
 
 antigen bundle zsh-users/zsh-autosuggestions           # Autosuggestions
 antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current dir
+antigen bundle MichaelAquilina/zsh-history-filter      # Exclude commands from history based on patterns
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
 antigen apply
 
@@ -36,6 +37,7 @@ bindkey '\t' fzf-tab-complete                          # tab to complete
 export HISTFILE=~/.zsh_history                         # Set history file location
 export HISTSIZE=10000                                  # More history in memory
 export SAVEHIST=10000                                  # More history on disk
+export HISTORY_FILTER_EXCLUDE=("http://" "https://")   # Ignore commands with urls
 setopt INC_APPEND_HISTORY                              # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
