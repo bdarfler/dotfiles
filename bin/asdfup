@@ -9,4 +9,4 @@ update () {
 update "golang" "latest"
 update "python" "latest"
 update "ruby" "latest"
-update "nodejs" "latest"
+update "nodejs" "lts"

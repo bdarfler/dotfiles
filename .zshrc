@@ -11,7 +11,6 @@ source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 eval "$(starship init zsh)"                            # Cross-Shell Prompt
 eval "$(zoxide init zsh)"                              # A smarter cd command
-source /usr/local/opt/asdf/libexec/asdf.sh             # Manage multiple runtime versions
 source ~/.fzf.zsh                                      # Command-line fuzzy finder
 source /usr/local/share/antigen/antigen.zsh            # Plugin manager for zsh
 
@@ -40,6 +39,13 @@ export SAVEHIST=10000                                  # More history on disk
 export HISTORY_FILTER_EXCLUDE=("http://" "https://")   # Ignore commands with urls
 setopt INC_APPEND_HISTORY                              # Append history incrementally
 setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
+
+# ================ asdf ====================================
+
+source /usr/local/opt/asdf/libexec/asdf.sh             # Manage multiple runtime versions
+
+# setup asdf for node
+export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 
 # ================ Hub =====================================
 
