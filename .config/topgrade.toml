@@ -1,8 +1,6 @@
+[misc]
 # Don't ask for confirmations
 #assume_yes = true
-
-# Don't display warning preamble
-display_preamble = false
 
 # Disable specific steps - same options as the command line flag
 # disable = ["github_cli_extensions"]
