@@ -202,6 +202,7 @@ mas "Irvue", id: 1039633667
 mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
+mas "LanguageTool", id: 1534275760
 mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
