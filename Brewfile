@@ -191,7 +191,6 @@ cask "wpsoffice"
 cask "yubico-yubikey-manager"
 cask "zoom"
 mas "GarageBand", id: 682658836
-mas "GCal for Google Calendar", id: 1107163858
 mas "Gifski", id: 1351639930
 mas "Hand Mirror", id: 1502839586
 mas "Horo", id: 1437226581
@@ -199,7 +198,6 @@ mas "Hour", id: 569089415
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "Irvue", id: 1039633667
-mas "JPEGmini Lite", id: 525742250
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "LanguageTool", id: 1534275760
