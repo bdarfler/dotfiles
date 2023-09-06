@@ -9,4 +9,5 @@ update () {
 update "golang" "latest"
 update "python" "latest"
 update "ruby" "latest"
+asdf uninstall nodejs lts
 update "nodejs" "lts"
