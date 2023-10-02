@@ -25,9 +25,7 @@ brew "aws-shell"
 brew "awscli"
 brew "bat"
 brew "bottom"
-brew "libffi"
 brew "pkg-config"
-brew "python@3.9"
 brew "colordiff"
 brew "ctop"
 brew "dive"
@@ -39,6 +37,7 @@ brew "exiftool"
 brew "fd"
 brew "icu4c"
 brew "ffmpeg"
+brew "node"
 brew "fx"
 brew "fzf"
 brew "gh"
@@ -51,7 +50,6 @@ brew "pinentry"
 brew "gnupg"
 brew "gotags"
 brew "gping"
-brew "python@3.8"
 brew "graphviz"
 brew "gron"
 brew "hexcurse"
@@ -67,6 +65,7 @@ brew "k9s"
 brew "kind"
 brew "kubernetes-cli"
 brew "lf"
+brew "libffi"
 brew "lnav"
 brew "mas"
 brew "mtr"
@@ -74,12 +73,13 @@ brew "mycli"
 brew "mysql"
 brew "ncdu"
 brew "nmap"
-brew "node"
 brew "parallel"
 brew "pinentry-mac"
 brew "pnpm"
 brew "prettyping"
 brew "procs"
+brew "python@3.8"
+brew "python@3.9"
 brew "ranger"
 brew "ripgrep"
 brew "s3cmd"
@@ -154,10 +154,13 @@ cask "stats"
 cask "steam"
 cask "ticktick"
 cask "time-out"
+cask "tripmode"
+cask "vlc"
 cask "webex"
 cask "whatsapp"
 cask "yubico-yubikey-manager"
 cask "zoom"
+mas "Focus Window", id: 1444457097
 mas "GarageBand", id: 682658836
 mas "Gifski", id: 1351639930
 mas "Hand Mirror", id: 1502839586
@@ -167,7 +170,8 @@ mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "Irvue", id: 1039633667
 mas "Keynote", id: 409183694
-mas "Kindle", id: 405399194
+mas "Kindle", id: 302584613
+mas "Kindle Classic", id: 405399194
 mas "LanguageTool", id: 1534275760
 mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
@@ -176,6 +180,7 @@ mas "PDF Squeezer 3", id: 504700302
 mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
+mas "Recasto", id: 1144192021
 mas "Swift Publisher 5", id: 1058362543
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
