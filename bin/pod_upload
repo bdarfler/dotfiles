@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-aws s3 sync /Users/bdarfler/Dropbox/Podcast s3://bdarfler-podcast \
-  --delete \
-  --profile podcast \
-  --exclude .DS_Store

@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-(cd /Users/bdarfler/Dropbox/Podcast && dropcaster > podcast.xml)

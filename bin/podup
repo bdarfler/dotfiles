@@ -1,3 +1,25 @@
 #!/usr/bin/env bash
 
-pod_tag && pod_update && pod_upload
+# Set missing tags
+for path in /Users/bdarfler/Dropbox/Podcast/*.mp3
+do
+	# If the file is missing title tag
+	if [ -z "$(id3v2 -l "$path" | egrep TI?T2)" ];
+	then
+		# Pull filename from path
+		file=${path##*/}
+		# Strip suffix from filename
+		base=${file%%.*}
+		# Set the title tag to the filename
+		id3v2 -2 --TIT2 "$base" "$path"
+	fi
+done
+
+# Create xml feed
+(cd /Users/bdarfler/Dropbox/Podcast && dropcaster > podcast.xml)
+
+# Sync with S3
+aws s3 sync /Users/bdarfler/Dropbox/Podcast s3://bdarfler-podcast \
+  --delete \
+  --profile podcast \
+  --exclude .DS_Store
