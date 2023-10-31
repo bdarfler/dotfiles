@@ -10,3 +10,6 @@ update "golang" "latest"
 update "python" "latest"
 update "ruby" "latest"
 update "nodejs" "latest"
+
+asdf reshim
+echo "reshimed"
