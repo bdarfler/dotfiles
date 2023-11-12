@@ -9,8 +9,7 @@ update () {
 update "golang" "latest"
 update "python" "latest"
 update "ruby" "latest"
-asdf uninstall nodejs lts
-update "nodejs" "lts"
 
-asdf reshim
-echo "reshimed"
+# nodejs is annoying
+LATEST=$(asdf latest nodejs 20)
+update "nodejs" $LATEST
