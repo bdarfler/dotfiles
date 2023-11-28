@@ -13,3 +13,5 @@ update "ruby" "latest"
 # nodejs is annoying
 LATEST=$(asdf latest nodejs 20)
 update "nodejs" $LATEST
+
+asdf reshim
