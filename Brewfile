@@ -17,10 +17,7 @@ brew "libyaml"
 brew "openssl@3"
 brew "readline"
 brew "asdf"
-brew "gdbm"
-brew "openssl@1.1"
 brew "sqlite"
-brew "python@3.10"
 brew "aws-shell"
 brew "awscli"
 brew "bat"
@@ -37,14 +34,14 @@ brew "exiftool"
 brew "fd"
 brew "icu4c"
 brew "ffmpeg"
-brew "node"
-brew "fx"
 brew "fzf"
+brew "gdbm"
 brew "gh"
 brew "git"
 brew "git-delta"
 brew "gitbatch"
 brew "gitui"
+brew "openssl@1.1"
 brew "glances"
 brew "pinentry"
 brew "gnupg"
@@ -75,9 +72,9 @@ brew "ncdu"
 brew "nmap"
 brew "parallel"
 brew "pinentry-mac"
-brew "pnpm"
 brew "prettyping"
 brew "procs"
+brew "python@3.10"
 brew "python@3.8"
 brew "python@3.9"
 brew "ranger"
@@ -94,6 +91,7 @@ brew "tre-command"
 brew "wget"
 brew "xh"
 brew "youtube-dl"
+brew "yt-dlp"
 brew "zenith"
 brew "zoxide"
 brew "zsh"
@@ -101,7 +99,6 @@ brew "lindell/multi-gitter/multi-gitter"
 brew "moncho/dry/dry"
 brew "tilt-dev/tap/tilt"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
-brew "yt-dlp/taps/yt-dlp"
 cask "1password-cli"
 cask "adobe-acrobat-reader"
 cask "amazon-chime"
@@ -160,6 +157,7 @@ cask "webex"
 cask "whatsapp"
 cask "yubico-yubikey-manager"
 cask "zoom"
+mas "Awareness", id: 1497695227
 mas "Focus Window", id: 1444457097
 mas "GarageBand", id: 682658836
 mas "Gifski", id: 1351639930
@@ -171,7 +169,6 @@ mas "iMovie", id: 408981434
 mas "Irvue", id: 1039633667
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
-mas "Kindle Classic", id: 405399194
 mas "LanguageTool", id: 1534275760
 mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
@@ -181,6 +178,7 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Recasto", id: 1144192021
+mas "Slack", id: 803453959
 mas "Swift Publisher 5", id: 1058362543
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
