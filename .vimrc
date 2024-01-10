@@ -116,6 +116,8 @@ let g:airline_theme='base16_gruvbox_dark_medium'           " Matching airline th
 
 let g:go_fmt_command = "goimports"                         " Run goimports on save
 
+autocmd FileType markdown EnableWhitespace                 " Enable better whitespace on md files
+
 " ================ Custom Config =====================
 
 " Automatically resize splits when resizing window
