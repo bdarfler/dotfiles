@@ -1,16 +1,26 @@
+# Set Up Git SSH
+- [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+
 # Clone The Repo
 - `cd ~/`
-- `git clone` repo
+- `git clone git@github.com:bdarfler/dotfiles.git`
 - `mv dotfiles .dotfiles`
 - `cd .dotfiles`
 - `git submodule init`
 - `git submodule update`
 
 # Install Everything
-- `brew bundles install`
+- `brew bundle install`
 - Install `vim-plug`
 - Install `antigen`
 - `topgrade`
+
+# Install ASDF
+- `asdf plugin add golang`
+- `asdf plugin add nodejs`
+- `asdf plugin add ruby`
+- `asdf plugin add python`
+- `asdfup`
 
 # Link Up Dotfiles
 - `cd ../`
@@ -26,8 +36,6 @@
 - `ln -s ~/.dotfiles/.config/karabiner karabiner`
 - `ln -s ~/.dotfiles/.config/starship.toml starship.toml`
 
-# Set Up Git
+# Set Up Git Signing
 - [Setup GPG](https://docs.github.com/en/authentication/managing-commit-signature-verification)
 - [Setup pinetry](https://dev.to/zemse/setup-gpg-on-macos-2iib)
-- [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-- [Change dotfiles to ssh](https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories#changing-a-remote-repositorys-url)
