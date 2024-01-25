@@ -65,12 +65,12 @@ export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 
 alias podget='noglob yt-dlp --restrict-filenames \
   --extract-audio --audio-format "mp3" --audio-quality "9" \
-  --add-metadata --output "/Users/bdarfler/Dropbox/Podcast/%(title)s.%(ext)s" "$@"'
+  --add-metadata --output "~/Dropbox/Podcast/%(title)s.%(ext)s" "$@"'
 
 alias kget='cp -i /Volumes/Kindle/documents/My\ Clippings.txt \
-  /Users/bdarfler/Dropbox/0\ Inbox/My\ Clippings\ `date +%m-%d`.md && \
+  ~/Dropbox/0\ Inbox/My\ Clippings\ `date +%m-%d`.md && \
   osascript -e "tell application \"Finder\" to eject \"Kindle\"" &&\
-  open /Users/bdarfler/Dropbox/0\ Inbox/My\ Clippings\ `date +%m-%d`.md'
+  open ~/Dropbox/0\ Inbox/My\ Clippings\ `date +%m-%d`.md'
 
 # ================ Better Versions =========================
 
