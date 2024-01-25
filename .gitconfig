@@ -33,7 +33,7 @@
 [credential]
 	helper = osxkeychain
 [user]
-  signingkey = 3537A447
+	signingkey = 95BFD22CFD4EBAB5
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = delta --dark
