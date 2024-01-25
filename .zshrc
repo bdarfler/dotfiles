@@ -11,11 +11,18 @@ source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 eval "$(starship init zsh)"                            # Cross-Shell Prompt
 eval "$(zoxide init zsh)"                              # A smarter cd command
-source ~/.fzf.zsh                                      # Command-line fuzzy finder
-source /usr/local/share/antigen/antigen.zsh            # Plugin manager for zsh
+HOMEBREW_PREFIX="$(brew --prefix)"                     # Homebrew prefix
+source ${HOMEBREW_PREFIX}/share/antigen/antigen.zsh    # Plugin manager for zsh
+
+# Setup fzf
+if [[ ! "$PATH" == *${HOMEBREW_PREFIX}/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}${HOMEBREW_PREFIX}/opt/fzf/bin"
+fi
+source "${HOMEBREW_PREFIX}/opt/fzf/shell/completion.zsh"
+source "${HOMEBREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
 
 # https://docs.brew.sh/Shell-Completion
-fpath=(/usr/local/share/zsh/site-functions $fpath)
+fpath=(${HOMEBREW_PREFIX}/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
 
 # ================ Antigen =================================
@@ -42,7 +49,7 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 # ================ asdf ====================================
 
-source /usr/local/opt/asdf/libexec/asdf.sh             # Manage multiple runtime versions
+source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh             # Manage multiple runtime versions
 
 # setup asdf for node
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
@@ -52,7 +59,7 @@ export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 # Delete Git's official completions to allow Zsh's official Git completions to work.
 # This is also necessary for hub's Zsh completions to work:
 # https://github.com/github/hub/issues/1956
-[ -f /usr/local/share/zsh/site-functions/_git ] && rm /usr/local/share/zsh/site-functions/_git
+[ -f ${HOMEBREW_PREFIX}/share/zsh/site-functions/_git ] && rm ${HOMEBREW_PREFIX}/share/zsh/site-functions/_git
 
 # ================ Aliases =================================
 
