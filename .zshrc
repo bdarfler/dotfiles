@@ -5,7 +5,6 @@ bindkey "^[[1;3C" forward-word                         # Option Forward Arrow
 bindkey "^[[1;3D" backward-word                        # Option Back Arrow
 setopt globdots                                        # match files starting with .
 export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
-export FZF_COMPLETION_TRIGGER=''                       # tab to complete
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 # ================ Homebrew ================================
@@ -26,9 +25,11 @@ export ADOTDIR=~/.antigen                              # Explict default value f
 antigen bundle zsh-users/zsh-autosuggestions           # Autosuggestions
 antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current dir
 antigen bundle MichaelAquilina/zsh-history-filter      # Exclude commands from history based on patterns
+antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
 antigen apply
 
 bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
+bindkey '\t' fzf-tab-complete                          # tab to complete
 
 # ================ History =================================
 
