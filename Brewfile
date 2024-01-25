@@ -115,7 +115,6 @@ cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-roboto"
 cask "font-smoothing-adjuster"
-cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-drive"
 cask "google-earth-pro"
@@ -173,7 +172,6 @@ mas "LanguageTool", id: 1534275760
 mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "PDF Squeezer 3", id: 504700302
 mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
