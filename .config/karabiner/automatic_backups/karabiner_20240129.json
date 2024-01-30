@@ -52,19 +52,6 @@
                         "description": "Switch Audio to Speakers",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "vendor_id": 10730
-                                            },
-                                            {
-                                                "vendor_id": 358
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "f7"
                                 },
@@ -81,19 +68,6 @@
                         "description": "Switch Audio to Headphones",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "vendor_id": 10730
-                                            },
-                                            {
-                                                "vendor_id": 358
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "f8"
                                 },
@@ -418,7 +392,7 @@
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "display_brightness_decrement"
+                                    "key_code": "apple_display_brightness_decrement"
                                 }
                             ]
                         },
@@ -428,77 +402,7 @@
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "display_brightness_increment"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "f3"
-                            },
-                            "to": [
-                                {
-                                    "apple_vendor_keyboard_key_code": "mission_control"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "f4"
-                            },
-                            "to": [
-                                {
-                                    "apple_vendor_keyboard_key_code": "spotlight"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "f5"
-                            },
-                            "to": [
-                                {
-                                    "consumer_key_code": "dictation"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "f6"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f19"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "f7"
-                            },
-                            "to": [
-                                {
-                                    "consumer_key_code": "rewind"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "f8"
-                            },
-                            "to": [
-                                {
-                                    "consumer_key_code": "play_or_pause"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "f9"
-                            },
-                            "to": [
-                                {
-                                    "consumer_key_code": "fast_forward"
+                                    "key_code": "apple_display_brightness_increment"
                                 }
                             ]
                         },
@@ -508,7 +412,7 @@
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "mute"
+                                    "key_code": "mute"
                                 }
                             ]
                         },
@@ -518,7 +422,7 @@
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "volume_decrement"
+                                    "key_code": "volume_decrement"
                                 }
                             ]
                         },
@@ -528,7 +432,7 @@
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "volume_increment"
+                                    "key_code": "volume_increment"
                                 }
                             ]
                         }
@@ -642,7 +546,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "f7"
+                            "key_code": "f6"
                         }
                     ]
                 },
