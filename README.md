@@ -1,6 +1,3 @@
-# Set Up Git SSH
-- [Setup SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-
 # Clone The Repo
 - `cd ~/`
 - `git clone git@github.com:bdarfler/dotfiles.git`
@@ -36,6 +33,5 @@
 - `ln -s ~/.dotfiles/.config/karabiner karabiner`
 - `ln -s ~/.dotfiles/.config/starship.toml starship.toml`
 
-# Set Up Git Signing
-- [Setup GPG](https://docs.github.com/en/authentication/managing-commit-signature-verification)
-- [Setup pinetry](https://dev.to/zemse/setup-gpg-on-macos-2iib)
+# Set Up Git
+- [Setup 1P, GPG & SSH](https://developer.1password.com/docs/ssh)

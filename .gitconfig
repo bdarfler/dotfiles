@@ -30,10 +30,10 @@
 [user]
 	name = Benjamin Darfler
 	email = bdarfler@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL5CTP1l/0eOPKFFhJDln3a5PiGhj6Bzr2yK9Wd1NFmH
 [credential]
 	helper = osxkeychain
 [user]
-	signingkey = 95BFD22CFD4EBAB5
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = delta --dark
@@ -61,3 +61,7 @@
 	autoSetupRemote = true
 [fetch]
 	prune = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
