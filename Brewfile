@@ -14,7 +14,6 @@ brew "automake"
 brew "gmp"
 brew "libtool"
 brew "libyaml"
-brew "openssl@3"
 brew "readline"
 brew "asdf"
 brew "sqlite"
@@ -22,7 +21,6 @@ brew "aws-shell"
 brew "awscli"
 brew "bat"
 brew "bottom"
-brew "pkg-config"
 brew "colordiff"
 brew "ctop"
 brew "dive"
@@ -41,7 +39,6 @@ brew "git"
 brew "git-delta"
 brew "gitbatch"
 brew "gitui"
-brew "openssl@1.1"
 brew "glances"
 brew "pinentry"
 brew "gnupg"
@@ -65,13 +62,17 @@ brew "lf"
 brew "libffi"
 brew "lnav"
 brew "mas"
+brew "md5sha1sum", link: false
 brew "mtr"
 brew "mycli"
 brew "mysql"
 brew "ncdu"
 brew "nmap"
+brew "node"
+brew "openssl@1.1"
 brew "parallel"
 brew "pinentry-mac"
+brew "pkg-config"
 brew "prettyping"
 brew "procs"
 brew "python@3.10"
@@ -88,6 +89,7 @@ brew "tig"
 brew "tokei"
 brew "topgrade"
 brew "tre-command"
+brew "universal-ctags", args: ["HEAD"]
 brew "wget"
 brew "xh"
 brew "youtube-dl"
@@ -98,11 +100,11 @@ brew "zsh"
 brew "lindell/multi-gitter/multi-gitter"
 brew "moncho/dry/dry"
 brew "tilt-dev/tap/tilt"
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "1password-cli"
 cask "adobe-acrobat-reader"
 cask "amazon-chime"
 cask "appcleaner"
+cask "audacity"
 cask "authy"
 cask "bartender"
 cask "cleanshot"
@@ -131,20 +133,20 @@ cask "keycastr"
 cask "latest"
 cask "macvim"
 cask "messenger"
+cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "microsoft-teams"
 cask "mmhmm"
 cask "modern-csv"
+cask "notunes"
 cask "pingplotter"
 cask "prefs-editor"
-cask "quip"
 cask "quitter"
 cask "raycast"
 cask "screenflick"
 cask "send-to-kindle"
 cask "signal"
 cask "skype"
-cask "slack"
 cask "spotify"
 cask "stats"
 cask "steam"
@@ -155,7 +157,6 @@ cask "vlc"
 cask "webex"
 cask "whatsapp"
 cask "yubico-yubikey-manager"
-cask "zoom"
 mas "Awareness", id: 1497695227
 mas "Focus Window", id: 1444457097
 mas "GarageBand", id: 682658836
@@ -169,14 +170,20 @@ mas "Irvue", id: 1039633667
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
 mas "LanguageTool", id: 1534275760
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft OneNote", id: 784801555
+mas "Microsoft Outlook", id: 985367838
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft To Do", id: 1274495053
+mas "Microsoft Word", id: 462054704
 mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
+mas "OneDrive", id: 823766827
 mas "Pages", id: 409201541
 mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Recasto", id: 1144192021
-mas "Slack", id: 803453959
 mas "Swift Publisher 5", id: 1058362543
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
