@@ -12,6 +12,7 @@ source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 eval "$(starship init zsh)"                            # Cross-Shell Prompt
 eval "$(zoxide init zsh)"                              # A smarter cd command
 HOMEBREW_PREFIX="$(brew --prefix)"                     # Homebrew prefix
+eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"         # Setup homebrew paths
 source ${HOMEBREW_PREFIX}/share/antigen/antigen.zsh    # Plugin manager for zsh
 
 # Setup fzf
@@ -54,6 +55,10 @@ source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh             # Manage multiple
 # setup asdf for node
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 
+# setup pnpm
+export PNPM_HOME="/Users/bendarfler/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 # ================ Hub =====================================
 
 # Delete Git's official completions to allow Zsh's official Git completions to work.
@@ -90,3 +95,5 @@ alias du='dust'
 # ================ Local .zshrc ============================
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+
