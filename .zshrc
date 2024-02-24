@@ -4,7 +4,13 @@ bindkey -e                                             # Use emacs movement bind
 bindkey "^[[1;3C" forward-word                         # Option Forward Arrow
 bindkey "^[[1;3D" backward-word                        # Option Back Arrow
 setopt globdots                                        # match files starting with .
-export PATH=$HOME/.dotfiles/bin:$PATH                  # Adds my binaries
+
+export EDITOR=vim                                      # Vim
+export VISUAL=vim                                      # Vim
+export PAGER=less                                      # Less
+export GPG_TTY=$(tty)                                  # GPG
+export PATH=$HOME/.dotfiles/bin:$PATH                  # Add my binaries
+
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
 # ================ Homebrew ================================
