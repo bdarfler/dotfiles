@@ -70,7 +70,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "/opt/homebrew/bin/SwitchAudioSource -s \"Audioengine 2+\" && /opt/homebrew/bin/SwitchAudioSource -t input -s \"USB Audio CODEC \""
+                                        "shell_command": "/opt/homebrew/bin/SwitchAudioSource -s \"Audioengine 2+\""
                                     }
                                 ],
                                 "type": "basic"
@@ -99,7 +99,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "/opt/homebrew/bin/SwitchAudioSource -t output -s \"USB Audio CODEC \" && /opt/homebrew/bin/SwitchAudioSource -t input -s \"USB Audio CODEC \""
+                                        "shell_command": "/opt/homebrew/bin/SwitchAudioSource -s \"USB Audio CODEC \""
                                     }
                                 ],
                                 "type": "basic"
