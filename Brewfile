@@ -153,6 +153,7 @@ cask "vlc"
 cask "webex"
 cask "whatsapp"
 cask "yubico-yubikey-manager"
+cask "zed"
 mas "Awareness", id: 1497695227
 mas "Focus Window", id: 1444457097
 mas "GarageBand", id: 682658836
