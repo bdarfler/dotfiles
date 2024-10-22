@@ -136,6 +136,7 @@ cask "mmhmm"
 cask "modern-csv"
 cask "mural"
 cask "notunes"
+cask "openrefine"
 cask "pingplotter"
 cask "prefs-editor"
 cask "quitter"
@@ -162,7 +163,6 @@ mas "Gifski", id: 1351639930
 mas "Hand Mirror", id: 1502839586
 mas "Horo", id: 1437226581
 mas "Hour", id: 569089415
-mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "Irvue", id: 1039633667
 mas "Keynote", id: 409183694
