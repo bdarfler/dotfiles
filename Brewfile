@@ -110,6 +110,8 @@ cask "dropbox"
 cask "firefox"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
+cask "font-monaspace"
+cask "font-monaspace-nerd-font"
 cask "font-roboto"
 cask "fontsmoothingadjuster"
 cask "google-chrome"
@@ -163,6 +165,7 @@ mas "Gifski", id: 1351639930
 mas "Hand Mirror", id: 1502839586
 mas "Horo", id: 1437226581
 mas "Hour", id: 569089415
+mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "Irvue", id: 1039633667
 mas "Keynote", id: 409183694
