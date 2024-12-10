@@ -23,7 +23,6 @@ brew "dust"
 brew "exiftool"
 brew "eza"
 brew "fd"
-brew "icu4c"
 brew "ffmpeg"
 brew "fzf"
 brew "gdbm"
@@ -67,7 +66,7 @@ brew "node"
 brew "openssl@1.1"
 brew "parallel"
 brew "pinentry-mac"
-brew "pkg-config"
+brew "pkgconf"
 brew "prettyping"
 brew "procs"
 brew "python@3.10"
@@ -101,8 +100,11 @@ cask "audacity"
 cask "authy"
 cask "bartender"
 cask "camo-studio"
+cask "chatgpt"
+cask "claude"
 cask "cleanshot"
 cask "datweatherdoe"
+cask "devutils"
 cask "discord"
 cask "docker"
 cask "doughnut"
@@ -186,8 +188,10 @@ mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Quip", id: 1003160018
 mas "Recasto", id: 1144192021
+mas "Solves", id: 1394359548
 mas "Swift Publisher 5", id: 1058362543
 mas "To FLAC Converter Lite", id: 1057068364
 mas "To MP3 Converter Lite", id: 983472324
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
+mas "‎WhatsApp", id: 310633997
