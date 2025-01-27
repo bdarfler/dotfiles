@@ -1,4 +1,5 @@
 tap "homebrew/bundle"
+tap "homebrew/services"
 brew "antigen"
 brew "xz"
 brew "automake"
@@ -51,6 +52,7 @@ brew "kind"
 brew "kubernetes-cli"
 brew "lf"
 brew "libffi"
+brew "llm"
 brew "lnav"
 brew "mas"
 brew "md5sha1sum", link: false
@@ -185,10 +187,11 @@ mas "Polarr Photo Editor", id: 1058273036
 mas "Publisher Master", id: 998756839
 mas "Quip", id: 1003160018
 mas "Recasto", id: 1144192021
+mas "RecurseChat", id: 6476835702
 mas "Solves", id: 1394359548
 mas "Swift Publisher 5", id: 1058362543
 mas "To FLAC Converter Lite", id: 1057068364
 mas "To MP3 Converter Lite", id: 983472324
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
-mas "‎WhatsApp", id: 310633997
+mas "WhatsApp", id: 310633997
