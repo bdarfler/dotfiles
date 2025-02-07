@@ -56,8 +56,6 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 # ================ asdf ====================================
 
-source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh             # Manage multiple runtime versions
-
 # setup asdf for node
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 
