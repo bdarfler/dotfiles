@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
 
 update () {
-  asdf install $1 $2 \
-    && asdf global $1 $2 \
-    && echo "$1 set globally to $2"
+  LATEST=$(asdf latest $1 $2)
+  asdf install $1 $LATEST && \
+  asdf set $1 $LATEST && \
+  echo "$1 set globally to $LATEST"
 }
 
-update "golang" "latest"
-update "python" "latest"
-update "ruby" "latest"
-
-# nodejs is annoying
-LATEST=$(asdf latest nodejs 20)
-update "nodejs" $LATEST
+update "golang" "1"
+update "python" "3"
+update "ruby" "3"
+update "nodejs" "20"
 
 asdf reshim
