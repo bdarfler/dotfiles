@@ -10,6 +10,6 @@ update () {
 update "golang" "1"
 update "python" "3"
 update "ruby" "3"
-update "nodejs" "20"
+update "nodejs" "22"
 
 asdf reshim
