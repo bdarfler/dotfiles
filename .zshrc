@@ -56,6 +56,9 @@ setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
 
 # ================ asdf ====================================
 
+# setup path
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # setup asdf for node
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 
