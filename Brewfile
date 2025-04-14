@@ -62,7 +62,7 @@ brew "mycli"
 brew "mysql"
 brew "ncdu"
 brew "nmap"
-brew "node", link: false
+brew "node"
 brew "parallel"
 brew "pinentry-mac"
 brew "pkgconf"
@@ -166,7 +166,7 @@ cask "yubico-yubikey-manager"
 cask "zed"
 mas "Awareness", id: 1497695227
 mas "Draw Things", id: 6444050820
-mas "Focus Window", id: 1444457097
+mas "focusWindow", id: 1444457097
 mas "GarageBand", id: 682658836
 mas "Gifski", id: 1351639930
 mas "Hand Mirror", id: 1502839586
@@ -190,8 +190,8 @@ mas "OneDrive", id: 823766827
 mas "Pages", id: 409201541
 mas "Perplexity", id: 6714467650
 mas "Pixelmator Pro", id: 1289583905
-mas "Polarr Photo Editor", id: 1058273036
-mas "Publisher Master", id: 998756839
+mas "Polarr Photo Editor Pro", id: 1058273036
+mas "Publisher Master - Graphic Design & Page Layout Creator", id: 998756839
 mas "Quip", id: 1003160018
 mas "Recasto", id: 1144192021
 mas "Solves", id: 1394359548
