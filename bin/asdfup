@@ -8,6 +8,7 @@ update () {
 }
 
 update "golang" "1"
+update "rust" "1"
 update "python" "3"
 update "ruby" "3"
 update "nodejs" "22"
