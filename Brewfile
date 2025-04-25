@@ -59,7 +59,7 @@ brew "md5sha1sum", link: false
 brew "miller"
 brew "mtr"
 brew "mycli"
-brew "mysql"
+brew "mysql", restart_service: :changed
 brew "ncdu"
 brew "nmap"
 brew "node"
