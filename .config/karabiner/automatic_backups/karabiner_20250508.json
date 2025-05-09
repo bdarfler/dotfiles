@@ -110,11 +110,11 @@
                         },
                         {
                             "from": { "key_code": "2" },
-                            "to": [{ "consumer_key_code": "volume_increment" }]
+                            "to": [{ "consumer_key_code": "volume_decrement" }]
                         },
                         {
                             "from": { "key_code": "3" },
-                            "to": [{ "consumer_key_code": "volume_decrement" }]
+                            "to": [{ "consumer_key_code": "volume_increment" }]
                         },
                         {
                             "from": { "key_code": "4" },
