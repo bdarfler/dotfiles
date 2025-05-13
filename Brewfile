@@ -198,7 +198,8 @@ mas "Quip", id: 1003160018
 mas "Recasto", id: 1144192021
 mas "Solves", id: 1394359548
 mas "Swift Publisher 5", id: 1058362543
-mas "To FLAC Converter Lite", id: 1057068364
+mas "TickTick", id: 966085870
+mas "To FLAC Converter 2", id: 1057068364
 mas "To MP3 Converter Lite", id: 983472324
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
