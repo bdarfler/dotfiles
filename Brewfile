@@ -2,6 +2,7 @@ tap "homebrew/bundle"
 tap "homebrew/services"
 brew "antigen"
 brew "xz"
+brew "git"
 brew "asdf"
 brew "automake"
 brew "libyaml"
@@ -26,7 +27,6 @@ brew "ffmpeg"
 brew "fzf"
 brew "gdbm"
 brew "gh"
-brew "git"
 brew "git-delta"
 brew "gitbatch"
 brew "gitui"
@@ -158,6 +158,7 @@ cask "skype"
 cask "spotify"
 cask "stats"
 cask "steam"
+cask "superwhisper"
 cask "ticktick"
 cask "time-out"
 cask "tripmode"
@@ -200,7 +201,7 @@ mas "Solves", id: 1394359548
 mas "Swift Publisher 5", id: 1058362543
 mas "TickTick", id: 966085870
 mas "To FLAC Converter 2", id: 1057068364
-mas "To MP3 Converter Lite", id: 983472324
+mas "To MP3 Converter 2", id: 983472324
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
 mas "WhatsApp", id: 310633997
