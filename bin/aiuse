@@ -1,6 +1,0 @@
-#! /usr/bin/env bash
-
-xan map 'timestamp.strftime("%W") as week' $2 | \
-xan filter "week eq $1" | \
-xan freq -A -s actor.alternate_id | \
-wc -l
