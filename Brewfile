@@ -1,3 +1,4 @@
+tap "brewforge/extras"
 tap "harelba/q"
 tap "homebrew/bundle"
 tap "homebrew/services"
@@ -27,6 +28,8 @@ brew "fd"
 brew "ffmpeg"
 brew "fzf"
 brew "gdbm"
+brew "node", link: false
+brew "gemini-cli"
 brew "gh"
 brew "git-delta"
 brew "gitbatch"
@@ -36,6 +39,7 @@ brew "pinentry"
 brew "gnupg"
 brew "gotags"
 brew "gping"
+brew "gptme"
 brew "libtool"
 brew "graphviz"
 brew "gron"
@@ -63,7 +67,8 @@ brew "mycli"
 brew "mysql", restart_service: :changed
 brew "ncdu"
 brew "nmap"
-brew "node", link: false
+brew "oterm"
+brew "pandoc"
 brew "parallel"
 brew "pinentry-mac"
 brew "pkgconf"
@@ -78,12 +83,14 @@ brew "sd"
 brew "starship"
 brew "switchaudio-osx"
 brew "tealdeer"
+brew "texlive"
 brew "tig"
 brew "tilt"
 brew "tokei"
 brew "topgrade"
 brew "tre-command"
 brew "universal-ctags"
+brew "uv"
 brew "wget"
 brew "xan"
 brew "xh"
@@ -92,6 +99,7 @@ brew "zenith"
 brew "zoxide"
 brew "zsh"
 cask "1password-cli"
+cask "5ire"
 cask "adobe-acrobat-reader"
 cask "amazon-chime"
 cask "anythingllm"
@@ -100,11 +108,15 @@ cask "arc"
 cask "asana"
 cask "audacity"
 cask "bartender"
+cask "block-goose"
+cask "boltai"
 cask "camo-studio"
 cask "chatgpt"
+cask "chatwise"
 cask "claude"
 cask "claude-code"
 cask "cleanshot"
+cask "cursor"
 cask "datweatherdoe"
 cask "devutils"
 cask "diffusionbee"
@@ -113,6 +125,7 @@ cask "docker-desktop"
 cask "doughnut"
 cask "dropbox"
 cask "firefox"
+cask "flowdown"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-monaspace"
@@ -147,6 +160,7 @@ cask "microsoft-teams"
 cask "mmhmm"
 cask "mochi-diffusion"
 cask "modern-csv"
+cask "msty"
 cask "mural"
 cask "notunes"
 cask "numi"
@@ -171,6 +185,7 @@ cask "tripmode"
 cask "vlc"
 cask "webex"
 cask "whatsapp"
+cask "witsy"
 cask "yubico-yubikey-manager"
 cask "zed"
 mas "Awareness", id: 1497695227
@@ -187,12 +202,6 @@ mas "Irvue", id: 1039633667
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
 mas "LanguageTool", id: 1534275760
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft OneNote", id: 784801555
-mas "Microsoft Outlook", id: 985367838
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft To Do", id: 1274495053
-mas "Microsoft Word", id: 462054704
 mas "MindNode", id: 1289197285
 mas "Numbers", id: 409203825
 mas "OneDrive", id: 823766827
@@ -211,3 +220,4 @@ mas "To MP3 Converter 2", id: 983472324
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
 mas "WhatsApp", id: 310633997
+vscode "vscodevim.vim"
