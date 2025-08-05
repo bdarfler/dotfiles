@@ -10,7 +10,9 @@ export VISUAL=vim                                      # Vim
 export PAGER=less                                      # Less
 export GPG_TTY=$(tty)                                  # GPG
 export PATH=$HOME/.dotfiles/bin:$PATH                  # Add my binaries
-export PATH="$HOME/.local/bin:$PATH"                       # For Claude
+export PATH="$HOME/.local/bin:$PATH"                   # For Claude
+export PATH="$HOME/.cache/lm-studio/bin:$PATH"         # for LM Studio
+
 
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 
