@@ -7,12 +7,12 @@ tap "sst/tap"
 brew "antigen"
 brew "anyquery"
 brew "xz"
-brew "readline"
-brew "sqlite"
 brew "git"
 brew "asdf"
 brew "automake"
 brew "libyaml"
+brew "readline"
+brew "sqlite"
 brew "aws-shell"
 brew "awscli"
 brew "bat"
@@ -123,6 +123,7 @@ cask "cherry-studio"
 cask "claude"
 cask "claude-code"
 cask "cleanshot"
+cask "conductor"
 cask "cursor"
 cask "datweatherdoe"
 cask "deepchat"
@@ -137,7 +138,7 @@ cask "flowdown"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-monaspace"
-cask "font-monaspace-nerd-font"
+cask "font-monaspice-nerd-font"
 cask "font-roboto"
 cask "fontsmoothingadjuster"
 cask "google-chrome"
@@ -173,7 +174,9 @@ cask "mural"
 cask "notunes"
 cask "numi"
 cask "ollama-app"
+cask "opcode"
 cask "openrefine"
+cask "orion"
 cask "p4v"
 cask "pingplotter"
 cask "prefs-editor"
@@ -186,17 +189,22 @@ cask "skype"
 cask "spotify"
 cask "stats"
 cask "steam"
+cask "stravu-crystal"
 cask "superwhisper"
+cask "tablecruncher"
 cask "ticktick"
 cask "time-out"
 cask "tripmode"
 cask "vlc"
+cask "voiceink"
 cask "webex"
 cask "whatsapp"
 cask "witsy"
 cask "yubico-yubikey-manager"
 cask "zed"
+cask "zen"
 mas "Awareness", id: 1497695227
+mas "Diagrams", id: 1276248849
 mas "Draw Things", id: 6444050820
 mas "focusWindow", id: 1444457097
 mas "GarageBand", id: 682658836
@@ -221,6 +229,7 @@ mas "Publisher Master - Graphic Design & Page Layout Creator", id: 998756839
 mas "Quip", id: 1003160018
 mas "Recasto", id: 1144192021
 mas "Solves", id: 1394359548
+mas "Spokenly", id: 6740315592
 mas "Swift Publisher 5", id: 1058362543
 mas "TickTick", id: 966085870
 mas "To FLAC Converter 2", id: 1057068364
@@ -228,4 +237,5 @@ mas "To MP3 Converter 2", id: 983472324
 mas "UPDF", id: 1619925971
 mas "Webcam Settings", id: 533696630
 mas "WhatsApp", id: 310633997
+mas "xcribe", id: 6743496546
 vscode "vscodevim.vim"
