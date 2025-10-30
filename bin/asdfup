@@ -12,5 +12,6 @@ update "rust" "1"
 update "python" "3"
 update "ruby" "3"
 update "nodejs" "22"
+update "awscli" "2"
 
 asdf reshim
