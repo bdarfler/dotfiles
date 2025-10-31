@@ -13,5 +13,6 @@ update "python" "3"
 update "ruby" "3"
 update "nodejs" "24"
 update "awscli" "2"
+update "pnpm" "10"
 
 asdf reshim
