@@ -1,6 +1,7 @@
 tap "brewforge/extras"
 tap "charmbracelet/tap"
 tap "harelba/q"
+tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "sst/tap"
@@ -15,13 +16,16 @@ brew "readline"
 brew "sqlite"
 brew "aws-shell"
 brew "awscli"
+brew "ncurses"
 brew "bat"
 brew "block-goose-cli"
 brew "bottom"
+brew "claude-squad"
 brew "colordiff"
 brew "gmp"
 brew "coreutils"
 brew "ctop"
+brew "direnv"
 brew "dive"
 brew "dry"
 brew "duf"
@@ -32,7 +36,7 @@ brew "fd"
 brew "ffmpeg"
 brew "fzf"
 brew "gdbm"
-brew "node", link: false
+brew "node"
 brew "gemini-cli"
 brew "gh"
 brew "git-delta"
@@ -47,20 +51,22 @@ brew "gptme"
 brew "libtool"
 brew "graphviz"
 brew "gron"
+brew "helm"
 brew "hexcurse"
 brew "hexyl"
-brew "ncurses"
 brew "htop"
 brew "hub"
 brew "icdiff"
 brew "id3v2"
 brew "jless"
 brew "jq"
+brew "k3d"
 brew "k9s"
 brew "kind"
 brew "kubernetes-cli"
 brew "lf"
 brew "libffi"
+brew "libmtp"
 brew "llm"
 brew "lnav"
 brew "mas"
@@ -68,9 +74,11 @@ brew "md5sha1sum", link: false
 brew "miller"
 brew "mtr"
 brew "mycli"
-brew "mysql", restart_service: :changed
+brew "mysql", link: false
+brew "mysql-client", link: true
 brew "ncdu"
 brew "nmap"
+brew "oath-toolkit"
 brew "oterm"
 brew "pandoc"
 brew "parallel"
@@ -78,6 +86,8 @@ brew "pinentry-mac"
 brew "pkgconf"
 brew "prettyping"
 brew "procs"
+brew "protobuf"
+brew "protoc-gen-go"
 brew "python@3.10"
 brew "python@3.9"
 brew "ranger"
@@ -103,7 +113,9 @@ brew "zenith"
 brew "zoxide"
 brew "zsh"
 brew "charmbracelet/tap/crush"
-brew "sst/tap/opencode"
+brew "hashicorp/tap/packer"
+brew "sst/tap/opencode", link: false
+cask "1password"
 cask "1password-cli"
 cask "5ire"
 cask "adobe-acrobat-reader"
@@ -116,6 +128,7 @@ cask "audacity"
 cask "bartender"
 cask "block-goose"
 cask "boltai"
+cask "caffeine"
 cask "camo-studio"
 cask "chatgpt"
 cask "chatwise"
@@ -180,12 +193,15 @@ cask "orion"
 cask "p4v"
 cask "pingplotter"
 cask "prefs-editor"
+cask "quip"
 cask "quitter"
 cask "raycast"
 cask "screenflick"
+cask "sculptor"
 cask "send-to-kindle"
 cask "signal"
 cask "skype"
+cask "slack"
 cask "spotify"
 cask "stats"
 cask "steam"
@@ -203,7 +219,9 @@ cask "witsy"
 cask "yubico-yubikey-manager"
 cask "zed"
 cask "zen"
+mas "1Password for Safari", id: 1569813296
 mas "Awareness", id: 1497695227
+mas "Camera Graph", id: 6450550518
 mas "Diagrams", id: 1276248849
 mas "Draw Things", id: 6444050820
 mas "focusWindow", id: 1444457097
@@ -218,7 +236,7 @@ mas "Irvue", id: 1039633667
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
 mas "LanguageTool", id: 1534275760
-mas "MindNode", id: 1289197285
+mas "MindNode Classic", id: 1289197285
 mas "Numbers", id: 409203825
 mas "OneDrive", id: 823766827
 mas "Pages", id: 409201541
@@ -226,7 +244,6 @@ mas "Perplexity", id: 6714467650
 mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor Pro", id: 1058273036
 mas "Publisher Master - Graphic Design & Page Layout Creator", id: 998756839
-mas "Quip", id: 1003160018
 mas "Recasto", id: 1144192021
 mas "Solves", id: 1394359548
 mas "Spokenly", id: 6740315592
@@ -235,6 +252,7 @@ mas "TickTick", id: 966085870
 mas "To FLAC Converter 2", id: 1057068364
 mas "To MP3 Converter 2", id: 983472324
 mas "UPDF", id: 1619925971
+mas "Webcam Effects", id: 1525288396
 mas "Webcam Settings", id: 533696630
 mas "WhatsApp", id: 310633997
 mas "xcribe", id: 6743496546
