@@ -15,7 +15,7 @@
 # sudo_command = "sudo"
 
 # Disable specific steps - same options as the command line flag
-disable = ["asdf", "containers"]
+disable = ["asdf", "containers", "mas"]
 
 # Ignore failures for these steps
 # ignore_failures = ["powershell"]
