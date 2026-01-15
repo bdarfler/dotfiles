@@ -45,8 +45,8 @@ antigen bundle MichaelAquilina/zsh-history-filter      # Exclude commands from h
 antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
 antigen apply
 
-bindkey '^[[Z' autosuggest-accept                      # shift-tab to accept autosuggestion
-bindkey '\t' fzf-tab-complete                          # tab to complete
+bindkey '\t' autosuggest-accept                        # tab to accept autosuggestion
+bindkey '^[[Z' fzf-tab-complete                        # shift-tab to complete
 
 # ================ History =================================
 
