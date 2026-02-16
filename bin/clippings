@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+"""Split Kindle-style 'My Clippings' markdown files into one file per article."""
+
+import argparse
+import re
+import sys
+from collections import defaultdict
+from pathlib import Path
+
+BOM = "\ufeff"
+
+UNSAFE_CHARS = re.compile(r'[/\\:*?"<>|]')
+
+
+def sanitize_filename(name: str) -> str:
+    """Make a string safe for use as a filename."""
+    name = UNSAFE_CHARS.sub("", name).strip()
+    # Collapse multiple spaces
+    name = re.sub(r"\s+", " ", name)
+    # Truncate to reasonable length
+    if len(name) > 200:
+        name = name[:200].rstrip()
+    return name
+
+
+def parse_clippings(text: str) -> dict[str, list[dict]]:
+    """Parse clippings text into {title: [clipping_dicts]}."""
+    articles = defaultdict(list)
+    blocks = text.split("==========")
+
+    for block in blocks:
+        block = block.strip()
+        if not block:
+            continue
+
+        lines = block.split("\n")
+        if len(lines) < 2:
+            continue
+
+        # First line: title (source.com)
+        title_line = lines[0].lstrip(BOM).strip()
+        if not title_line:
+            continue
+
+        # Extract source from parentheses at end of title
+        source = ""
+        title = title_line
+        match = re.search(r"\(([^)]+)\)\s*$", title_line)
+        if match:
+            source = match.group(1)
+            title = title_line[: match.start()].strip()
+
+        # Clipping text is everything after the first blank line following metadata
+        # Line 0: title, Line 1: metadata, Line 2+: blank then text
+        text_start = 2
+        # Skip to first blank line after metadata
+        while text_start < len(lines) and lines[text_start].strip():
+            text_start += 1
+        # Skip the blank line itself
+        text_start += 1
+
+        clipping_text = "\n".join(lines[text_start:]).strip() if text_start < len(lines) else ""
+
+        articles[title].append({"source": source, "text": clipping_text})
+
+    return articles
+
+
+def write_article(output_dir: Path, title: str, clippings: list[dict]) -> Path:
+    """Write a single article file. Returns the output path."""
+    source = clippings[0]["source"]
+    filename = sanitize_filename(title) + ".md"
+    output_path = output_dir / filename
+
+    parts = [f"# {title}", f"source: {source}", ""]
+
+    for i, clip in enumerate(clippings):
+        parts.append(clip["text"])
+        if i < len(clippings) - 1:
+            parts.append("")
+            parts.append("---")
+            parts.append("")
+
+    output_path.write_text("\n".join(parts) + "\n")
+    return output_path
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Split Kindle 'My Clippings' files into one file per article.")
+    parser.add_argument("files", nargs="*", help="Clippings files to process (default: ~/Dropbox/My Clippings*)")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Print progress to stdout")
+    args = parser.parse_args()
+
+    dropbox_dir = Path.home() / "Dropbox" / "0 Inbox"
+
+    if args.files:
+        paths = [Path(f) for f in args.files]
+        for p in paths:
+            if not p.exists():
+                print(f"Error: {p} not found", file=sys.stderr)
+                sys.exit(1)
+    else:
+        paths = sorted(dropbox_dir.glob("My Clippings*"))
+        if not paths:
+            print(f"No 'My Clippings*' files found in {dropbox_dir}", file=sys.stderr)
+            sys.exit(1)
+
+    for path in paths:
+
+        output_dir = path.parent / "clippings"
+        output_dir.mkdir(exist_ok=True)
+
+        text = path.read_text(encoding="utf-8")
+        articles = parse_clippings(text)
+
+        print(f"Parsed {path}: {len(articles)} articles")
+        for title, clippings in articles.items():
+            out = write_article(output_dir, title, clippings)
+            if args.verbose:
+                print(f"  {out.name} ({len(clippings)} clippings)")
+
+
+if __name__ == "__main__":
+    main()
