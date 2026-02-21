@@ -27,10 +27,10 @@ done
 
 # Sync with S3 (sanity check: don't sync an empty folder)
 if [ "$(ls ~/Dropbox/Podcast/*.mp3 2>/dev/null | wc -l)" -eq 0 ]; then
-  echo "No mp3 files found, skipping S3 sync" >&2
-  exit 1
+	echo "No mp3 files found, skipping S3 sync" >&2
+	exit 1
 fi
 aws s3 sync ~/Dropbox/Podcast s3://bdarfler-podcast \
-  --delete \
-  --profile podcast \
-  --exclude .DS_Store
+	--delete \
+	--profile podcast \
+	--exclude .DS_Store

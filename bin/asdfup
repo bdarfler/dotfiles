@@ -2,9 +2,9 @@
 set -euo pipefail
 
 update () {
-  local LATEST
-  LATEST=$(asdf latest "$1" "$2") || { echo "FAILED: $1 (couldn't resolve latest)"; return 1; }
-  asdf install "$1" "$LATEST" && asdf set "$1" "$LATEST" && echo "$1 → $LATEST" || echo "FAILED: $1"
+	local LATEST
+	LATEST=$(asdf latest "$1" "$2") || { echo "FAILED: $1 (couldn't resolve latest)"; return 1; }
+	asdf install "$1" "$LATEST" && asdf set "$1" "$LATEST" && echo "$1 → $LATEST" || echo "FAILED: $1"
 }
 
 update "golang" "1"
