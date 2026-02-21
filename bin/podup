@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+# Convert any mp4 files to mp3 and remove the originals
+for mp4 in ~/Dropbox/Podcast/*.mp4; do
+	[ -f "$mp4" ] || continue
+	mp3="${mp4%.mp4}.mp3"
+	ffmpeg -i "$mp4" -q:a 2 "$mp3" && rm "$mp4"
+done
 
 # Set missing tags
-for path in ~/Dropbox/Podcast/*.mp3
-do
+for path in ~/Dropbox/Podcast/*.mp3; do
+	[ -f "$path" ] || continue
 	# If the file is missing title tag
-	if [ -z "$(id3v2 -l "$path" | egrep TI?T2)" ];
-	then
+	if [ -z "$(id3v2 -l "$path" | grep -E 'TI?T2')" ]; then
 		# Pull filename from path
 		file=${path##*/}
 		# Strip suffix from filename
