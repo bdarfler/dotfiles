@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Convert any mp4 files to mp3 and remove the originals
-for mp4 in ~/Dropbox/Podcast/*.mp4; do
-	[ -f "$mp4" ] || continue
-	mp3="${mp4%.mp4}.mp3"
-	ffmpeg -i "$mp4" -q:a 2 "$mp3" && rm "$mp4"
+# Convert non-mp3 media files to mp3 and remove the originals
+for file in ~/Dropbox/Podcast/*.{mp4,m4a,m4b,wav,flac,ogg,wma,aac,opus}; do
+	[ -f "$file" ] || continue
+	mp3="${file%.*}.mp3"
+	ffmpeg -i "$file" -q:a 2 "$mp3" && rm "$file"
 done
 
 # Set missing tags
