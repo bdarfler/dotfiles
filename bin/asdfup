@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 update () {
-  LATEST=$(asdf latest $1 $2)
-  asdf install $1 $LATEST && \
-  asdf set $1 $LATEST && \
-  echo "$1 set globally to $LATEST"
+  local LATEST
+  LATEST=$(asdf latest "$1" "$2") || { echo "FAILED: $1 (couldn't resolve latest)"; return 1; }
+  asdf install "$1" "$LATEST" && asdf set "$1" "$LATEST" && echo "$1 → $LATEST" || echo "FAILED: $1"
 }
 
 update "golang" "1"
-update "rust" "1"
 update "python" "3"
 update "ruby" "3"
 update "nodejs" "24"

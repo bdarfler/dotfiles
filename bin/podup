@@ -5,7 +5,7 @@ set -euo pipefail
 for file in ~/Dropbox/Podcast/*.{mp4,m4a,m4b,wav,flac,ogg,wma,aac,opus}; do
 	[ -f "$file" ] || continue
 	mp3="${file%.*}.mp3"
-	ffmpeg -i "$file" -q:a 2 "$mp3" && rm "$file"
+	ffmpeg -n -loglevel error -i "$file" -q:a 2 "$mp3" && rm "$file"
 done
 
 # Set missing tags

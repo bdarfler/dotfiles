@@ -7,8 +7,6 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-BOM = "\ufeff"
-
 UNSAFE_CHARS = re.compile(r'[/\\:*?"<>|]')
 
 
@@ -38,7 +36,7 @@ def parse_clippings(text: str) -> dict[str, list[dict]]:
             continue
 
         # First line: title (source.com)
-        title_line = lines[0].lstrip(BOM).strip()
+        title_line = lines[0].strip()
         if not title_line:
             continue
 
@@ -74,7 +72,11 @@ def write_article(output_dir: Path, title: str, clippings: list[dict]) -> Path:
 
     parts = [f"# {title}", f"source: {source}", ""]
 
+    seen = set()
     for i, clip in enumerate(clippings):
+        if clip["text"] in seen:
+            continue
+        seen.add(clip["text"])
         parts.append(clip["text"])
         if i < len(clippings) - 1:
             parts.append("")
@@ -110,7 +112,7 @@ def main():
         output_dir = path.parent / "clippings"
         output_dir.mkdir(exist_ok=True)
 
-        text = path.read_text(encoding="utf-8")
+        text = path.read_text(encoding="utf-8-sig")
         articles = parse_clippings(text)
 
         print(f"Parsed {path}: {len(articles)} articles")
