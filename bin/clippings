@@ -72,11 +72,9 @@ def write_article(output_dir: Path, title: str, clippings: list[dict]) -> Path:
 
     parts = [f"# {title}", f"source: {source}", ""]
 
-    seen = set()
     for i, clip in enumerate(clippings):
-        if clip["text"] in seen:
+        if not clip["text"]:
             continue
-        seen.add(clip["text"])
         parts.append(clip["text"])
         if i < len(clippings) - 1:
             parts.append("")

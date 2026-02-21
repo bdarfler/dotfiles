@@ -23,9 +23,13 @@ for path in ~/Dropbox/Podcast/*.mp3; do
 done
 
 # Create xml feed
-(cd ~/Dropbox/Podcast && dropcaster > podcast.xml)
+(cd ~/Dropbox/Podcast && dropcaster > podcast.xml.tmp && mv podcast.xml.tmp podcast.xml)
 
-# Sync with S3
+# Sync with S3 (sanity check: don't sync an empty folder)
+if [ "$(ls ~/Dropbox/Podcast/*.mp3 2>/dev/null | wc -l)" -eq 0 ]; then
+  echo "No mp3 files found, skipping S3 sync" >&2
+  exit 1
+fi
 aws s3 sync ~/Dropbox/Podcast s3://bdarfler-podcast \
   --delete \
   --profile podcast \
