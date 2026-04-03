@@ -29,12 +29,15 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [{ "vendor_id": 10730 }],
+                                        "identifiers": [
+                                            { "vendor_id": 10730 },
+                                            { "vendor_id": 358 }
+                                        ],
                                         "type": "device_if"
                                     }
                                 ],
                                 "from": { "key_code": "f7" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/SwitchAudioSource -t output -s \"Audioengine 2+\" && /opt/homebrew/bin/SwitchAudioSource -t input -s \"USB Audio CODEC\"" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/SwitchAudioSource -s \"Audioengine 2+\" && /opt/homebrew/bin/SwitchAudioSource -t input -s \"USB Audio CODEC \"" }],
                                 "type": "basic"
                             }
                         ]
@@ -45,12 +48,15 @@
                             {
                                 "conditions": [
                                     {
-                                        "identifiers": [{ "vendor_id": 10730 }],
+                                        "identifiers": [
+                                            { "vendor_id": 10730 },
+                                            { "vendor_id": 358 }
+                                        ],
                                         "type": "device_if"
                                     }
                                 ],
                                 "from": { "key_code": "f8" },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/SwitchAudioSource -t output -s \"USB Audio CODEC\" && /opt/homebrew/bin/SwitchAudioSource -t input -s \"USB Audio CODEC\"" }],
+                                "to": [{ "shell_command": "/opt/homebrew/bin/SwitchAudioSource -t output -s \"USB Audio CODEC \" && /opt/homebrew/bin/SwitchAudioSource -t input -s \"USB Audio CODEC \"" }],
                                 "type": "basic"
                             }
                         ]
@@ -190,10 +196,6 @@
                 {
                     "from": { "key_code": "f5" },
                     "to": [{ "key_code": "f5" }]
-                },
-                {
-                    "from": { "key_code": "f6" },
-                    "to": [{ "key_code": "f6" }]
                 },
                 {
                     "from": { "key_code": "f7" },
