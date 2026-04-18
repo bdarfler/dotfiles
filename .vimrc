@@ -10,7 +10,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'justinmk/vim-dirvish'                                " Directory viewer for Vim
 Plug 'moll/vim-bbye'                                       " Close files without messing up your layout
 Plug 'tpope/vim-unimpaired'                                " pairs of handy bracket mappings
-Plug '/usr/local/opt/fzf'                                  " A command-line fuzzy finder
+Plug '/opt/homebrew/opt/fzf'                               " A command-line fuzzy finder
 Plug 'junegunn/fzf.vim'                                    " A command-line fuzzy finder
 
 " Development Plugins
@@ -103,7 +103,7 @@ colorscheme base16-gruvbox-dark-medium                     " Enable colorscheme
 set updatetime=250                                         " Quicker updates
 set signcolumn=yes                                         " Always show sign column
 
-set guifont=FiraCodeNF-Ret:h14                             " Set Font
+set guifont=FiraCode\ Nerd\ Font:h14                       " Set Font
 if has("gui_macvim")                                       " Enable ligutures in macvim
   set macligatures
 endif
