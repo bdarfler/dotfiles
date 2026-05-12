@@ -21,6 +21,7 @@ source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 eval "$(starship init zsh)"                            # Cross-Shell Prompt
 eval "$(zoxide init zsh)"                              # A smarter cd command
 eval "$(mise activate zsh)"                            # Tool version manager
+eval "$(direnv hook zsh)"                              # auto-load .envrc in project dirs
 HOMEBREW_PREFIX="$(brew --prefix)"                     # Homebrew prefix
 eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"         # Setup homebrew paths
 source ${HOMEBREW_PREFIX}/share/antigen/antigen.zsh    # Plugin manager for zsh
