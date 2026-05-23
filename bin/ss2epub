@@ -196,6 +196,59 @@ for src in "$@"; do
 	else
 		dest="${src%.html}.${format}"
 	fi
-	pandoc "$src" --lua-filter "$filter" -o "$dest"
+
+	# Pull title/author/date/description out of the Substack HTML and
+	# pass them to pandoc as Dublin Core metadata. The body-stripping Lua
+	# filter still drops the post-meta byline from the rendered text.
+	meta_args=()
+	while IFS= read -r -d '' rec; do
+		meta_args+=( --metadata "$rec" )
+	done < <(python3 - "$src" <<'PY'
+import re, html as ihtml, sys
+
+with open(sys.argv[1], encoding='utf-8', errors='replace') as f:
+    h = f.read()
+
+def clean(s):
+    if s is None:
+        return None
+    s = re.sub(r'\s+', ' ', s)
+    return ihtml.unescape(s).strip() or None
+
+def emit(k, v):
+    if v:
+        sys.stdout.write(k + '=' + v + '\0')
+
+m = re.search(r'<title>(.*?)</title>', h, re.S)
+emit('title', clean(m.group(1)) if m else None)
+
+# Pandoc rejects full ISO timestamps in --metadata date=, so take the
+# YYYY-MM-DD prefix of <time datetime="...">.
+m = re.search(r'<time[^>]*datetime="([^"]+)"', h)
+if m:
+    emit('date', m.group(1)[:10])
+
+pm = re.search(r'class="post-meta".*?</table>', h, re.S)
+if pm:
+    a = re.search(
+        r'<a[^>]+href="https://substack\.com/@[^"]+"[^>]*>([^<]+)</a>',
+        pm.group(0),
+    )
+    if a:
+        emit('author', clean(a.group(1)))
+
+# Substack emits two <div class="preview">: the real subtitle and a
+# whitespace-padding block of &#847;/&nbsp;/&#8199; entities. Unescape
+# first, then test for any letter — the padding has none.
+for m in re.finditer(r'<div class="preview"[^>]*>(.*?)</div>', h, re.S):
+    stripped = re.sub(r'<[^>]+>', '', m.group(1))
+    cleaned = re.sub(r'\s+', ' ', ihtml.unescape(stripped)).strip()
+    if re.search(r'[A-Za-z]', cleaned):
+        emit('description', cleaned)
+        break
+PY
+)
+
+	pandoc "$src" --lua-filter "$filter" "${meta_args[@]}" -o "$dest"
 	echo "wrote $dest"
 done
