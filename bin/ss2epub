@@ -39,7 +39,8 @@ if ! command -v pandoc >/dev/null 2>&1; then
 fi
 
 filter=$(mktemp -t ss2epub.XXXXXX.lua)
-trap 'rm -f "$filter"' EXIT
+tmpfiles=()
+trap 'rm -f "$filter" "${tmpfiles[@]}"' EXIT
 
 cat > "$filter" <<'LUA'
 -- Pandoc Lua filter that strips Substack-email chrome.
@@ -201,8 +202,17 @@ for src in "$@"; do
 	# pass them to pandoc as Dublin Core metadata. The body-stripping Lua
 	# filter still drops the post-meta byline from the rendered text.
 	meta_args=()
+	cover_args=()
+	title=""
+	author=""
+	date=""
 	while IFS= read -r -d '' rec; do
 		meta_args+=( --metadata "$rec" )
+		case "$rec" in
+			title=*)  title=${rec#title=} ;;
+			author=*) author=${rec#author=} ;;
+			date=*)   date=${rec#date=} ;;
+		esac
 	done < <(python3 - "$src" <<'PY'
 import re, html as ihtml, sys
 
@@ -249,6 +259,43 @@ for m in re.finditer(r'<div class="preview"[^>]*>(.*?)</div>', h, re.S):
 PY
 )
 
-	pandoc "$src" --lua-filter "$filter" "${meta_args[@]}" -o "$dest"
+	# Generate a typographic cover: title centered, with author + date
+	# stacked at the bottom when present. Only meaningful for EPUB output.
+	if [ "$format" = epub ] && [ -n "$title" ]; then
+		title_txt=$(mktemp -t ss2epub-title.XXXXXX.txt)
+		tmpfiles+=( "$title_txt" )
+		printf '%s' "$title" > "$title_txt"
+
+		# macOS BSD mktemp doesn't substitute X's mid-template, so we
+		# can't ask for a .png-suffixed name directly — generate a base
+		# name and rename to add the real extension. pandoc derives the
+		# cover image MIME type from the filename, so the .png matters.
+		cover_base=$(mktemp -t ss2epub-cover)
+		cover_png="$cover_base.png"
+		mv "$cover_base" "$cover_png"
+		tmpfiles+=( "$cover_png" )
+
+		magick_args=(
+			-size 1400x2100 "xc:white"
+			\( -size 1200x1400 -background none -fill black
+			   -font /System/Library/Fonts/Helvetica.ttc
+			   -gravity center "caption:@$title_txt" \)
+			-gravity center -composite
+			-fill "#555555" -font /System/Library/Fonts/Helvetica.ttc
+			-gravity south
+		)
+		if [ -n "$author" ]; then
+			magick_args+=( -pointsize 40 -annotate +0+220 "$author" )
+		fi
+		if [ -n "$date" ]; then
+			magick_args+=( -pointsize 30 -annotate +0+160 "$date" )
+		fi
+		magick_args+=( "$cover_png" )
+		magick "${magick_args[@]}"
+
+		cover_args+=( --epub-cover-image="$cover_png" )
+	fi
+
+	pandoc "$src" --lua-filter "$filter" "${meta_args[@]}" "${cover_args[@]}" -o "$dest"
 	echo "wrote $dest"
 done
