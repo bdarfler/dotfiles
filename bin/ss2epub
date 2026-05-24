@@ -1,301 +1,156 @@
-#!/usr/bin/env bash
-# ss2epub — convert Substack newsletter HTML to a clean EPUB (or DOCX).
-#
-# Strips email chrome (banner, byline/post-meta, READ IN APP button,
-# action icons, copyright + unsubscribe footer, subscriber bio block,
-# preview-pane spacer text) and inline email CSS, then runs pandoc.
-#
-# Usage:
-#   ss2epub FILE.html [FILE.html ...]   # write FILE.epub next to each input
-#   ss2epub -d FILE.html                # write FILE.docx instead of .epub
-#   ss2epub -o OUT.epub FILE.html       # custom output path (single file only)
-#
-# Requires: pandoc (brew install pandoc).
-set -euo pipefail
+#!/usr/bin/env python3
+"""ss2epub — convert Substack newsletter HTML to a clean EPUB.
 
-format=epub
-out=""
-while getopts "do:h" opt; do
-	case "$opt" in
-		d) format=docx ;;
-		o) out="$OPTARG" ;;
-		h) sed -n '2,13p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
-		*) exit 2 ;;
-	esac
-done
-shift $((OPTIND - 1))
+Strips email chrome (banner, byline/post-meta, READ IN APP button,
+action icons, copyright + unsubscribe footer, subscriber bio block,
+preview-pane spacer text) and inline email CSS, then runs pandoc.
+Generates a typographic cover image with the title centered and
+author/date stacked at the bottom.
 
-if [ $# -eq 0 ]; then
-	echo "usage: ss2epub [-d] [-o OUT] FILE.html ..." >&2
-	exit 2
-fi
-if [ -n "$out" ] && [ $# -gt 1 ]; then
-	echo "ss2epub: -o only valid with a single input file" >&2
-	exit 2
-fi
-if ! command -v pandoc >/dev/null 2>&1; then
-	echo "ss2epub: pandoc not found — brew install pandoc" >&2
-	exit 1
-fi
+Usage:
+  ss2epub FILE.html [FILE.html ...]
 
-filter=$(mktemp -t ss2epub.XXXXXX.lua)
-tmpfiles=()
-trap 'rm -f "$filter" "${tmpfiles[@]}"' EXIT
+Requires: pandoc and ImageMagick (brew install pandoc imagemagick).
+"""
 
-cat > "$filter" <<'LUA'
--- Pandoc Lua filter that strips Substack-email chrome.
--- Bundled inside ss2epub; see ~/.dotfiles/bin/ss2epub.
---
--- Two-pass filter:
---   1. Scope the document to Substack's <div class="post typography">
---      wrappers (post-header + article body).
---   2. Drop chrome images/links/tables/spans by URL pattern or class,
---      unwrap <h1><a>...</a></h1>, and strip inline email CSS.
+import argparse
+import html as ihtml
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
 
-local function src_matches_chrome(src)
-  src = src or ""
-  local decoded = src:gsub("%%2F", "/"):gsub("%%2f", "/")
-  local patterns = {
-    "eotrx%.substackcdn%.com",   -- email tracking pixel
-    "substack%.com/icon/",       -- Lucide UI icons
-    "substack%.com/img/email/",  -- "READ IN APP", publish-button, etc.
-    "_400x400%.png",             -- author avatar
-  }
-  for _, p in ipairs(patterns) do
-    if decoded:find(p) then return true end
-  end
-  return false
-end
+HELVETICA = "/System/Library/Fonts/Helvetica.ttc"
 
-local CHROME_TEXT = { ["view in browser"] = true, ["read in app"] = true }
+FILTER_PATH = Path(__file__).resolve().parent / "ss2epub-filter.lua"
 
-local CHROME_CLASSES = {
-  "email%-button%-",      -- "READ IN APP", spacer, outline
-  "post%-meta",           -- byline metadata bars
-  "post%-ufi",            -- like/comment/share UI
-  "subscription%-widget", -- inline subscribe CTA
-  "comments?%-cta",       -- comments call-to-action
-  "^preview$",            -- email-client preview-pane spacer text
-}
 
-local function has_chrome_class(classes)
-  for _, c in ipairs(classes or {}) do
-    for _, p in ipairs(CHROME_CLASSES) do
-      if c:find(p) then return true end
-    end
-  end
-  return false
-end
+def extract_metadata(html_path: Path) -> dict[str, str]:
+    """Pull title/author/date out of a Substack email HTML file."""
+    h = html_path.read_text(encoding="utf-8", errors="replace")
+    meta: dict[str, str] = {}
 
--- Pass 1: narrow to <div class="post typography">. Unwrap one extra Div
--- level so pandoc's EPUB writer doesn't split each Div into a chapter.
-local scope_to_article = {
-  Pandoc = function(doc)
-    local collected = {}
-    doc:walk({
-      Div = function(d)
-        local has_post, has_typ = false, false
-        for _, c in ipairs(d.classes) do
-          if c == "post" then has_post = true end
-          if c == "typography" then has_typ = true end
-        end
-        if has_post and has_typ then
-          for _, child in ipairs(d.content) do
-            if child.t == "Div" then
-              for _, b in ipairs(child.content) do
-                table.insert(collected, b)
-              end
-            else
-              table.insert(collected, child)
-            end
-          end
-        end
-      end
-    })
-    if #collected > 0 then doc.blocks = collected end
-    return doc
-  end,
-}
+    def clean(s: str) -> str:
+        return re.sub(r"\s+", " ", ihtml.unescape(s)).strip()
 
--- Pass 2: strip chrome + inline styles inside the scoped article.
-local strip_chrome = {
-  Image = function(el)
-    if src_matches_chrome(el.src) then return {} end
-    el.attr = pandoc.Attr()
-    return el
-  end,
+    m = re.search(r"<title>(.*?)</title>", h, re.S)
+    if m:
+        title = clean(m.group(1))
+        if title:
+            meta["title"] = title
 
-  Link = function(el)
-    local text = pandoc.utils.stringify(el.content):lower()
-    if CHROME_TEXT[text] then return {} end
-    if has_chrome_class(el.classes) then return {} end
-    if #el.content == 0 then return {} end
-    el.attr = pandoc.Attr()
-    return el
-  end,
+    # Pandoc rejects full ISO timestamps in --metadata date=, so take the
+    # YYYY-MM-DD prefix of <time datetime="...">.
+    m = re.search(r'<time[^>]*datetime="([^"]+)"', h)
+    if m:
+        meta["date"] = m.group(1)[:10]
 
-  Span = function(el)
-    if has_chrome_class(el.classes) then return {} end
-    el.attr = pandoc.Attr()
-    return el
-  end,
+    pm = re.search(r'class="post-meta".*?</table>', h, re.S)
+    if pm:
+        a = re.search(
+            r'<a[^>]+href="https://substack\.com/@[^"]+"[^>]*>([^<]+)</a>',
+            pm.group(0),
+        )
+        if a:
+            author = clean(a.group(1))
+            if author:
+                meta["author"] = author
 
-  Div = function(el)
-    if has_chrome_class(el.classes) then return {} end
-    el.attr = pandoc.Attr()
-    return el
-  end,
+    return meta
 
-  Table = function(el)
-    if has_chrome_class(el.classes) then return {} end
-    local out = {}
-    for _, row in ipairs(el.bodies[1] and el.bodies[1].body or {}) do
-      for _, cell in ipairs(row.cells) do
-        for _, block in ipairs(cell.contents) do
-          table.insert(out, block)
-        end
-      end
-    end
-    for _, row in ipairs(el.head.rows or {}) do
-      for _, cell in ipairs(row.cells) do
-        for _, block in ipairs(cell.contents) do
-          table.insert(out, block)
-        end
-      end
-    end
-    return out
-  end,
 
-  Para = function(el)
-    if #el.content == 0 then return {} end
-  end,
+def render_cover(title: str, author: str, date: str, out_png: Path, tmpdir: Path) -> None:
+    """Render the typographic cover PNG via ImageMagick."""
+    title_txt = tmpdir / "title.txt"
+    title_txt.write_text(title)
 
-  Header = function(el)
-    if #el.content == 1 and el.content[1].t == "Link" then
-      el.content = el.content[1].content
-    end
-    el.attr = pandoc.Attr()
-    return el
-  end,
+    args = [
+        "magick",
+        "-size", "1400x2100", "xc:white",
+        "(",
+            "-size", "1200x1400",
+            "-background", "none",
+            "-fill", "black",
+            "-font", HELVETICA,
+            "-gravity", "center",
+            f"caption:@{title_txt}",
+        ")",
+        "-gravity", "center", "-composite",
+        "-fill", "#555555",
+        "-font", HELVETICA,
+        "-gravity", "south",
+    ]
+    if author:
+        args += ["-pointsize", "40", "-annotate", "+0+220", author]
+    if date:
+        args += ["-pointsize", "30", "-annotate", "+0+160", date]
+    args.append(str(out_png))
 
-  Block = function(el)
-    if el.attr then el.attr = pandoc.Attr() end
-    return el
-  end,
-}
+    subprocess.run(args, check=True)
 
-return { scope_to_article, strip_chrome }
-LUA
 
-for src in "$@"; do
-	if [ ! -f "$src" ]; then
-		echo "ss2epub: not a file: $src" >&2
-		exit 1
-	fi
-	if [ -n "$out" ]; then
-		dest="$out"
-	else
-		dest="${src%.html}.${format}"
-	fi
+def convert(src: Path, tmpdir: Path) -> None:
+    """Convert one Substack HTML file to an EPUB next to it."""
+    if not src.is_file():
+        print(f"ss2epub: not a file: {src}", file=sys.stderr)
+        sys.exit(1)
 
-	# Pull title/author/date/description out of the Substack HTML and
-	# pass them to pandoc as Dublin Core metadata. The body-stripping Lua
-	# filter still drops the post-meta byline from the rendered text.
-	meta_args=()
-	cover_args=()
-	title=""
-	author=""
-	date=""
-	while IFS= read -r -d '' rec; do
-		meta_args+=( --metadata "$rec" )
-		case "$rec" in
-			title=*)  title=${rec#title=} ;;
-			author=*) author=${rec#author=} ;;
-			date=*)   date=${rec#date=} ;;
-		esac
-	done < <(python3 - "$src" <<'PY'
-import re, html as ihtml, sys
+    dest = src.with_suffix(".epub")
+    meta = extract_metadata(src)
 
-with open(sys.argv[1], encoding='utf-8', errors='replace') as f:
-    h = f.read()
+    pandoc_args = ["pandoc", str(src), "--lua-filter", str(FILTER_PATH)]
+    for k, v in meta.items():
+        pandoc_args += ["--metadata", f"{k}={v}"]
 
-def clean(s):
-    if s is None:
-        return None
-    s = re.sub(r'\s+', ' ', s)
-    return ihtml.unescape(s).strip() or None
+    if "title" in meta:
+        cover_png = tmpdir / "cover.png"
+        render_cover(
+            meta["title"],
+            meta.get("author", ""),
+            meta.get("date", ""),
+            cover_png,
+            tmpdir,
+        )
+        pandoc_args.append(f"--epub-cover-image={cover_png}")
 
-def emit(k, v):
-    if v:
-        sys.stdout.write(k + '=' + v + '\0')
+    pandoc_args += ["-o", str(dest)]
+    subprocess.run(pandoc_args, check=True)
+    print(f"wrote {dest}")
 
-m = re.search(r'<title>(.*?)</title>', h, re.S)
-emit('title', clean(m.group(1)) if m else None)
 
-# Pandoc rejects full ISO timestamps in --metadata date=, so take the
-# YYYY-MM-DD prefix of <time datetime="...">.
-m = re.search(r'<time[^>]*datetime="([^"]+)"', h)
-if m:
-    emit('date', m.group(1)[:10])
-
-pm = re.search(r'class="post-meta".*?</table>', h, re.S)
-if pm:
-    a = re.search(
-        r'<a[^>]+href="https://substack\.com/@[^"]+"[^>]*>([^<]+)</a>',
-        pm.group(0),
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        prog="ss2epub",
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    if a:
-        emit('author', clean(a.group(1)))
+    parser.add_argument(
+        "files",
+        nargs="+",
+        metavar="FILE.html",
+        help="Substack newsletter HTML file(s) to convert.",
+    )
+    args = parser.parse_args()
 
-# Substack emits two <div class="preview">: the real subtitle and a
-# whitespace-padding block of &#847;/&nbsp;/&#8199; entities. Unescape
-# first, then test for any letter — the padding has none.
-for m in re.finditer(r'<div class="preview"[^>]*>(.*?)</div>', h, re.S):
-    stripped = re.sub(r'<[^>]+>', '', m.group(1))
-    cleaned = re.sub(r'\s+', ' ', ihtml.unescape(stripped)).strip()
-    if re.search(r'[A-Za-z]', cleaned):
-        emit('description', cleaned)
-        break
-PY
-)
+    if not shutil.which("pandoc"):
+        print("ss2epub: pandoc not found — brew install pandoc", file=sys.stderr)
+        sys.exit(1)
+    if not FILTER_PATH.is_file():
+        print(f"ss2epub: lua filter not found at {FILTER_PATH}", file=sys.stderr)
+        sys.exit(1)
 
-	# Generate a typographic cover: title centered, with author + date
-	# stacked at the bottom when present. Only meaningful for EPUB output.
-	if [ "$format" = epub ] && [ -n "$title" ]; then
-		title_txt=$(mktemp -t ss2epub-title.XXXXXX.txt)
-		tmpfiles+=( "$title_txt" )
-		printf '%s' "$title" > "$title_txt"
+    with tempfile.TemporaryDirectory(prefix="ss2epub-") as td:
+        tmpdir = Path(td)
+        for f in args.files:
+            convert(Path(f), tmpdir)
 
-		# macOS BSD mktemp doesn't substitute X's mid-template, so we
-		# can't ask for a .png-suffixed name directly — generate a base
-		# name and rename to add the real extension. pandoc derives the
-		# cover image MIME type from the filename, so the .png matters.
-		cover_base=$(mktemp -t ss2epub-cover)
-		cover_png="$cover_base.png"
-		mv "$cover_base" "$cover_png"
-		tmpfiles+=( "$cover_png" )
 
-		magick_args=(
-			-size 1400x2100 "xc:white"
-			\( -size 1200x1400 -background none -fill black
-			   -font /System/Library/Fonts/Helvetica.ttc
-			   -gravity center "caption:@$title_txt" \)
-			-gravity center -composite
-			-fill "#555555" -font /System/Library/Fonts/Helvetica.ttc
-			-gravity south
-		)
-		if [ -n "$author" ]; then
-			magick_args+=( -pointsize 40 -annotate +0+220 "$author" )
-		fi
-		if [ -n "$date" ]; then
-			magick_args+=( -pointsize 30 -annotate +0+160 "$date" )
-		fi
-		magick_args+=( "$cover_png" )
-		magick "${magick_args[@]}"
-
-		cover_args+=( --epub-cover-image="$cover_png" )
-	fi
-
-	pandoc "$src" --lua-filter "$filter" "${meta_args[@]}" "${cover_args[@]}" -o "$dest"
-	echo "wrote $dest"
-done
+if __name__ == "__main__":
+    try:
+        main()
+    except subprocess.CalledProcessError as e:
+        # pandoc / magick already wrote their own error to stderr; just
+        # propagate their exit code without dumping a Python traceback.
+        sys.exit(e.returncode)
