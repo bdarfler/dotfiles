@@ -139,4 +139,31 @@ local strip_chrome = {
   end,
 }
 
-return { scope_to_article, strip_chrome }
+-- Pass 3: insert an italic "Author · Date" byline paragraph right after
+-- the first level-1 Header. Runs after strip_chrome so the freshly
+-- inserted paragraph isn't itself unwrapped or dropped.
+local inject_byline = {
+  Pandoc = function(doc)
+    local function metastr(k)
+      return doc.meta[k] and pandoc.utils.stringify(doc.meta[k]) or ""
+    end
+    local parts = {}
+    local author = metastr("author")
+    local date = metastr("date")
+    if author ~= "" then table.insert(parts, author) end
+    if date ~= "" then table.insert(parts, date) end
+    if #parts == 0 then return doc end
+    local byline = pandoc.Para({
+      pandoc.Emph({ pandoc.Str(table.concat(parts, " · ")) }),
+    })
+    for i, block in ipairs(doc.blocks) do
+      if block.t == "Header" and block.level == 1 then
+        table.insert(doc.blocks, i + 1, byline)
+        break
+      end
+    end
+    return doc
+  end,
+}
+
+return { scope_to_article, strip_chrome, inject_byline }

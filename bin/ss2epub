@@ -100,7 +100,23 @@ def convert(src: Path, tmpdir: Path) -> None:
     dest = src.with_suffix(".epub")
     meta = extract_metadata(src)
 
-    pandoc_args = ["pandoc", str(src), "--lua-filter", str(FILTER_PATH)]
+    # Pandoc's default EPUB stylesheet sets `h1 { page-break-before:
+    # always }`, which renders as a blank page between the cover and
+    # the post title in Apple Books. Inject an override after the
+    # default stylesheet via --include-in-header so the default rules
+    # still load and only the page-break rule loses.
+    css_override = tmpdir / "override.html"
+    css_override.write_text(
+        "<style>h1 { page-break-before: avoid; }</style>\n"
+    )
+
+    pandoc_args = [
+        "pandoc",
+        str(src),
+        "--lua-filter", str(FILTER_PATH),
+        "--epub-title-page=false",
+        f"--include-in-header={css_override}",
+    ]
     for k, v in meta.items():
         pandoc_args += ["--metadata", f"{k}={v}"]
 
