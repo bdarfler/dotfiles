@@ -4,13 +4,11 @@
 Strips email chrome (banner, byline/post-meta, READ IN APP button,
 action icons, copyright + unsubscribe footer, subscriber bio block,
 preview-pane spacer text) and inline email CSS, then runs pandoc.
-Generates a typographic cover image with the title centered and
-author/date stacked at the bottom.
 
 Usage:
   ss2epub FILE.html [FILE.html ...]
 
-Requires: pandoc and ImageMagick (brew install pandoc imagemagick).
+Requires: pandoc (brew install pandoc).
 """
 
 import argparse
@@ -22,9 +20,18 @@ import sys
 import tempfile
 from pathlib import Path
 
-HELVETICA = "/System/Library/Fonts/Helvetica.ttc"
 
 FILTER_PATH = Path(__file__).resolve().parent / "ss2epub-filter.lua"
+
+# FAT/NTFS reserved chars + ASCII control chars. Kindle's documents
+# filesystem rejects these in titles and replaces them with `_` when it
+# normalizes; pre-stripping here keeps titles clean downstream.
+TITLE_STRIP_RE = re.compile(r'[<>:"/\\|?*\x00-\x1f]')
+
+
+def sanitize_title(s: str) -> str:
+    s = TITLE_STRIP_RE.sub("", s)
+    return re.sub(r"\s+", " ", s).strip()
 
 
 def extract_metadata(html_path: Path) -> dict[str, str]:
@@ -37,7 +44,7 @@ def extract_metadata(html_path: Path) -> dict[str, str]:
 
     m = re.search(r"<title>(.*?)</title>", h, re.S)
     if m:
-        title = clean(m.group(1))
+        title = sanitize_title(clean(m.group(1)))
         if title:
             meta["title"] = title
 
@@ -61,50 +68,27 @@ def extract_metadata(html_path: Path) -> dict[str, str]:
     return meta
 
 
-def render_cover(title: str, author: str, date: str, out_png: Path, tmpdir: Path) -> None:
-    """Render the typographic cover PNG via ImageMagick."""
-    title_txt = tmpdir / "title.txt"
-    title_txt.write_text(title)
-
-    args = [
-        "magick",
-        "-size", "1400x2100", "xc:white",
-        "(",
-            "-size", "1200x1400",
-            "-background", "none",
-            "-fill", "black",
-            "-font", HELVETICA,
-            "-gravity", "center",
-            f"caption:@{title_txt}",
-        ")",
-        "-gravity", "center", "-composite",
-        "-fill", "#555555",
-        "-font", HELVETICA,
-        "-gravity", "south",
-    ]
-    if author:
-        args += ["-pointsize", "40", "-annotate", "+0+220", author]
-    if date:
-        args += ["-pointsize", "30", "-annotate", "+0+160", date]
-    args.append(str(out_png))
-
-    subprocess.run(args, check=True)
-
-
 def convert(src: Path, tmpdir: Path) -> None:
     """Convert one Substack HTML file to an EPUB next to it."""
     if not src.is_file():
         print(f"ss2epub: not a file: {src}", file=sys.stderr)
         sys.exit(1)
 
+    # Sanitize the output filename too — Kindle's library often uses the
+    # filename (not dc:title) as the displayed title, so cleaning only
+    # the metadata still leaves underscores in the reader UI.
     dest = src.with_suffix(".epub")
+    clean_stem = sanitize_title(dest.stem)
+    if clean_stem and clean_stem != dest.stem:
+        dest = dest.parent / f"{clean_stem}.epub"
+
     meta = extract_metadata(src)
 
     # Pandoc's default EPUB stylesheet sets `h1 { page-break-before:
-    # always }`, which renders as a blank page between the cover and
-    # the post title in Apple Books. Inject an override after the
-    # default stylesheet via --include-in-header so the default rules
-    # still load and only the page-break rule loses.
+    # always }`, which renders as a blank page before the post title.
+    # Inject an override after the default stylesheet via
+    # --include-in-header so the default rules still load and only the
+    # page-break rule loses.
     css_override = tmpdir / "override.html"
     css_override.write_text(
         "<style>h1 { page-break-before: avoid; }</style>\n"
@@ -119,17 +103,6 @@ def convert(src: Path, tmpdir: Path) -> None:
     ]
     for k, v in meta.items():
         pandoc_args += ["--metadata", f"{k}={v}"]
-
-    if "title" in meta:
-        cover_png = tmpdir / "cover.png"
-        render_cover(
-            meta["title"],
-            meta.get("author", ""),
-            meta.get("date", ""),
-            cover_png,
-            tmpdir,
-        )
-        pandoc_args.append(f"--epub-cover-image={cover_png}")
 
     pandoc_args += ["-o", str(dest)]
     subprocess.run(pandoc_args, check=True)
@@ -167,6 +140,6 @@ if __name__ == "__main__":
     try:
         main()
     except subprocess.CalledProcessError as e:
-        # pandoc / magick already wrote their own error to stderr; just
-        # propagate their exit code without dumping a Python traceback.
+        # pandoc already wrote its own error to stderr; just propagate
+        # the exit code without dumping a Python traceback.
         sys.exit(e.returncode)
