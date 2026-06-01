@@ -35,7 +35,7 @@ def sanitize_title(s: str) -> str:
 
 
 def extract_metadata(html_path: Path) -> dict[str, str]:
-    """Pull title/author/date out of a Substack email HTML file."""
+    """Pull title/author/date/description out of a Substack email HTML file."""
     h = html_path.read_text(encoding="utf-8", errors="replace")
     meta: dict[str, str] = {}
 
@@ -64,6 +64,18 @@ def extract_metadata(html_path: Path) -> dict[str, str]:
             author = clean(a.group(1))
             if author:
                 meta["author"] = author
+
+    # Substack emits two <div class="preview"> blocks: the real subtitle
+    # (the dek shown as the email preview) and a whitespace-padding block
+    # of &#847;/&nbsp;/&#8199; entity refs. Strip tags + unescape first,
+    # then pick the first match that contains any actual letter — the
+    # padding block has none after unescape.
+    for m in re.finditer(r'<div class="preview"[^>]*>(.*?)</div>', h, re.S):
+        stripped = re.sub(r"<[^>]+>", "", m.group(1))
+        cleaned = clean(stripped)
+        if re.search(r"[A-Za-z]", cleaned):
+            meta["description"] = cleaned
+            break
 
     return meta
 
