@@ -60,7 +60,7 @@ export HISTSIZE=10000                                  # More history in memory
 export SAVEHIST=10000                                  # More history on disk
 export HISTORY_FILTER_EXCLUDE=("http://" "https://")   # Ignore commands with urls
 setopt INC_APPEND_HISTORY                              # Append history incrementally
-setopt HIST_IGNORE_ALL_DUPS                            # Ignore all duplicates
+setopt HIST_IGNORE_DUPS                                # Ignore adjacent duplicates (keeps cwd-history refs intact)
 
 # ================ Hub =====================================
 
