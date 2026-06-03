@@ -9,7 +9,6 @@
 # Install Everything
 - `brew bundle install`
 - Install `vim-plug`
-- Install `antigen`
 - `topgrade`
 
 # Install ASDF

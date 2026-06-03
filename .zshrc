@@ -24,7 +24,7 @@ eval "$(mise activate zsh)"                            # Tool version manager
 eval "$(direnv hook zsh)"                              # auto-load .envrc in project dirs
 HOMEBREW_PREFIX="$(brew --prefix)"                     # Homebrew prefix
 eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"         # Setup homebrew paths
-source ${HOMEBREW_PREFIX}/share/antigen/antigen.zsh    # Plugin manager for zsh
+source ${HOMEBREW_PREFIX}/opt/antidote/share/antidote/antidote.zsh  # Plugin manager for zsh
 
 # Setup fzf
 if [[ ! "$PATH" == *${HOMEBREW_PREFIX}/opt/fzf/bin* ]]; then
@@ -37,15 +37,9 @@ source "${HOMEBREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
 fpath=(${HOMEBREW_PREFIX}/share/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
 
-# ================ Antigen =================================
+# ================ Antidote ================================
 
-export ADOTDIR=~/.antigen                              # Explict default value for Topgrade
-
-antigen bundle zsh-users/zsh-autosuggestions           # Autosuggestions
-antigen bundle gezalore/zsh-prioritize-cwd-history     # Prioritize history based on current dir
-antigen bundle MichaelAquilina/zsh-history-filter      # Exclude commands from history based on patterns
-antigen bundle Aloxaf/fzf-tab                          # Fuzzy tab completion
-antigen apply
+antidote load                                          # Loads plugins from ~/.zsh_plugins.txt
 
 # Tab: accept autosuggestion if one is showing, otherwise fzf-tab completion
 _tab_accept_or_fzf_tab() {

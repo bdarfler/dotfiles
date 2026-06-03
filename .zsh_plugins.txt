@@ -1,0 +1,4 @@
+zsh-users/zsh-autosuggestions
+gezalore/zsh-prioritize-cwd-history
+MichaelAquilina/zsh-history-filter
+Aloxaf/fzf-tab
