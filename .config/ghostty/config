@@ -3,3 +3,4 @@ font-size = 14
 window-inherit-working-directory = false
 tab-inherit-working-directory = false
 clipboard-paste-bracketed-safe = true
+bell-features = title
