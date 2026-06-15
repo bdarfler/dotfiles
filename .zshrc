@@ -93,3 +93,6 @@ alias du='dust'
 # ================ Local .zshrc ============================
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# claude-view
+export PATH="/Users/bendarfler/.claude-view/bin:$PATH"

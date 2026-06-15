@@ -1,18 +1,32 @@
 tap "agavra/tap"
+tap "andyrewlee/amux"
 tap "anomalyco/tap"
+tap "asheshgoplani/tap"
 tap "brewforge/extras"
+tap "brizzai/tap"
 tap "charmbracelet/tap"
+tap "coollabsio/jean"
 tap "dlvhdr/formulae"
 tap "harelba/q"
 tap "hashicorp/tap"
+tap "multica-ai/tap"
 tap "raine/claude-history"
-tap "sst/tap"
+tap "runfusion/fusion"
+tap "sortie-ai/tap"
+tap "sst/tap", "https://github.com/anomalyco/homebrew-tap.git"
+tap "stablyai/orca"
 tap "umputun/apps"
 tap "zippoxer/tap"
 # Plugin manager for zsh, inspired by antigen and antibody
 brew "antidote"
 # Query anything with SQL
 brew "anyquery"
+# Text-based UI library
+brew "ncurses"
+# Terminal multiplexer
+brew "tmux"
+# Terminal session manager for AI coding agents
+brew "aoe"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -25,12 +39,12 @@ brew "readline"
 brew "sqlite"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
 # Integrated shell for working with the AWS CLI
 brew "aws-shell"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Text-based UI library
-brew "ncurses"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Open source, extensible AI agent that goes beyond code suggestions
@@ -195,8 +209,6 @@ brew "prettyping"
 brew "procs"
 # Go support for Google's protocol buffers
 brew "protoc-gen-go"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # File browser
 brew "ranger"
 # Search tool like grep and The Silver Searcher
@@ -245,6 +257,18 @@ brew "zenith"
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
+# TUI for running parallel coding agents
+brew "andyrewlee/amux/amux", trusted: true
+# Terminal session manager for AI coding agents
+brew "asheshgoplani/tap/agent-deck", trusted: true
+# Multica CLI — local agent runtime and management tool for the Multica platform
+brew "multica-ai/tap/multica", trusted: true
+# Fusion — AI-orchestrated task board. From rough idea to production code, automatically
+brew "runfusion/fusion/fusion", trusted: true
+# Spec-first orchestration service for coding agents
+brew "sortie-ai/tap/sortie", trusted: true
+# The AI coding agent built for the terminal.
+brew "sst/tap/opencode"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -315,6 +339,8 @@ cask "doughnut"
 cask "dropbox"
 # Web browser
 cask "firefox"
+# TUI for managing multiple Claude Code sessions in parallel
+cask "brizzai/tap/fleet", trusted: true
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-monaspace"
@@ -346,6 +372,8 @@ cask "imageoptim"
 cask "itsycal"
 # Offline AI chat tool
 cask "jan"
+# AI Assistant desktop application
+cask "coollabsio/jean/jean", trusted: true
 # Keyboard customiser
 cask "karabiner-elements"
 # File archiver
@@ -400,6 +428,8 @@ cask "ollama-app"
 cask "opcode"
 # Tool for working with messy data (previously Google Refine)
 cask "openrefine"
+# IDE for orchestrating AI coding agents across terminals and worktrees
+cask "stablyai/orca/orca", trusted: true
 # WebKit based web browser
 cask "orion"
 # Visual client for Helix Core
@@ -430,6 +460,8 @@ cask "stats"
 cask "steam"
 # Run multiple Claude Code instances simultaneously using git worktrees
 cask "stravu-crystal"
+# Native terminal coding agents command center
+cask "supacode"
 # Dictation tool including LLM reformatting
 cask "superwhisper"
 # Lightweight CSV editor
@@ -479,14 +511,10 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor Pro", id: 1058273036
 mas "Publisher Master - Graphic Design & Page Layout Creator", id: 998756839
 mas "Quip", id: 1003160018
-mas "Recasto", id: 1144192021
 mas "Solves", id: 1394359548
 mas "Spokenly", id: 6740315592
 mas "Swift Publisher 5", id: 1058362543
 mas "TickTick", id: 966085870
-mas "To FLAC Converter 2", id: 1057068364
-mas "To MP3 Converter 2", id: 983472324
-mas "UPDF", id: 1619925971
 mas "Webcam Effects", id: 1525288396
 mas "Webcam Settings", id: 533696630
 mas "WhatsApp", id: 310633997
@@ -495,5 +523,10 @@ vscode "anysphere.remote-ssh"
 vscode "vscodevim.vim"
 go "cmd/go"
 go "cmd/gofmt"
+npm "@aoagents/ao"
 npm "@tobilu/qmd"
+npm "agents-shire"
+npm "ccusage"
+npm "cldctrl"
 npm "corepack"
+npm "dmux"
