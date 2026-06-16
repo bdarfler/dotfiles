@@ -30,6 +30,7 @@
 - `cd .config`
 - `ln -s ~/.dotfiles/.config/base16-shell base16-shell`
 - `ln -s ~/.dotfiles/.config/ghostty ghostty`
+- `ln -s ~/.dotfiles/.config/kitty kitty`
 - `ln -s ~/.dotfiles/.config/karabiner karabiner`
 - `ln -s ~/.dotfiles/.config/starship.toml starship.toml`
 
