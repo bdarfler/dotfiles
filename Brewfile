@@ -125,6 +125,8 @@ brew "graphviz"
 brew "gron"
 # Kubernetes package manager
 brew "helm"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Ncurses-based console hex editor
 brew "hexcurse"
 # Command-line hex viewer
@@ -251,6 +253,8 @@ brew "xan"
 brew "xh"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# Pluggable terminal workspace, with terminal multiplexer as the base feature
+brew "zellij"
 # In terminal graphical metrics for your *nix system
 brew "zenith"
 # Shell extension to navigate your filesystem faster
@@ -329,8 +333,6 @@ cask "devutils"
 cask "diffusionbee"
 # Voice and text chat software
 cask "discord"
-# App to build and share containerised applications and microservices
-cask "docker-desktop"
 # Utility that prevents the system from going to sleep
 cask "domzilla-caffeine"
 # Podcast client
@@ -348,8 +350,6 @@ cask "font-monaspice-nerd-font"
 cask "font-roboto"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Web browser
-cask "google-chrome"
 # Client for the Google Drive storage service
 cask "google-drive"
 # Virtual globe
@@ -450,8 +450,6 @@ cask "screenflick"
 cask "sculptor"
 # Instant messaging application focusing on security
 cask "signal"
-# Team communication and collaboration software
-cask "slack"
 # Music streaming service
 cask "spotify"
 # System monitor for the menu bar
@@ -511,6 +509,7 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor Pro", id: 1058273036
 mas "Publisher Master - Graphic Design & Page Layout Creator", id: 998756839
 mas "Quip", id: 1003160018
+mas "Slack 2", id: 803453959
 mas "Solves", id: 1394359548
 mas "Spokenly", id: 6740315592
 mas "Swift Publisher 5", id: 1058362543
@@ -524,7 +523,6 @@ vscode "vscodevim.vim"
 go "cmd/go"
 go "cmd/gofmt"
 npm "@aoagents/ao"
-npm "@tobilu/qmd"
 npm "agents-shire"
 npm "ccusage"
 npm "cldctrl"
