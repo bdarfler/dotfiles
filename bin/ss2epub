@@ -94,6 +94,10 @@ def convert(src: Path, tmpdir: Path) -> None:
     if clean_stem and clean_stem != dest.stem:
         dest = dest.parent / f"{clean_stem}.epub"
 
+    if dest.exists():
+        print(f"skipping {src}: {dest} already exists")
+        return
+
     meta = extract_metadata(src)
 
     # Pandoc's default EPUB stylesheet sets `h1 { page-break-before:
