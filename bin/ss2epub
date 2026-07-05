@@ -6,7 +6,10 @@ action icons, copyright + unsubscribe footer, subscriber bio block,
 preview-pane spacer text) and inline email CSS, then runs pandoc.
 
 Usage:
-  ss2epub FILE.html [FILE.html ...]
+  ss2epub [FILE.html ...]
+
+With no arguments, converts all *.html files in the default inbox
+directory (see DEFAULT_DIR below).
 
 Requires: pandoc (brew install pandoc).
 """
@@ -22,6 +25,10 @@ from pathlib import Path
 
 
 FILTER_PATH = Path(__file__).resolve().parent / "ss2epub-filter.lua"
+DEFAULT_DIR = Path(
+    "/Users/bendarfler/Library/CloudStorage/GoogleDrive-bdarfler@gmail.com"
+    "/My Drive/0 Inbox"
+)
 
 # FAT/NTFS reserved chars + ASCII control chars. Kindle's documents
 # filesystem rejects these in titles and replaces them with `_` when it
@@ -133,9 +140,12 @@ def main() -> None:
     )
     parser.add_argument(
         "files",
-        nargs="+",
+        nargs="*",
         metavar="FILE.html",
-        help="Substack newsletter HTML file(s) to convert.",
+        help=(
+            "Substack newsletter HTML file(s) to convert. "
+            f"Defaults to all *.html files in {DEFAULT_DIR}."
+        ),
     )
     args = parser.parse_args()
 
@@ -146,10 +156,18 @@ def main() -> None:
         print(f"ss2epub: lua filter not found at {FILTER_PATH}", file=sys.stderr)
         sys.exit(1)
 
+    if args.files:
+        files = [Path(f) for f in args.files]
+    else:
+        files = sorted(DEFAULT_DIR.glob("*.html"))
+        if not files:
+            print(f"ss2epub: no .html files found in {DEFAULT_DIR}", file=sys.stderr)
+            sys.exit(1)
+
     with tempfile.TemporaryDirectory(prefix="ss2epub-") as td:
         tmpdir = Path(td)
-        for f in args.files:
-            convert(Path(f), tmpdir)
+        for f in files:
+            convert(f, tmpdir)
 
 
 if __name__ == "__main__":

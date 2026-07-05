@@ -1,3 +1,4 @@
 *.local
 .claude/
 .config/kitty/*.bak
+__pycache__/
