@@ -102,7 +102,7 @@ def convert(src: Path, tmpdir: Path) -> None:
         dest = dest.parent / f"{clean_stem}.epub"
 
     if dest.exists():
-        print(f"skipping {src}: {dest} already exists")
+        print(f"skipping {src.name} ({dest.name} already exists)")
         return
 
     meta = extract_metadata(src)
@@ -129,7 +129,7 @@ def convert(src: Path, tmpdir: Path) -> None:
 
     pandoc_args += ["-o", str(dest)]
     subprocess.run(pandoc_args, check=True)
-    print(f"wrote {dest}")
+    print(f"wrote {dest.name}")
 
 
 def main() -> None:
