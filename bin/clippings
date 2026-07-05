@@ -107,8 +107,7 @@ def main():
 
     for path in paths:
 
-        output_dir = path.parent / "clippings"
-        output_dir.mkdir(exist_ok=True)
+        output_dir = path.parent
 
         text = path.read_text(encoding="utf-8-sig")
         articles = parse_clippings(text)
