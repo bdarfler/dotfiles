@@ -109,7 +109,10 @@ def main():
 
         output_dir = path.parent
 
-        text = path.read_text(encoding="utf-8-sig")
+        # Kindle prepends a BOM to every entry, not just the start of the file,
+        # so utf-8-sig alone leaves stray BOM chars that split one article
+        # into multiple titles.
+        text = path.read_text(encoding="utf-8-sig").replace("﻿", "")
         articles = parse_clippings(text)
 
         print(f"Parsed {path}: {len(articles)} articles")
