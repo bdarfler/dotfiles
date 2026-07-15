@@ -1,21 +1,19 @@
 tap "agavra/tap"
 tap "andyrewlee/amux"
-tap "anomalyco/tap"
 tap "asheshgoplani/tap"
-tap "brewforge/extras"
-tap "brizzai/tap"
 tap "charmbracelet/tap"
 tap "coollabsio/jean"
 tap "dlvhdr/formulae"
-tap "harelba/q"
 tap "hashicorp/tap"
+tap "jundot/omlx", "https://github.com/jundot/omlx"
 tap "multica-ai/tap"
 tap "raine/claude-history"
-tap "runfusion/fusion"
+tap "raullenchai/rapid-mlx"
 tap "sortie-ai/tap"
 tap "sst/tap", "https://github.com/anomalyco/homebrew-tap.git"
 tap "stablyai/orca"
 tap "umputun/apps"
+tap "wedow/tools"
 tap "zippoxer/tap"
 # Plugin manager for zsh, inspired by antigen and antibody
 brew "antidote"
@@ -221,6 +219,8 @@ brew "rustup"
 brew "s3cmd"
 # Intuitive find & replace CLI
 brew "sd"
+# Export Slack data without admin privileges
+brew "slackdump"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Change macOS audio source from the command-line
@@ -245,6 +245,8 @@ brew "tre-command"
 brew "universal-ctags"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Syntax-aware linter for prose
+brew "vale"
 # Internet file retriever
 brew "wget"
 # CSV CLI magician written in Rust
@@ -261,20 +263,36 @@ brew "zenith"
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Terminal UI for Code Reviews - review AI-generated diffs like a GitHub PR
+brew "agavra/tap/tuicr", trusted: true
 # TUI for running parallel coding agents
 brew "andyrewlee/amux/amux", trusted: true
 # Terminal session manager for AI coding agents
 brew "asheshgoplani/tap/agent-deck", trusted: true
+# A powerful terminal-based AI assistant for developers, providing intelligent coding assistance directly in your terminal.
+brew "charmbracelet/tap/crush", trusted: true
+# Git diff pager based on delta but with a file tree, à la GitHub
+brew "dlvhdr/formulae/diffnav", trusted: true
+# Packer
+brew "hashicorp/tap/packer", trusted: true
+# LLM inference server optimized for Apple Silicon
+brew "jundot/omlx/omlx"
 # Multica CLI — local agent runtime and management tool for the Multica platform
 brew "multica-ai/tap/multica", trusted: true
-# Fusion — AI-orchestrated task board. From rough idea to production code, automatically
-brew "runfusion/fusion/fusion", trusted: true
+# Fuzzy-search Claude Code conversation history from the terminal
+brew "raine/claude-history/claude-history", trusted: true
+# AI inference for Apple Silicon — drop-in OpenAI API, 2-4x faster than Ollama
+brew "raullenchai/rapid-mlx/rapid-mlx", trusted: true
 # Spec-first orchestration service for coding agents
-brew "sortie-ai/tap/sortie", trusted: true
+brew "sortie-ai/tap/sortie", link: false, trusted: true
 # The AI coding agent built for the terminal.
 brew "sst/tap/opencode"
-# Password manager that keeps all passwords secure behind one password
-cask "1password"
+# TUI for reviewing diffs, files, and documents with inline annotations
+brew "umputun/apps/revdiff", trusted: true
+# Minimal ticket tracking in bash
+brew "wedow/tools/ticket", trusted: true
+# Search and resume your Claude Code and Codex CLI conversations
+brew "zippoxer/tap/recall", trusted: true
 # Command-line interface for 1Password
 cask "1password-cli"
 # AI assistant and MCP client
@@ -341,8 +359,6 @@ cask "doughnut"
 cask "dropbox"
 # Web browser
 cask "firefox"
-# TUI for managing multiple Claude Code sessions in parallel
-cask "brizzai/tap/fleet", trusted: true
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-monaspace"
@@ -450,6 +466,8 @@ cask "screenflick"
 cask "sculptor"
 # Instant messaging application focusing on security
 cask "signal"
+# Spec-first orchestration service for coding agents
+cask "sortie-ai/tap/sortie", trusted: true
 # Music streaming service
 cask "spotify"
 # System monitor for the menu bar
@@ -474,8 +492,6 @@ cask "vlc"
 cask "voiceink"
 # Video communication and virtual meeting platform
 cask "webex"
-# Native desktop client for WhatsApp
-cask "whatsapp"
 # BYOK (Bring Your Own Keys) AI assistant
 cask "witsy"
 # Full-featured companion app to the YubiKey
@@ -509,7 +525,6 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Polarr Photo Editor Pro", id: 1058273036
 mas "Publisher Master - Graphic Design & Page Layout Creator", id: 998756839
 mas "Quip", id: 1003160018
-mas "Slack 2", id: 803453959
 mas "Solves", id: 1394359548
 mas "Spokenly", id: 6740315592
 mas "Swift Publisher 5", id: 1058362543
@@ -522,9 +537,8 @@ vscode "anysphere.remote-ssh"
 vscode "vscodevim.vim"
 go "cmd/go"
 go "cmd/gofmt"
-npm "@aoagents/ao"
-npm "agents-shire"
-npm "ccusage"
-npm "cldctrl"
+npm "@twilio-labs/languagetool-cli"
+npm "alex"
 npm "corepack"
-npm "dmux"
+npm "ntn"
+npm "write-good"
