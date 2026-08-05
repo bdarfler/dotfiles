@@ -78,18 +78,21 @@ alias podget='noglob yt-dlp --restrict-filenames \
 
 # ================ Better Versions =========================
 
-alias git='hub'
-alias cat='bat'
-alias less='bat'
-alias diff='delta'
-alias find='fd'
-alias top='htop'
-alias ps='procs'
-alias ls='eza'
-alias grep='rg'
-alias ping='prettyping --nolegend'
-alias df='duf'
-alias du='dust'
+# Skipped when Claude Code sources this file
+if [[ -z "$CLAUDECODE" ]]; then
+  alias git='hub'
+  alias cat='bat'
+  alias less='bat'
+  alias diff='delta'
+  alias find='fd'
+  alias top='htop'
+  alias ps='procs'
+  alias ls='eza'
+  alias grep='rg'
+  alias ping='prettyping --nolegend'
+  alias df='duf'
+  alias du='dust'
+fi
 
 # ================ Local .zshrc ============================
 
