@@ -14,6 +14,7 @@ export PATH="$HOME/.local/bin:$PATH"                   # For Claude
 export PATH="$HOME/.cache/lm-studio/bin:$PATH"         # for LM Studio
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"       # for Rust
 export HOMEBREW_NO_ASK=1                               # Homebrew auto accept
+export VALE_CONFIG_PATH=$HOME/.config/vale/.vale.ini   # Vale config
 
 source ~/.config/base16-shell/scripts/base16-gruvbox-dark-medium.sh
 

@@ -1,4 +1,6 @@
 *.local
 .claude/
 .config/kitty/*.bak
+.config/vale/styles/
+.config/vale/.packages-hash
 __pycache__/
