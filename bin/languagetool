@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""LanguageTool Premium checker — thin wrapper over language_tool_python.
+
+Credentials come from macOS Keychain, never a file or arg:
+    security add-generic-password -a languagetool -s languagetool-username -w '<your LT login email>'
+    security add-generic-password -a languagetool -s languagetool-api-key  -w '<your LT API key>'
+(API key: https://languagetool.org/editor/settings/access-tokens)
+
+Premium credentials make the check use your account's personal dictionary
+server-side. If a finding looks like it should be a permanent exception, add
+the word yourself at https://languagetool.org/editor/settings/words.
+
+Output: one line per finding, `file:line:col: RULE_ID: message. Suggestions: '...'`
+— matches language_tool_python's own CLI format.
+
+Requires language_tool_python installed from git (premium_username/premium_key
+are not in the PyPI release as of 3.4.0):
+    pip install "language_tool_python @ git+https://github.com/jxmorris12/language_tool_python.git@66a3cd70fc61293f5de94907413bbe993aa8f54d"
+"""
+
+from __future__ import annotations
+
+import subprocess
+import sys
+
+import language_tool_python as ltp
+from language_tool_python.exceptions import LanguageToolError
+
+KEYCHAIN_ACCOUNT = "languagetool"
+
+
+def keychain_get(service: str) -> str:
+    try:
+        out = subprocess.run(
+            ["security", "find-generic-password", "-a", KEYCHAIN_ACCOUNT, "-s", service, "-w"],
+            capture_output=True, text=True, check=True,
+        )
+    except subprocess.CalledProcessError:
+        print(
+            f"error: no Keychain item for service '{service}' (account '{KEYCHAIN_ACCOUNT}').\n"
+            f"  security add-generic-password -a {KEYCHAIN_ACCOUNT} -s {service} -w '<value>'",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+    return out.stdout.strip()
+
+
+def main() -> int:
+    if len(sys.argv) != 2:
+        print('usage: languagetool <file|->', file=sys.stderr)
+        return 2
+    label = sys.argv[1]
+    text = sys.stdin.read() if label == "-" else open(label, encoding="utf-8").read()
+
+    tool = ltp.LanguageTool("en-US", remote_server="https://api.languagetoolplus.com")
+    tool.premium_username = keychain_get("languagetool-username")
+    tool.premium_key = keychain_get("languagetool-api-key")
+    tool.picky = True
+
+    try:
+        matches = tool.check(text)
+    except LanguageToolError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    for m in matches:
+        suggestions = ", ".join(f"'{w}'" for w in m.replacements).strip()
+        message = m.message
+        if suggestions and not message.endswith("?"):
+            message += " Suggestions: " + suggestions
+        line, column = m.get_line_and_column(text)
+        print(f"{label}:{line}:{column}: {m.rule_id}: {message}")
+
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
