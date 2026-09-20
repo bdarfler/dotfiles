@@ -5,41 +5,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Copy Current Tab URL",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.google\\.Chrome$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": {
-                                        "mandatory": ["command", "shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "l",
-                                        "modifiers": ["left_command"]
-                                    },
-                                    {
-                                        "key_code": "c",
-                                        "modifiers": ["left_command"]
-                                    },
-                                    { "key_code": "escape" },
-                                    { "key_code": "escape" }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "CapsLock to Hyper/Escape",
                         "manipulators": [
                             {
