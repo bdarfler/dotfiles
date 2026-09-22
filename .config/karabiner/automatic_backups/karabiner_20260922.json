@@ -29,7 +29,6 @@
                                         "modifiers": ["left_command"]
                                     },
                                     {
-                                        "hold_down_milliseconds": 100,
                                         "key_code": "c",
                                         "modifiers": ["left_command"]
                                     },
