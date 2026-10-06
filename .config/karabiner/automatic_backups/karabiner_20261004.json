@@ -29,9 +29,12 @@
                                         "modifiers": ["left_command"]
                                     },
                                     {
+                                        "hold_down_milliseconds": 100,
                                         "key_code": "c",
                                         "modifiers": ["left_command"]
-                                    }
+                                    },
+                                    { "key_code": "escape" },
+                                    { "key_code": "escape" }
                                 ],
                                 "type": "basic"
                             }
