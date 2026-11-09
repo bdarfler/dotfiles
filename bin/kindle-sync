@@ -1,0 +1,658 @@
+#!/usr/bin/env python3
+"""
+Kindle Clippings & Annotations Sync
+Automates pulling highlights and notes from a Kindle Paperwhite (including Kindle OS 5.19.6+)
+connected over MTP, extracting from the internal KSDK SQLite database with delta watermark tracking,
+and generating individual Markdown documents per book into Dropbox / Obsidian.
+"""
+
+import argparse
+import ctypes
+import ctypes.util
+from datetime import datetime
+import json
+import os
+from pathlib import Path
+import re
+import sqlite3
+import sys
+import time
+from typing import Dict, List, Optional, Tuple
+
+# Default Paths
+DEFAULT_DROPBOX_NOTES = os.path.expanduser("~/Dropbox/0 Inbox/notes")
+DEFAULT_CACHE_DIR = os.path.expanduser("~/.kindle_cache")
+DEFAULT_STATE_FILE = os.path.join(DEFAULT_CACHE_DIR, "sync_state.json")
+
+# libmtp Constants
+LIBMTP_FILES_AND_FOLDERS_ROOT = 0xFFFFFFFF
+LIBMTP_FILETYPE_FOLDER = 0
+
+
+# ==============================================================================
+# Helper Utilities
+# ==============================================================================
+
+def sanitize_filename(name: str) -> str:
+    """Sanitize string for use as a filesystem filename."""
+    sanitized = re.sub(r'[/\\:*?"<>|]', '', name)
+    sanitized = re.sub(r'\s+', ' ', sanitized).strip()
+    return sanitized[:120] if sanitized else "Untitled"
+
+
+def parse_date_to_ms(date_str: str) -> Optional[int]:
+    """Parse user date string (YYYY-MM-DD or YYYY-MM-DD HH:MM:SS) into millisecond timestamp."""
+    formats = [
+        "%Y-%m-%d %H:%M:%S",
+        "%Y-%m-%d %H:%M",
+        "%Y-%m-%d",
+        "%m/%d/%Y",
+    ]
+    for fmt in formats:
+        try:
+            dt = datetime.strptime(date_str.strip(), fmt)
+            return int(dt.timestamp() * 1000)
+        except ValueError:
+            continue
+    return None
+
+
+# ==============================================================================
+# Native MTP Client (ctypes -> libmtp)
+# ==============================================================================
+
+class RawDevice(ctypes.Structure):
+    _fields_ = [
+        ("device_entry", ctypes.c_void_p),
+        ("bus_location", ctypes.c_uint32),
+        ("devnum", ctypes.c_uint8)
+    ]
+
+
+class MTPFile(ctypes.Structure):
+    pass
+
+MTPFile._fields_ = [
+    ("item_id", ctypes.c_uint32),
+    ("parent_id", ctypes.c_uint32),
+    ("storage_id", ctypes.c_uint32),
+    ("filename", ctypes.c_char_p),
+    ("filesize", ctypes.c_uint64),
+    ("modificationdate", ctypes.c_long),
+    ("filetype", ctypes.c_int),
+    ("next", ctypes.POINTER(MTPFile))
+]
+
+
+class KindleMTPClient:
+    def __init__(self, lib_path: Optional[str] = None):
+        self.lib_path = lib_path or self._find_libmtp()
+        if not self.lib_path or not os.path.exists(self.lib_path):
+            raise RuntimeError(
+                f"libmtp dynamic library not found. Install via: brew install libmtp"
+            )
+
+        self.lib = ctypes.CDLL(self.lib_path)
+        self._init_signatures()
+        self.lib.LIBMTP_Init()
+        self.device: Optional[ctypes.c_void_p] = None
+
+    def _find_libmtp(self) -> Optional[str]:
+        candidates = [
+            "/opt/homebrew/lib/libmtp.dylib",
+            "/usr/local/lib/libmtp.dylib",
+            ctypes.util.find_library("mtp"),
+        ]
+        for c in candidates:
+            if c and os.path.exists(c):
+                return c
+        return None
+
+    def _init_signatures(self):
+        self.lib.LIBMTP_Init.restype = None
+        self.lib.LIBMTP_Init.argtypes = []
+
+        self.lib.LIBMTP_Detect_Raw_Devices.restype = ctypes.c_int
+        self.lib.LIBMTP_Detect_Raw_Devices.argtypes = [
+            ctypes.POINTER(ctypes.POINTER(RawDevice)),
+            ctypes.POINTER(ctypes.c_int)
+        ]
+
+        self.lib.LIBMTP_Open_Raw_Device_Uncached.restype = ctypes.c_void_p
+        self.lib.LIBMTP_Open_Raw_Device_Uncached.argtypes = [ctypes.POINTER(RawDevice)]
+
+        self.lib.LIBMTP_Release_Device.restype = None
+        self.lib.LIBMTP_Release_Device.argtypes = [ctypes.c_void_p]
+
+        self.lib.LIBMTP_Get_Friendlyname.restype = ctypes.c_char_p
+        self.lib.LIBMTP_Get_Friendlyname.argtypes = [ctypes.c_void_p]
+
+        self.lib.LIBMTP_Get_Files_And_Folders.restype = ctypes.POINTER(MTPFile)
+        self.lib.LIBMTP_Get_Files_And_Folders.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_uint32,
+            ctypes.c_uint32
+        ]
+
+        self.lib.LIBMTP_Get_Children.restype = ctypes.c_int
+        self.lib.LIBMTP_Get_Children.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_uint32,
+            ctypes.c_uint32,
+            ctypes.POINTER(ctypes.POINTER(ctypes.c_uint32))
+        ]
+
+        self.lib.LIBMTP_Get_Filemetadata.restype = ctypes.POINTER(MTPFile)
+        self.lib.LIBMTP_Get_Filemetadata.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_uint32
+        ]
+
+        self.lib.LIBMTP_destroy_file_t.restype = None
+        self.lib.LIBMTP_destroy_file_t.argtypes = [ctypes.POINTER(MTPFile)]
+
+        self.lib.LIBMTP_Get_File_To_File.restype = ctypes.c_int
+        self.lib.LIBMTP_Get_File_To_File.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_uint32,
+            ctypes.c_char_p,
+            ctypes.c_void_p,
+            ctypes.c_void_p
+        ]
+
+    def connect(self, wait_seconds: int = 30, poll_interval: float = 1.0) -> bool:
+        if self.device:
+            self.disconnect()
+
+        start_time = time.time()
+        prompted = False
+
+        while True:
+            raw_devices = ctypes.POINTER(RawDevice)()
+            num_devices = ctypes.c_int(0)
+            err = self.lib.LIBMTP_Detect_Raw_Devices(ctypes.byref(raw_devices), ctypes.byref(num_devices))
+
+            if err == 0 and num_devices.value > 0:
+                dev_ptr = self.lib.LIBMTP_Open_Raw_Device_Uncached(ctypes.byref(raw_devices[0]))
+                if dev_ptr:
+                    self.device = dev_ptr
+                    try:
+                        name_bytes = self.lib.LIBMTP_Get_Friendlyname(dev_ptr)
+                        name = name_bytes.decode('utf-8', 'replace') if name_bytes else "Kindle"
+                        print(f"[✓] Connected to: {name}")
+                    except Exception:
+                        print(f"[✓] Connected to Kindle.")
+                    return True
+
+            elapsed = time.time() - start_time
+            if wait_seconds > 0 and elapsed < wait_seconds:
+                if not prompted:
+                    print("[!] Kindle not detected over MTP.")
+                    print("    Please wake/unlock your Kindle screen and ensure USB cable is connected.")
+                    print("    (Note: If Commander One or Calibre is open, close it to free the USB port.)")
+                    prompted = True
+                sys.stdout.write(f"\r    Waiting for Kindle reconnection... ({int(wait_seconds - elapsed)}s remaining)")
+                sys.stdout.flush()
+                time.sleep(poll_interval)
+            else:
+                if prompted:
+                    print("\n")
+                break
+
+        return False
+
+    def disconnect(self):
+        if self.device:
+            try:
+                self.lib.LIBMTP_Release_Device(self.device)
+            except Exception:
+                pass
+            self.device = None
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.disconnect()
+
+    def list_files_in_folder(self, folder_id: int, storage_id: int = 0) -> List[Dict]:
+        if not self.device:
+            raise RuntimeError("Device not connected")
+
+        results: List[Dict] = []
+        file_ptr = self.lib.LIBMTP_Get_Files_And_Folders(self.device, storage_id, folder_id)
+        if file_ptr:
+            curr = file_ptr
+            while curr:
+                f = curr.contents
+                name = f.filename.decode('utf-8', 'replace') if f.filename else ""
+                results.append({
+                    "item_id": f.item_id,
+                    "parent_id": f.parent_id,
+                    "storage_id": f.storage_id,
+                    "filename": name,
+                    "filesize": f.filesize,
+                    "filetype": f.filetype
+                })
+                curr = f.next
+            self.lib.LIBMTP_destroy_file_t(file_ptr)
+            if results:
+                return results
+
+        # Fallback to Get_Children
+        child_handles = ctypes.POINTER(ctypes.c_uint32)()
+        count = self.lib.LIBMTP_Get_Children(self.device, storage_id, folder_id, ctypes.byref(child_handles))
+        if count > 0 and child_handles:
+            for i in range(count):
+                hid = child_handles[i]
+                meta = self.lib.LIBMTP_Get_Filemetadata(self.device, hid)
+                if meta:
+                    f = meta.contents
+                    name = f.filename.decode('utf-8', 'replace') if f.filename else ""
+                    results.append({
+                        "item_id": f.item_id,
+                        "parent_id": f.parent_id,
+                        "storage_id": f.storage_id,
+                        "filename": name,
+                        "filesize": f.filesize,
+                        "filetype": f.filetype
+                    })
+                    self.lib.LIBMTP_destroy_file_t(meta)
+
+        return results
+
+    def fast_find_ksdk_db(self) -> Optional[Dict]:
+        """Direct targeted search for ksdk_annotation_v1.db under /system/ksdk/.annotations/ (< 1s)."""
+        if not self.device:
+            raise RuntimeError("Device not connected")
+
+        root_items = self.list_files_in_folder(LIBMTP_FILES_AND_FOLDERS_ROOT, 0)
+        sys_folder = next((i for i in root_items if i["filename"].lower() == "system" and i["filetype"] == LIBMTP_FILETYPE_FOLDER), None)
+        if not sys_folder:
+            return None
+
+        sys_items = self.list_files_in_folder(sys_folder["item_id"], sys_folder["storage_id"])
+        ksdk_folder = next((i for i in sys_items if i["filename"].lower() == "ksdk" and i["filetype"] == LIBMTP_FILETYPE_FOLDER), None)
+        if not ksdk_folder:
+            return None
+
+        ksdk_items = self.list_files_in_folder(ksdk_folder["item_id"], ksdk_folder["storage_id"])
+        annot_folder = next((i for i in ksdk_items if "annotation" in i["filename"].lower() and i["filetype"] == LIBMTP_FILETYPE_FOLDER), None)
+        if not annot_folder:
+            return None
+
+        annot_items = self.list_files_in_folder(annot_folder["item_id"], annot_folder["storage_id"])
+        for item in annot_items:
+            if item["filename"].lower().endswith(".db"):
+                return item
+            if item["filetype"] == LIBMTP_FILETYPE_FOLDER:
+                sub_items = self.list_files_in_folder(item["item_id"], item["storage_id"])
+                for sub in sub_items:
+                    if "ksdk_annotation" in sub["filename"].lower() or sub["filename"].lower().endswith(".db"):
+                        return sub
+
+        return None
+
+    def fast_get_book_titles(self) -> Dict[str, str]:
+        """Quickly scan /documents/Downloads/Items01 to map ASIN -> Book Title (< 2s)."""
+        if not self.device:
+            return {}
+
+        asin_map: Dict[str, str] = {}
+        root_items = self.list_files_in_folder(LIBMTP_FILES_AND_FOLDERS_ROOT, 0)
+        docs_folder = next((i for i in root_items if i["filename"].lower() == "documents" and i["filetype"] == LIBMTP_FILETYPE_FOLDER), None)
+        if not docs_folder:
+            return {}
+
+        docs_items = self.list_files_in_folder(docs_folder["item_id"], docs_folder["storage_id"])
+        downloads_folder = next((i for i in docs_items if i["filename"].lower() == "downloads" and i["filetype"] == LIBMTP_FILETYPE_FOLDER), None)
+        if not downloads_folder:
+            return {}
+
+        dl_items = self.list_files_in_folder(downloads_folder["item_id"], downloads_folder["storage_id"])
+        items01_folder = next((i for i in dl_items if i["filename"].lower() == "items01" and i["filetype"] == LIBMTP_FILETYPE_FOLDER), None)
+        
+        target_folders = [downloads_folder]
+        if items01_folder:
+            target_folders.append(items01_folder)
+
+        for folder in target_folders:
+            entries = self.list_files_in_folder(folder["item_id"], folder["storage_id"])
+            for e in entries:
+                name = e["filename"]
+                m = re.match(r"^(.+?)_([A-Z0-9]{10,40})(?:\.sdr|\.kfx|\.azw3|\.kpf)?$", name)
+                if m:
+                    title = m.group(1).replace("_", " ").strip()
+                    title = re.sub(r"\s+", " ", title)
+                    asin = m.group(2)
+                    if asin not in asin_map:
+                        asin_map[asin] = title
+
+        return asin_map
+
+    def download_file(self, item_id: int, destination_path: str) -> bool:
+        if not self.device:
+            raise RuntimeError("Device not connected")
+
+        dest_bytes = os.path.abspath(destination_path).encode('utf-8')
+        os.makedirs(os.path.dirname(os.path.abspath(destination_path)), exist_ok=True)
+        ret = self.lib.LIBMTP_Get_File_To_File(self.device, item_id, dest_bytes, None, None)
+        return ret == 0
+
+
+# ==============================================================================
+# SQLite KSDK Annotations Extractor
+# ==============================================================================
+
+def load_sync_state(state_file: str = DEFAULT_STATE_FILE) -> Dict:
+    if os.path.exists(state_file):
+        try:
+            with open(state_file, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+
+def save_sync_state(state: Dict, state_file: str = DEFAULT_STATE_FILE) -> None:
+    os.makedirs(os.path.dirname(os.path.abspath(state_file)), exist_ok=True)
+    with open(state_file, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=2)
+
+
+def extract_ksdk_highlights(
+    db_path: str,
+    output_dir: str = DEFAULT_DROPBOX_NOTES,
+    titles_map: Optional[Dict[str, str]] = None,
+    since_ms: Optional[int] = None,
+    pull_all: bool = False,
+    state_file: str = DEFAULT_STATE_FILE
+) -> Tuple[Dict[str, Dict], int]:
+    if not os.path.exists(db_path):
+        raise FileNotFoundError(f"Database not found: {db_path}")
+
+    os.makedirs(output_dir, exist_ok=True)
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+
+    # Determine cutoff watermark
+    state = load_sync_state(state_file)
+    watermark_ms = 0
+    if not pull_all:
+        if since_ms is not None:
+            watermark_ms = since_ms
+        elif "last_sync_timestamp" in state:
+            watermark_ms = state["last_sync_timestamp"]
+
+    if watermark_ms > 0:
+        watermark_dt = datetime.fromtimestamp(watermark_ms / 1000.0)
+        print(f"[*] Delta watermark active: Only pulling highlights modified after {watermark_dt.strftime('%Y-%m-%d %H:%M:%S')}")
+    else:
+        print("[*] Pulling all highlights (no cutoff watermark).")
+
+    # ASIN -> Title map
+    asin_to_title: Dict[str, str] = dict(titles_map or {})
+    titles_cache_file = os.path.join(os.path.dirname(state_file), "book_titles.json")
+    if not asin_to_title and os.path.exists(titles_cache_file):
+        try:
+            with open(titles_cache_file, "r", encoding="utf-8") as f:
+                asin_to_title.update(json.load(f))
+        except Exception:
+            pass
+
+    # Query highlights
+    if watermark_ms > 0:
+        cur.execute(
+            "SELECT serialized_payload, created_time, modified_time FROM server_view WHERE dataset=1 AND modified_time > ?",
+            (watermark_ms,)
+        )
+    else:
+        cur.execute("SELECT serialized_payload, created_time, modified_time FROM server_view WHERE dataset=1")
+
+    rows = cur.fetchall()
+    print(f"[✓] Retrieved {len(rows)} matching highlight record(s) from database.")
+
+    if not rows:
+        return {}, 0
+
+    max_seen_modified = watermark_ms
+    books: Dict[str, Dict] = {}
+
+    for payload_str, ctime, mtime in rows:
+        if mtime and mtime > max_seen_modified:
+            max_seen_modified = mtime
+
+        try:
+            data = json.loads(payload_str)
+        except Exception:
+            continue
+
+        bdata = data.get("book_data", {})
+        asin = bdata.get("asin")
+        if not asin:
+            continue
+
+        title = asin_to_title.get(asin, f"Kindle Book ({asin})")
+        if asin not in books:
+            books[asin] = {
+                "asin": asin,
+                "title": title,
+                "content_type": bdata.get("contentType", "EBOK"),
+                "highlights": []
+            }
+
+        start_pos = data.get("start_position", {})
+        end_pos = data.get("end_position", {})
+        pos_start_short = start_pos.get("shortPosition")
+        pos_end_short = end_pos.get("shortPosition")
+        pos_start_long = start_pos.get("longPosition", "")
+        pos_end_long = end_pos.get("longPosition", "")
+
+        created_epoch = data.get("created_time") or ctime
+        created_dt = datetime.fromtimestamp(created_epoch / 1000.0) if created_epoch else None
+
+        modified_epoch = data.get("last_modified") or mtime
+        modified_dt = datetime.fromtimestamp(modified_epoch / 1000.0) if modified_epoch else None
+
+        if pos_start_short is not None and pos_end_short is not None and (pos_start_short > 0 or pos_end_short > 0):
+            loc_str = f"{pos_start_short}–{pos_end_short}"
+            sort_key = pos_start_short
+        elif pos_start_long:
+            loc_str = f"{pos_start_long}"
+            sort_key = pos_start_short or 0
+        else:
+            loc_str = "Unknown location"
+            sort_key = 0
+
+        meta_str = data.get("json_metadata", "{}")
+        try:
+            meta = json.loads(meta_str) if isinstance(meta_str, str) else meta_str
+        except:
+            meta = {}
+
+        books[asin]["highlights"].append({
+            "location_str": loc_str,
+            "sort_key": sort_key,
+            "created_dt": created_dt,
+            "modified_dt": modified_dt,
+            "metadata": meta
+        })
+
+    # Write individual markdown files per book
+    for asin, binfo in books.items():
+        title = binfo["title"]
+        hls = binfo["highlights"]
+        hls.sort(key=lambda h: (h["sort_key"], h["created_dt"].timestamp() if h["created_dt"] else 0))
+
+        filename = sanitize_filename(title) + ".md"
+        filepath = os.path.join(output_dir, filename)
+
+        lines = [
+            "---",
+            f"title: \"{title.replace('\"', '\\\"')}\"",
+            f"asin: \"{asin}\"",
+            f"content_type: \"{binfo['content_type']}\"",
+            f"highlights_count: {len(hls)}",
+            f"exported_at: \"{datetime.now().isoformat()}\"",
+            "source: kindle-ksdk-sqlite",
+            "---",
+            "",
+            f"# {title}",
+            "",
+            f"*ASIN / Document ID: `{asin}` · Total Highlights: {len(hls)}*",
+            "",
+            "## Highlights",
+            ""
+        ]
+
+        for i, h in enumerate(hls, 1):
+            date_str = h["created_dt"].strftime("%B %d, %Y at %I:%M %p") if h["created_dt"] else "Unknown Date"
+            lines.append(f"### Highlight {i}")
+            lines.append(f"- **Location**: {h['location_str']}")
+            lines.append(f"- **Date**: {date_str}")
+            if h["metadata"] and h["metadata"] != {}:
+                lines.append(f"- **Metadata**: `{json.dumps(h['metadata'])}`")
+            lines.append("")
+
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines))
+
+    # Update watermark
+    if max_seen_modified > 0:
+        new_state = {
+            "last_sync_timestamp": max_seen_modified,
+            "last_sync_date": datetime.fromtimestamp(max_seen_modified / 1000.0).isoformat(),
+            "last_run_at": datetime.now().isoformat(),
+            "total_books_in_batch": len(books),
+            "total_highlights_in_batch": len(rows)
+        }
+        save_sync_state(new_state, state_file)
+        print(f"[✓] Updated sync watermark to: {new_state['last_sync_date']}")
+
+    return books, len(rows)
+
+
+# ==============================================================================
+# CLI Entry Point
+# ==============================================================================
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Sync highlights & notes from Kindle Paperwhite (Kindle OS 5.19.6+) into Dropbox."
+    )
+    parser.add_argument("command", nargs="?", default="sync", choices=["sync", "status", "scan"],
+                        help="Action to perform (default: sync)")
+    parser.add_argument("-o", "--output-dir", default=DEFAULT_DROPBOX_NOTES,
+                        help=f"Directory to save Markdown book notes (default: {DEFAULT_DROPBOX_NOTES})")
+    parser.add_argument("--cache-dir", default=DEFAULT_CACHE_DIR,
+                        help=f"Directory for temporary database cache (default: {DEFAULT_CACHE_DIR})")
+    parser.add_argument("--wait", type=int, default=30,
+                        help="Seconds to wait/retry for Kindle connection (default: 30s)")
+    parser.add_argument("--since",
+                        help="Filter highlights modified after date (YYYY-MM-DD)")
+    parser.add_argument("--all", action="store_true",
+                        help="Pull all highlights, ignoring the delta watermark")
+    parser.add_argument("--reset-watermark", action="store_true",
+                        help="Reset watermark to start fresh from beginning")
+
+    subcommands = {"sync", "status", "scan", "-h", "--help"}
+    argv = sys.argv[1:]
+    if not argv or argv[0] not in subcommands:
+        argv = ["sync"] + argv
+
+    args = parser.parse_args(argv)
+
+    if args.command == "status":
+        client = KindleMTPClient()
+        if client.connect(wait_seconds=5):
+            print("[✓] Kindle is connected and recognized on USB MTP bus.")
+            client.disconnect()
+        else:
+            print("[!] Kindle is not currently detected. Ensure it is unlocked and plugged in.")
+        return
+
+    # Sync
+    os.makedirs(args.cache_dir, exist_ok=True)
+    state_file = os.path.join(args.cache_dir, "sync_state.json")
+
+    if args.reset_watermark:
+        if os.path.exists(state_file):
+            os.remove(state_file)
+            print("[✓] Reset sync watermark.")
+
+    since_ms = None
+    if args.since:
+        since_ms = parse_date_to_ms(args.since)
+        if not since_ms:
+            print(f"[!] Invalid date format: '{args.since}'. Use YYYY-MM-DD.")
+            sys.exit(1)
+
+    print("=" * 60)
+    print("Kindle Paperwhite MTP Sync (Kindle OS 5.19.6+)")
+    print("=" * 60)
+
+    try:
+        client = KindleMTPClient()
+    except RuntimeError as e:
+        print(f"[!] Error: {e}")
+        sys.exit(1)
+
+    print("[*] Checking for Kindle Paperwhite...")
+    connected = client.connect(wait_seconds=args.wait)
+    ksdk_dest = os.path.join(args.cache_dir, "ksdk_annotation_v1.db")
+    titles_cache = os.path.join(args.cache_dir, "book_titles.json")
+
+    if not connected:
+        print("\n[!] Could not connect to Kindle over MTP.")
+        print("    Troubleshooting:")
+        print("    1. Wake and unlock your Kindle screen.")
+        print("    2. Re-plug USB cable.")
+        print("    3. If Commander One or Calibre is open, close it.")
+        if os.path.exists(ksdk_dest):
+            print(f"\n[*] Found previously cached database at: {ksdk_dest}")
+            print(f"[*] Extracting into: {args.output_dir}...")
+            extract_ksdk_highlights(
+                ksdk_dest,
+                output_dir=args.output_dir,
+                since_ms=since_ms,
+                pull_all=args.all,
+                state_file=state_file
+            )
+            return
+        sys.exit(1)
+
+    with client:
+        print("[*] Locating KSDK SQLite annotations database...")
+        ksdk_file = client.fast_find_ksdk_db()
+        if not ksdk_file:
+            print("[!] KSDK database not found in expected Kindle system paths.")
+            sys.exit(1)
+
+        print(f"[✓] Found database (ID: {ksdk_file['item_id']}, {ksdk_file['filesize']} bytes).")
+        print(f"[*] Downloading to: {ksdk_dest}...")
+        if not client.download_file(ksdk_file["item_id"], ksdk_dest):
+            print("[!] Failed to download database file via MTP.")
+            sys.exit(1)
+        print("[✓] Download complete!")
+
+        print("[*] Fast-indexing book titles from /documents/Downloads/...")
+        titles = client.fast_get_book_titles()
+        if titles:
+            with open(titles_cache, "w", encoding="utf-8") as f:
+                json.dump(titles, f, indent=2)
+            print(f"[✓] Indexed {len(titles)} book titles.")
+
+        print(f"[*] Generating individual Markdown files in: {args.output_dir}")
+        books, count = extract_ksdk_highlights(
+            ksdk_dest,
+            output_dir=args.output_dir,
+            titles_map=titles,
+            since_ms=since_ms,
+            pull_all=args.all,
+            state_file=state_file
+        )
+        print(f"[✓] All done! {count} new highlight(s) generated across {len(books)} document(s) in '{args.output_dir}'.")
+
+
+if __name__ == "__main__":
+    main()
