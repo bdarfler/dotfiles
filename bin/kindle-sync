@@ -25,17 +25,21 @@ import time
 from typing import Dict, List, Optional, Tuple
 
 # Default Paths
-def get_default_dropbox_notes() -> str:
+def get_default_notes_dir() -> str:
+    primary = os.path.expanduser(
+        "~/Library/CloudStorage/GoogleDrive-bdarfler@gmail.com/My Drive/Home Agent/0 Inbox/notes"
+    )
     candidates = [
+        primary,
         os.path.expanduser("~/Library/CloudStorage/Dropbox/0 Inbox/notes"),
         os.path.expanduser("~/Dropbox/0 Inbox/notes"),
     ]
     for c in candidates:
-        if os.path.exists(os.path.dirname(c)):
+        if os.path.exists(c) or os.path.exists(os.path.dirname(c)):
             return c
-    return candidates[0]
+    return primary
 
-DEFAULT_DROPBOX_NOTES = get_default_dropbox_notes()
+DEFAULT_NOTES_DIR = get_default_notes_dir()
 
 # Watermark state storage (only high-water mark timestamp is retained)
 DEFAULT_STATE_FILE = os.path.expanduser("~/.config/kindle-sync/sync_state.json")
@@ -526,7 +530,7 @@ def save_sync_state(state: Dict, state_file: str = DEFAULT_STATE_FILE) -> None:
 
 def extract_and_export_highlights(
     db_path: str,
-    output_dir: str = DEFAULT_DROPBOX_NOTES,
+    output_dir: str = DEFAULT_NOTES_DIR,
     titles_map: Optional[Dict[str, str]] = None,
     files_map: Optional[Dict[str, Dict]] = None,
     client: Optional[KindleMTPClient] = None,
@@ -748,12 +752,12 @@ def extract_and_export_highlights(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Sync highlights, notes & quotes from Kindle Paperwhite / Scribe (Kindle OS 5.19.6+) into Dropbox."
+        description="Sync highlights, notes & quotes from Kindle Paperwhite / Scribe (Kindle OS 5.19.6+)."
     )
     parser.add_argument("command", nargs="?", default="sync", choices=["sync", "status", "scan"],
                         help="Action to perform (default: sync)")
-    parser.add_argument("-o", "--output-dir", default=DEFAULT_DROPBOX_NOTES,
-                        help=f"Directory to save Markdown book notes (default: {DEFAULT_DROPBOX_NOTES})")
+    parser.add_argument("-o", "--output-dir", default=DEFAULT_NOTES_DIR,
+                        help=f"Directory to save Markdown book notes (default: {DEFAULT_NOTES_DIR})")
     parser.add_argument("--state-file", default=DEFAULT_STATE_FILE,
                         help=f"File to track high-watermark timestamp (default: {DEFAULT_STATE_FILE})")
     parser.add_argument("--wait", type=int, default=30,
