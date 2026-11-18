@@ -10,15 +10,18 @@ Zero persistent book caching—only the high-watermark state is retained.
 """
 
 import argparse
+import base64
 import ctypes
 import ctypes.util
 from datetime import datetime
+import html
 import json
 import os
 from pathlib import Path
 import re
 import sqlite3
 import struct
+import subprocess
 import sys
 import tempfile
 import time
@@ -343,10 +346,13 @@ class KindleMTPClient:
             if items01_folder:
                 target_folders.append(items01_folder)
 
+        ext_priority = {".kfx": 5, ".azw3": 4, ".mobi": 3, ".azw": 2, ".kpf": 1}
+
         for folder in target_folders:
             entries = self.list_files_in_folder(folder["item_id"], folder["storage_id"])
             for e in entries:
                 name = e["filename"]
+                ext = os.path.splitext(name)[1].lower()
                 m = re.match(r"^(.+?)_([A-Z0-9]{10,40})(?:\.sdr|\.kfx|\.azw3|\.azw|\.kpf|\.mobi)?$", name)
                 if m:
                     title = m.group(1).replace("_", " ").strip()
@@ -356,10 +362,22 @@ class KindleMTPClient:
                         asin_to_title[asin] = title
 
                     # Map valid book container files (skip .sdr directories)
-                    if e["filetype"] != LIBMTP_FILETYPE_FOLDER and (
-                        name.endswith(".kfx") or name.endswith(".azw3") or name.endswith(".mobi") or name.endswith(".azw")
-                    ):
-                        asin_to_file[asin] = e
+                    if e["filetype"] != LIBMTP_FILETYPE_FOLDER and ext in ext_priority:
+                        prev = asin_to_file.get(asin)
+                        prev_ext = os.path.splitext(prev["filename"])[1].lower() if prev else ""
+                        if not prev or ext_priority[ext] > ext_priority.get(prev_ext, 0):
+                            asin_to_file[asin] = e
+                elif e["filetype"] != LIBMTP_FILETYPE_FOLDER and ext in ext_priority:
+                    # Sideloaded files without _ASIN suffix (e.g. Title.azw3 / Title.kpf)
+                    stem = os.path.splitext(name)[0]
+                    norm_stem = re.sub(r"[^a-z0-9]+", "", stem.lower())
+                    if norm_stem:
+                        key = f"__stem__:{norm_stem}"
+                        prev = asin_to_file.get(key)
+                        prev_ext = os.path.splitext(prev["filename"])[1].lower() if prev else ""
+                        if not prev or ext_priority[ext] > ext_priority.get(prev_ext, 0):
+                            asin_to_file[key] = e
+                            asin_to_title.setdefault(key, stem.replace("_", " ").replace("-", " ").strip())
 
         return asin_to_title, asin_to_file
 
@@ -374,138 +392,277 @@ class KindleMTPClient:
 
 
 # ==============================================================================
-# Pure-Python Document Text Extractors (.kfx / .azw3)
+# Document Highlight Extractors (Calibre kfxlib for KFX/KPF + MOBI/AZW3)
 # ==============================================================================
 
-def extract_kfx_text(kfx_path: str) -> str:
-    """Extract clean reading text from a monolithic KFX (CONT) container in pure Python."""
+CALIBRE_DEBUG_CANDIDATES = [
+    "/Applications/calibre.app/Contents/MacOS/calibre-debug",
+    "/opt/homebrew/bin/calibre-debug",
+    "/usr/local/bin/calibre-debug",
+]
+
+_KFX_WORKER_CODE = r"""
+def _run():
+    import base64, json, struct, sys
+
     try:
-        with open(kfx_path, "rb") as f:
-            magic = f.read(4)
-            if magic != b"CONT":
-                return ""
-            version, header_len, info_offset, info_len = struct.unpack("<HIII", f.read(14))
-            f.seek(18)
-            entries = []
-            while f.tell() < info_offset:
-                chunk = f.read(24)
-                if len(chunk) < 24:
-                    break
-                eid, etype, offset, length = struct.unpack("<IIQQ", chunk)
-                entries.append((eid, etype, offset, length))
+        from calibre.customize.ui import initialize_plugins
+        initialize_plugins()
+        from calibre_plugins.kfx_input.kfxlib.yj_book import YJ_Book
+        from calibre_plugins.kfx_input.kfxlib.utilities import KFXDRMError
+    except Exception as exc:
+        sys.stdout.write(json.dumps({"ready": False, "error": str(exc)}) + "\n")
+        sys.stdout.flush()
+        return
 
-            all_paras = []
-            for eid, etype, offset, length in entries:
-                if etype in (144, 145):  # Content entities (story text)
-                    f.seek(header_len + offset)
-                    raw = f.read(length)
-                    if not raw.startswith(b"ENTY"):
-                        continue
-                    i = 0
-                    while i < len(raw):
-                        b = raw[i]
-                        # Ion string: type 8 (0x80 - 0x8E)
-                        if (b & 0xF0) == 0x80:
-                            nibble = b & 0x0F
-                            if nibble < 0x0E:
-                                slen = nibble
-                                i += 1
-                            else:
-                                i += 1
-                                slen = 0
-                                while i < len(raw):
-                                    b2 = raw[i]
-                                    i += 1
-                                    slen = (slen << 7) | (b2 & 0x7F)
-                                    if b2 & 0x80:
-                                        break
-                            sbytes = raw[i:i + slen]
-                            i += slen
-                            try:
-                                stext = sbytes.decode("utf-8")
-                                if len(stext) > 1 and not any(ord(c) < 32 and c not in "\n\r\t" for c in stext):
-                                    all_paras.append(stext)
-                            except Exception:
-                                pass
-                        else:
-                            i += 1
-            return "\n\n".join(all_paras)
-    except Exception:
-        return ""
+    sys.stdout.write(json.dumps({"ready": True}) + "\n")
+    sys.stdout.flush()
+
+    def decode_kfx_long_pos(lp):
+        if not lp:
+            return None
+        try:
+            raw = base64.b64decode(lp)
+            if len(raw) == 9 and raw[0] == 1:
+                return struct.unpack("<II", raw[1:9])
+        except Exception:
+            pass
+        return None
+
+    def resolve_pid(book, pos_info, short_pos, long_pos):
+        parsed = decode_kfx_long_pos(long_pos)
+        if parsed is not None:
+            eid, off = parsed
+            try:
+                pid = book.pid_for_eid(eid, off, pos_info)
+                if pid is not None:
+                    return pid
+            except Exception:
+                pass
+        return short_pos
+
+    def slice_chunks(pos_info, start_pid, end_pid):
+        if start_pid is None or end_pid is None or start_pid > end_pid:
+            return ""
+        end_excl = end_pid + 1
+        parts = []
+        prev_eid = None
+        for c in pos_info:
+            cs, ce = c.pid, c.pid + c.length
+            if ce <= start_pid or cs >= end_excl:
+                continue
+            if not c.text:
+                continue
+            a = max(0, start_pid - cs)
+            b = min(c.length, end_excl - cs)
+            seg = c.text[a:b]
+            if not seg:
+                continue
+            if parts and prev_eid != c.eid:
+                parts.append("\n\n")
+            parts.append(seg)
+            prev_eid = c.eid
+        return "".join(parts).strip()
+
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        req = json.loads(line)
+        path = req["path"]
+        hls = req["highlights"]
+        try:
+            book = YJ_Book(path)
+            book.decode_book()
+            pos_info = book.collect_content_position_info()
+            quotes = []
+            for h in hls:
+                sp = resolve_pid(book, pos_info, h.get("start_pos"), h.get("start_long"))
+                ep = resolve_pid(book, pos_info, h.get("end_pos"), h.get("end_long"))
+                quotes.append(slice_chunks(pos_info, sp, ep))
+            resp = {"ok": True, "quotes": quotes}
+        except KFXDRMError:
+            resp = {"ok": False, "error": "drm"}
+        except Exception as exc:
+            resp = {"ok": False, "error": str(exc)}
+        sys.stdout.write(json.dumps(resp) + "\n")
+        sys.stdout.flush()
+
+_run()
+"""
 
 
-def extract_mobi_azw3_text(path: str) -> str:
-    """Fallback text extractor for PalmDOC / MOBI / AZW3 formats."""
+class KFXExtractor:
+    """Persistent calibre-debug worker using KFX Input (kfxlib) for exact KFX/KPF highlight extraction."""
+
+    def __init__(self):
+        self.proc: Optional[subprocess.Popen] = None
+        self.available = False
+        self.init_error: Optional[str] = None
+
+    def _find_calibre_debug(self) -> Optional[str]:
+        for path in CALIBRE_DEBUG_CANDIDATES:
+            if os.path.exists(path):
+                return path
+        return None
+
+    def __enter__(self):
+        calibre_debug = self._find_calibre_debug()
+        if not calibre_debug:
+            self.init_error = "calibre-debug not found"
+            return self
+        try:
+            self.proc = subprocess.Popen(
+                [calibre_debug, "-c", _KFX_WORKER_CODE],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.DEVNULL,
+                text=True,
+                bufsize=1,
+            )
+            ready_line = self.proc.stdout.readline() if self.proc.stdout else ""
+            if ready_line:
+                info = json.loads(ready_line)
+                self.available = bool(info.get("ready"))
+                self.init_error = info.get("error")
+            else:
+                self.init_error = "KFX worker exited unexpectedly"
+        except Exception as exc:
+            self.init_error = str(exc)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.proc:
+            try:
+                if self.proc.stdin:
+                    self.proc.stdin.close()
+                self.proc.wait(timeout=3)
+            except Exception:
+                self.proc.kill()
+            self.proc = None
+
+    def extract_quotes(self, path: str, highlights: List[Dict]) -> Tuple[List[str], Optional[str]]:
+        if not self.available or not self.proc or not self.proc.stdin or not self.proc.stdout:
+            return [""] * len(highlights), self.init_error or "kfxlib unavailable"
+        payload = {
+            "path": path,
+            "highlights": [
+                {
+                    "start_pos": h.get("start_pos"),
+                    "end_pos": h.get("end_pos"),
+                    "start_long": h.get("start_long"),
+                    "end_long": h.get("end_long"),
+                }
+                for h in highlights
+            ],
+        }
+        try:
+            self.proc.stdin.write(json.dumps(payload) + "\n")
+            self.proc.stdin.flush()
+            resp_line = self.proc.stdout.readline()
+            if not resp_line:
+                return [""] * len(highlights), "KFX worker terminated"
+            resp = json.loads(resp_line)
+            if resp.get("ok"):
+                return resp.get("quotes", [""] * len(highlights)), None
+            return [""] * len(highlights), resp.get("error", "unknown error")
+        except Exception as exc:
+            return [""] * len(highlights), str(exc)
+
+
+def extract_mobi_azw3_raw_bytes(path: str) -> bytes:
+    """Decompress raw HTML bytes from uncompressed or PalmDOC-compressed MOBI/AZW3 files."""
     try:
         with open(path, "rb") as f:
             header = f.read(78)
+            if len(header) < 78:
+                return b""
             num_records = struct.unpack(">H", header[76:78])[0]
+            if num_records < 2:
+                return b""
             record_info = [struct.unpack(">II", f.read(8)) for _ in range(num_records)]
 
             f.seek(record_info[0][0])
             rec0 = f.read(record_info[1][0] - record_info[0][0])
+            if len(rec0) < 10:
+                return b""
             compression, _, text_len, num_text_records = struct.unpack(">HHIH", rec0[:10])
+            if compression not in (1, 2):
+                return b""
 
-            text_parts = []
+            # Check MOBI trailing entry flags (bytes 242..244)
+            extra_flags = 0
+            if len(rec0) >= 244 and rec0[16:20] == b"MOBI":
+                mobi_hdr_len = struct.unpack(">I", rec0[20:24])[0]
+                if mobi_hdr_len >= 228:
+                    extra_flags = struct.unpack(">H", rec0[242:244])[0]
+
+            out = bytearray()
             for i in range(1, min(num_text_records + 1, len(record_info))):
                 start = record_info[i][0]
-                end = record_info[i + 1][0] if i + 1 < len(record_info) else start + 4096
+                end = record_info[i + 1][0] if i + 1 < len(record_info) else None
                 f.seek(start)
-                chunk = f.read(end - start)
+                chunk = f.read(end - start) if end is not None else f.read()
+
+                # Strip trailing extra data entries if present
+                if extra_flags:
+                    flags = extra_flags >> 1
+                    while flags:
+                        if flags & 1:
+                            v, pos = 0, len(chunk) - 1
+                            shift = 0
+                            while pos >= 0:
+                                b = chunk[pos]
+                                v |= (b & 0x7F) << shift
+                                shift += 7
+                                pos -= 1
+                                if b & 0x80:
+                                    break
+                            if 0 < v <= len(chunk):
+                                chunk = chunk[:-v]
+                        flags >>= 1
+
                 if compression == 1:
-                    text_parts.append(chunk.decode("utf-8", "ignore"))
+                    out.extend(chunk)
                 elif compression == 2:
-                    decomp = []
                     j = 0
-                    while j < len(chunk):
+                    clen = len(chunk)
+                    while j < clen:
                         c = chunk[j]
                         j += 1
-                        if c >= 1 and c <= 8:
-                            decomp.append(chunk[j:j + c])
+                        if 1 <= c <= 8:
+                            out.extend(chunk[j:j + c])
                             j += c
                         elif c <= 0x7F:
-                            decomp.append(bytes([c]))
+                            out.append(c)
                         elif c >= 0xC0:
-                            decomp.append(b" " + bytes([c ^ 0x80]))
-                        else:
-                            if j < len(chunk):
-                                c2 = chunk[j]
-                                j += 1
-                                dist = (((c & 0x3F) << 8) | c2) >> 3
-                                length = (c2 & 7) + 3
+                            out.append(32)
+                            out.append(c ^ 0x80)
+                        elif j < clen:
+                            c2 = chunk[j]
+                            j += 1
+                            dist = (((c & 0x3F) << 8) | c2) >> 3
+                            length = (c2 & 7) + 3
+                            if 0 < dist <= len(out):
                                 for _ in range(length):
-                                    decomp.append(bytes([decomp[-dist][0] if isinstance(decomp[-dist], bytes) else decomp[-dist]]))
-                    text_parts.append(b"".join(decomp).decode("utf-8", "ignore"))
+                                    out.append(out[-dist])
 
-            raw_html = "".join(text_parts)
-            clean = re.sub(r"<[^>]+>", " ", raw_html)
-            return re.sub(r"\s+", " ", clean)
+            return bytes(out[:text_len]) if text_len else bytes(out)
     except Exception:
+        return b""
+
+
+def slice_mobi_html_highlight(raw_bytes: bytes, start: int, end: int) -> str:
+    """Slice MOBI/AZW3 raw HTML byte offsets before stripping HTML tags."""
+    if not raw_bytes or start >= len(raw_bytes) or start >= end:
         return ""
-
-
-def slice_highlight(text: str, start: int, end: int) -> str:
-    """Slice highlighted text cleanly given start and end character offsets."""
-    if not text or start >= len(text) or start >= end:
-        return ""
-
-    raw = text[start:min(len(text), end)].strip()
-    if not raw:
-        return ""
-
-    # Clean up leading partial word if clipped mid-word
-    if start > 0 and text[start - 1].isalnum() and text[start].isalnum():
-        idx = raw.find(" ")
-        if idx != -1 and idx < 25:
-            raw = raw[idx + 1:].strip()
-
-    # Clean up trailing partial word if clipped mid-word
-    if end < len(text) and text[end - 1].isalnum() and text[end].isalnum():
-        idx = raw.rfind(" ")
-        if idx != -1 and len(raw) - idx < 25:
-            raw = raw[:idx].strip()
-
-    return raw
+    seg = raw_bytes[max(0, start):min(len(raw_bytes), end)].decode("utf-8", "replace")
+    seg = re.sub(r"</(?:p|div|li|h[1-6]|blockquote|tr)\s*>", "\n\n", seg, flags=re.IGNORECASE)
+    seg = re.sub(r"<br\s*/?>", "\n", seg, flags=re.IGNORECASE)
+    seg = re.sub(r"<[^>]+>", "", seg)
+    seg = html.unescape(seg)
+    lines = [re.sub(r"[ \t]+", " ", ln).strip() for ln in seg.splitlines()]
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(lines)).strip()
 
 
 # ==============================================================================
@@ -528,6 +685,46 @@ def save_sync_state(state: Dict, state_file: str = DEFAULT_STATE_FILE) -> None:
         json.dump(state, f, indent=2)
 
 
+def _fetch_highlight_rows(cur: sqlite3.Cursor) -> List[Tuple[str, int, int]]:
+    """Fetch highlight rows from server_view and nonsyncable_annotations."""
+    rows: List[Tuple[str, int, int]] = []
+    cur.execute("SELECT serialized_payload, created_time, modified_time FROM server_view WHERE dataset=1")
+    rows.extend(cur.fetchall())
+    try:
+        cur.execute(
+            "SELECT serialized_payload, created_time, modified_time FROM nonsyncable_annotations "
+            "WHERE dataset=1 AND json_extract(serialized_payload, '$.type')='HIGHLIGHT'"
+        )
+        rows.extend(cur.fetchall())
+    except Exception:
+        pass
+    return rows
+
+
+def _load_fallback_titles() -> Dict[str, str]:
+    legacy_titles = os.path.expanduser("~/.kindle_cache/book_titles.json")
+    if os.path.exists(legacy_titles):
+        try:
+            with open(legacy_titles, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, dict):
+                    return data
+        except Exception:
+            pass
+    return {}
+
+
+def _resolve_file_for_book(asin: str, title: str, asin_to_file: Dict[str, Dict]) -> Optional[Dict]:
+    if asin in asin_to_file:
+        return asin_to_file[asin]
+    norm_title = re.sub(r"[^a-z0-9]+", "", title.lower())
+    if norm_title:
+        stem_key = f"__stem__:{norm_title}"
+        if stem_key in asin_to_file:
+            return asin_to_file[stem_key]
+    return None
+
+
 def extract_and_export_highlights(
     db_path: str,
     output_dir: str = DEFAULT_NOTES_DIR,
@@ -536,12 +733,12 @@ def extract_and_export_highlights(
     client: Optional[KindleMTPClient] = None,
     since_ms: Optional[int] = None,
     pull_all: bool = False,
-    state_file: str = DEFAULT_STATE_FILE
+    state_file: str = DEFAULT_STATE_FILE,
+    scan_only: bool = False,
 ) -> Tuple[Dict[str, Dict], int]:
     if not os.path.exists(db_path):
         raise FileNotFoundError(f"Database not found: {db_path}")
 
-    os.makedirs(output_dir, exist_ok=True)
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
 
@@ -556,18 +753,20 @@ def extract_and_export_highlights(
 
     if watermark_ms > 0:
         watermark_dt = datetime.fromtimestamp(watermark_ms / 1000.0)
-        print(f"[*] Delta watermark active: Only pulling highlights modified after {watermark_dt.strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"[*] Delta watermark active: Only updating books with highlights modified after {watermark_dt.strftime('%Y-%m-%d %H:%M:%S')}")
     else:
         print("[*] Pulling all highlights (no cutoff watermark).")
 
-    asin_to_title = dict(titles_map or {})
+    asin_to_title = _load_fallback_titles()
+    if titles_map:
+        asin_to_title.update(titles_map)
     asin_to_file = dict(files_map or {})
 
     # Query user notes (dataset = 3)
-    user_notes: Dict[Tuple[str, int], str] = {}
+    user_notes: Dict[str, List[Tuple[int, str]]] = {}
     try:
-        cur.execute("SELECT dataset_id, serialized_payload FROM server_view WHERE dataset=3")
-        for dataset_id, payload_str in cur.fetchall():
+        cur.execute("SELECT serialized_payload FROM server_view WHERE dataset=3")
+        for (payload_str,) in cur.fetchall():
             try:
                 ndata = json.loads(payload_str)
                 nasin = ndata.get("book_data", {}).get("asin")
@@ -576,34 +775,21 @@ def extract_and_export_highlights(
                 nmeta = json.loads(nmeta) if isinstance(nmeta, str) else nmeta
                 note_content = nmeta.get("note_text") or ndata.get("note_text")
                 if nasin and npos is not None and note_content:
-                    user_notes[(nasin, npos)] = note_content.strip()
+                    user_notes.setdefault(nasin, []).append((npos, note_content.strip()))
             except Exception:
                 pass
     except Exception:
         pass
 
-    # Query highlights (dataset = 1)
-    if watermark_ms > 0:
-        cur.execute(
-            "SELECT serialized_payload, created_time, modified_time FROM server_view WHERE dataset=1 AND modified_time > ?",
-            (watermark_ms,)
-        )
-    else:
-        cur.execute("SELECT serialized_payload, created_time, modified_time FROM server_view WHERE dataset=1")
-
-    rows = cur.fetchall()
-    print(f"[✓] Retrieved {len(rows)} matching highlight record(s) from database.")
-
-    if not rows:
-        return {}, 0
+    all_rows = _fetch_highlight_rows(cur)
+    conn.close()
 
     max_seen_modified = watermark_ms
-    books: Dict[str, Dict] = {}
+    dirty_asins = set()
+    all_books: Dict[str, Dict] = {}
+    seen_hl_keys = set()
 
-    for payload_str, ctime, mtime in rows:
-        if mtime and mtime > max_seen_modified:
-            max_seen_modified = mtime
-
+    for payload_str, ctime, mtime in all_rows:
         try:
             data = json.loads(payload_str)
         except Exception:
@@ -614,9 +800,15 @@ def extract_and_export_highlights(
         if not asin:
             continue
 
+        row_mtime = data.get("last_modified") or mtime or 0
+        if row_mtime > max_seen_modified:
+            max_seen_modified = row_mtime
+        if watermark_ms == 0 or row_mtime > watermark_ms:
+            dirty_asins.add(asin)
+
         title = asin_to_title.get(asin, f"Kindle Book ({asin})")
-        if asin not in books:
-            books[asin] = {
+        if asin not in all_books:
+            all_books[asin] = {
                 "asin": asin,
                 "title": title,
                 "content_type": bdata.get("contentType", "EBOK"),
@@ -630,11 +822,14 @@ def extract_and_export_highlights(
         pos_start_long = start_pos.get("longPosition", "")
         pos_end_long = end_pos.get("longPosition", "")
 
+        dedup_key = (asin, pos_start_short, pos_end_short, pos_start_long, pos_end_long)
+        if dedup_key in seen_hl_keys:
+            continue
+        seen_hl_keys.add(dedup_key)
+
         created_epoch = data.get("created_time") or ctime
         created_dt = datetime.fromtimestamp(created_epoch / 1000.0) if created_epoch else None
-
-        modified_epoch = data.get("last_modified") or mtime
-        modified_dt = datetime.fromtimestamp(modified_epoch / 1000.0) if modified_epoch else None
+        modified_dt = datetime.fromtimestamp(row_mtime / 1000.0) if row_mtime else None
 
         if pos_start_short is not None and pos_end_short is not None and (pos_start_short > 0 or pos_end_short > 0):
             loc_str = f"{pos_start_short}–{pos_end_short}"
@@ -646,45 +841,80 @@ def extract_and_export_highlights(
             loc_str = "Unknown location"
             sort_key = 0
 
-        note = user_notes.get((asin, pos_start_short or -1), "")
+        note = ""
+        if pos_start_short is not None and asin in user_notes:
+            end_bound = pos_end_short if pos_end_short is not None else pos_start_short
+            matched = [txt for npos, txt in user_notes[asin] if pos_start_short <= npos <= end_bound]
+            note = "\n".join(matched)
 
-        books[asin]["highlights"].append({
+        all_books[asin]["highlights"].append({
             "location_str": loc_str,
             "sort_key": sort_key,
             "start_pos": pos_start_short,
             "end_pos": pos_end_short,
+            "start_long": pos_start_long,
+            "end_long": pos_end_long,
             "created_dt": created_dt,
             "modified_dt": modified_dt,
-            "note": note
+            "note": note,
         })
 
-    # Export markdown notes with resolved highlight quotes
+    books = {asin: b for asin, b in all_books.items() if asin in dirty_asins}
+    total_hls = sum(len(b["highlights"]) for b in books.values())
+    print(f"[✓] Found {total_hls} highlight(s) across {len(books)} book(s) to sync (out of {len(all_books)} total in DB).")
+
+    if not books:
+        return {}, 0
+
+    if scan_only:
+        for asin, binfo in sorted(books.items(), key=lambda kv: kv[1]["title"].lower()):
+            finfo = _resolve_file_for_book(asin, binfo["title"], asin_to_file)
+            fname = finfo["filename"] if finfo else "no local file"
+            print(f"  - [{binfo['content_type']}] {binfo['title']} ({len(binfo['highlights'])} highlights) -> {fname}")
+        return books, total_hls
+
+    os.makedirs(output_dir, exist_ok=True)
     print(f"[*] Processing {len(books)} book(s) with highlights...")
     books_with_quotes = 0
+    drm_skipped = 0
+    missing_files = 0
 
-    with tempfile.TemporaryDirectory() as temp_dir:
-        for b_idx, (asin, binfo) in enumerate(books.items(), 1):
+    with tempfile.TemporaryDirectory() as temp_dir, KFXExtractor() as kfx_extractor:
+        if not kfx_extractor.available:
+            print(f"[!] Warning: Calibre KFX Input unavailable ({kfx_extractor.init_error}); .kfx quotes cannot be extracted.")
+
+        for asin, binfo in books.items():
             title = binfo["title"]
             hls = binfo["highlights"]
             hls.sort(key=lambda h: (h["sort_key"], h["created_dt"].timestamp() if h["created_dt"] else 0))
 
-            # Ephemeral text extraction: pull book on demand, extract text, and clean up immediately
-            book_text = ""
-            if client and asin in asin_to_file:
-                file_info = asin_to_file[asin]
+            quotes = [""] * len(hls)
+            file_info = _resolve_file_for_book(asin, title, asin_to_file)
+            if not file_info:
+                missing_files += 1
+            elif client:
                 tmp_book_path = os.path.join(temp_dir, file_info["filename"])
                 try:
                     if client.download_file(file_info["item_id"], tmp_book_path):
-                        if tmp_book_path.endswith(".kfx"):
-                            book_text = extract_kfx_text(tmp_book_path)
-                        elif tmp_book_path.endswith(".azw3") or tmp_book_path.endswith(".mobi"):
-                            book_text = extract_mobi_azw3_text(tmp_book_path)
+                        lower_name = tmp_book_path.lower()
+                        if lower_name.endswith((".kfx", ".kpf")):
+                            quotes, err = kfx_extractor.extract_quotes(tmp_book_path, hls)
+                            if err == "drm":
+                                drm_skipped += 1
+                        elif lower_name.endswith((".azw3", ".mobi", ".azw")):
+                            raw_bytes = extract_mobi_azw3_raw_bytes(tmp_book_path)
+                            if raw_bytes:
+                                quotes = [
+                                    slice_mobi_html_highlight(raw_bytes, h["start_pos"], h["end_pos"])
+                                    if h["start_pos"] is not None and h["end_pos"] is not None
+                                    else ""
+                                    for h in hls
+                                ]
+                finally:
                     if os.path.exists(tmp_book_path):
                         os.remove(tmp_book_path)
-                except Exception:
-                    pass
 
-            if book_text:
+            if any(quotes):
                 books_with_quotes += 1
 
             clean_title = title.replace('"', '\\"')
@@ -709,11 +939,7 @@ def extract_and_export_highlights(
                 ""
             ]
 
-            for i, h in enumerate(hls, 1):
-                quote = ""
-                if book_text and h["start_pos"] is not None and h["end_pos"] is not None:
-                    quote = slice_highlight(book_text, h["start_pos"], h["end_pos"])
-
+            for i, (h, quote) in enumerate(zip(hls, quotes), 1):
                 date_str = h["created_dt"].strftime("%B %d, %Y at %I:%M %p") if h["created_dt"] else "Unknown Date"
                 lines.append(f"### Highlight {i}")
                 if quote:
@@ -729,7 +955,10 @@ def extract_and_export_highlights(
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write("\n".join(lines))
 
-    print(f"[✓] Quote extraction succeeded for {books_with_quotes}/{len(books)} document(s).")
+    print(
+        f"[✓] Quote extraction succeeded for {books_with_quotes}/{len(books)} document(s) "
+        f"(DRM-protected: {drm_skipped}, no local file: {missing_files})."
+    )
 
     # Update high-watermark timestamp
     if max_seen_modified > 0:
@@ -738,12 +967,12 @@ def extract_and_export_highlights(
             "last_sync_date": datetime.fromtimestamp(max_seen_modified / 1000.0).isoformat(),
             "last_run_at": datetime.now().isoformat(),
             "total_books_in_batch": len(books),
-            "total_highlights_in_batch": len(rows)
+            "total_highlights_in_batch": total_hls
         }
         save_sync_state(new_state, state_file)
         print(f"[✓] Updated sync watermark to: {new_state['last_sync_date']}")
 
-    return books, len(rows)
+    return books, total_hls
 
 
 # ==============================================================================
@@ -838,7 +1067,10 @@ def main():
             titles, files_map = client.fast_get_books_catalog()
             print(f"[✓] Indexed {len(titles)} book title(s) and {len(files_map)} container file(s).")
 
-            print(f"[*] Generating Markdown files into: {args.output_dir}")
+            if args.command == "scan":
+                print("[*] Scanning books & highlights (no files will be written)...")
+            else:
+                print(f"[*] Generating Markdown files into: {args.output_dir}")
             books, count = extract_and_export_highlights(
                 ksdk_dest,
                 output_dir=args.output_dir,
@@ -847,9 +1079,11 @@ def main():
                 client=client,
                 since_ms=since_ms,
                 pull_all=args.all,
-                state_file=args.state_file
+                state_file=args.state_file,
+                scan_only=(args.command == "scan"),
             )
-            print(f"\n[✓] All done! {count} highlight(s) exported across {len(books)} document(s) in '{args.output_dir}'.")
+            action_verb = "found" if args.command == "scan" else f"exported to '{args.output_dir}'"
+            print(f"\n[✓] All done! {count} highlight(s) {action_verb} across {len(books)} document(s).")
 
 
 if __name__ == "__main__":
